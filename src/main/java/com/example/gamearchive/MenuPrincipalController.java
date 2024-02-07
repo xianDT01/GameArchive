@@ -1,9 +1,17 @@
 package com.example.gamearchive;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,6 +24,8 @@ public class MenuPrincipalController {
     private TextField correoElectronico;
     @FXML
     private PasswordField contraseña;
+    @FXML
+    private Button RegistrarUsuario;
 
     public void ConexionDB() {
         // URL de conexión, incluye el nombre de la base de datos y el timezone
@@ -35,6 +45,15 @@ public class MenuPrincipalController {
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleRegistarUsuarios(ActionEvent event) throws IOException {
+        Stage ventana = (Stage) RegistrarUsuario.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("RegistroDeUsuarios.fxml"));
+        Scene scene = new Scene(root);
+        ventana.setScene(scene);
+        ventana.show();
     }
 
 
