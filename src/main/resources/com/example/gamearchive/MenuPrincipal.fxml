@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuPrincipalController">
+   <children>
+      <Label layoutX="128.0" layoutY="174.0" text="Game Archive Login" textAlignment="CENTER" textFill="#059fff">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="197.0" layoutY="257.0" prefHeight="27.0" prefWidth="106.0" text="Correo " textFill="#0598ff">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="310.0" prefHeight="27.0" prefWidth="131.0" text="Contraseña" textFill="#0598ff">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="304.0" layoutY="257.0" promptText="NIF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
+      <Button layoutX="14.0" layoutY="574.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="159.0" text="Regístrate" />
+      <Button layoutX="272.0" layoutY="367.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="131.0" text="Entrar">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <PasswordField layoutX="304.0" layoutY="313.0" promptText="CONTRASEÑA" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
+   </children>
+</AnchorPane>
