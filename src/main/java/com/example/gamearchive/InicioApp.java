@@ -12,7 +12,7 @@ public class InicioApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InicioApp.class.getResource("MenuPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Menu Principal Usuarios");
+        stage.setTitle("GameArchive");
         stage.setScene(scene);
         stage.show();
     }

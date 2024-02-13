@@ -29,24 +29,21 @@ public class MenuPrincipalController {
 
     public void ConexionDB() {
         // URL de conexión, incluye el nombre de la base de datos y el timezone
-      //  String url = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC&user=root&allowPublicKeyRetrieval=true";
         String url = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC&user=root&password=abc123.";
-
         try {
-            // Cargar el controlador de MySQL
+        // Cargar el controlador de MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
-            // Establecer la conexión
+        // Establecer la conexión
             Connection connection = DriverManager.getConnection(url);
-            // Si llega a este punto, la conexión se ha establecido con éxito
+        // Si llega a este punto, la conexión se ha establecido con éxito
             System.out.println("¡Conexión exitosa a la base de datos!");
-            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
+        // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
         } catch (ClassNotFoundException e) {
             System.err.println("Error al cargar el controlador de MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
         }
     }
-
     @FXML
     private void handleRegistarUsuarios(ActionEvent event) throws IOException {
         Stage ventana = (Stage) RegistrarUsuario.getScene().getWindow();
