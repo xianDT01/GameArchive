@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuPrincipalController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuPrincipalController">
    <children>
-      <Label layoutX="128.0" layoutY="174.0" text="Game Archive Login" textAlignment="CENTER" textFill="#059fff">
+      <Label layoutX="163.0" layoutY="184.0" text="Game Archive Login" textAlignment="CENTER" textFill="#059fff">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="197.0" layoutY="257.0" prefHeight="27.0" prefWidth="106.0" text="Correo " textFill="#0598ff">
+      <Label layoutX="232.0" layoutY="267.0" prefHeight="27.0" prefWidth="106.0" text="Correo " textFill="#0598ff">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -24,12 +24,12 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="304.0" layoutY="257.0" promptText="NIF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
-      <Button fx:id="RegistrarUsuario" layoutX="14.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleRegistarUsuarios" prefHeight="49.0" prefWidth="159.0" text="Regístrate" />
-      <Button layoutX="272.0" layoutY="367.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="131.0" text="Entrar">
+      <TextField fx:id="correoElectronico" layoutX="339.0" layoutY="267.0" promptText="NIF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
+      <Button fx:id="RegistrarUsuario" layoutX="14.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleRegistarUsuarios" prefHeight="49.0" prefWidth="159.0" text="Regístrate" />
+      <Button fx:id="Entrar" layoutX="307.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleEntrar" prefHeight="43.0" prefWidth="131.0" text="Entrar">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <PasswordField layoutX="304.0" layoutY="313.0" promptText="CONTRASEÑA" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
+      <PasswordField fx:id="contraseña" layoutX="339.0" layoutY="323.0" promptText="CONTRASEÑA" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px;" />
    </children>
 </AnchorPane>

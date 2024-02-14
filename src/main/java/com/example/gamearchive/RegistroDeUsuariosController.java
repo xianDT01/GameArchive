@@ -78,6 +78,12 @@ public class RegistroDeUsuariosController {
             return;
         }
 
+        // Verificar que el correo electrónico tenga un formato válido
+        if (!correo.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
+            mostrarAlerta("Error", "El correo electrónico no tiene un formato válido.");
+            return;
+        }
+
         // Realizar la conexión a la base de datos y realizar la inserción
         Connection connection = null;
         try {
@@ -115,6 +121,7 @@ public class RegistroDeUsuariosController {
             }
         }
     }
+
 
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
