@@ -8,29 +8,69 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
    <children>
-      <Label layoutX="305.0" layoutY="78.0" prefHeight="59.0" prefWidth="278.0" text="Menu Principal">
+      <Label layoutX="293.0" layoutY="48.0" prefHeight="59.0" prefWidth="278.0" text="Menu Principal">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <Button layoutX="776.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" text="Buscar" />
       <TextField layoutX="613.0" layoutY="15.0" />
-      <ImageView fitHeight="561.0" fitWidth="165.0" layoutX="14.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="561.0" fitWidth="165.0" layoutX="14.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="561.0" fitWidth="165.0" layoutX="673.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="561.0" fitWidth="165.0" layoutX="694.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
       <Button fx:id="Volver" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="27.0" prefWidth="62.0" text="Volver" />
-      <Label layoutX="397.0" layoutY="166.0" prefHeight="27.0" prefWidth="79.0" text="Índice">
+      <Label layoutX="392.0" layoutY="118.0" prefHeight="27.0" prefWidth="79.0" text="Índice">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="268.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="268.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/img_negro.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="298.0" layoutY="163.0" text="Agregados Recietemente">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="363.0" layoutY="379.0" text="Aleaotorios">
+         <font>
+            <Font size="24.0" />
          </font>
       </Label>
    </children>

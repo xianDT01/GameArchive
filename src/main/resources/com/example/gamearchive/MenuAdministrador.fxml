@@ -17,7 +17,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="299.0" layoutY="246.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="318.0" text="Modificar Juego">
+      <Button layoutX="299.0" layoutY="252.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="318.0" text="Modificar Juego">
          <font>
             <Font size="24.0" />
          </font>
