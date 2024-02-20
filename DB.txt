@@ -1,0 +1,53 @@
+create database gamearchive;
+use gamearchive;
+
+CREATE TABLE Juegos (
+    idJuego INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    fechaLanzamiento DATE,
+    rutaCaratula VARCHAR(255)
+);
+
+
+CREATE TABLE Plataformas (
+    idPlataforma INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE Juego_Plataforma (
+    idJuego INT,
+    idPlataforma INT,
+    PRIMARY KEY (idJuego, idPlataforma),
+    FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego),
+    FOREIGN KEY (idPlataforma) REFERENCES Plataformas(idPlataforma)
+);
+
+CREATE TABLE Multimedia (
+    idMultimedia INT AUTO_INCREMENT PRIMARY KEY,
+    idJuego INT,
+    tipo ENUM('imagen', 'video') NOT NULL,
+    ruta VARCHAR(255) NOT NULL,
+    FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
+);
+
+
+CREATE TABLE Usuarios (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    tipo_usuario ENUM('usuario', 'administrador') NOT NULL DEFAULT 'usuario'
+);
+
+
+CREATE TABLE Reseñas (
+    idReseña INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT,
+    idJuego INT,
+    calificacion INT,
+    comentario TEXT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario),
+    FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
+);

@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuAdministradorController">
    <children>
       <Label layoutX="293.0" layoutY="54.0" prefHeight="100.0" prefWidth="363.0" text="Menú Administrador">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="299.0" layoutY="154.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="318.0" text="Añadir Juego">
+      <Button fx:id="AñadirJuego" layoutX="299.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRegistarUsuarios" prefHeight="66.0" prefWidth="318.0" text="Añadir Juego">
          <font>
             <Font size="24.0" />
          </font>

@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
    <children>
-      <Label layoutX="293.0" layoutY="48.0" prefHeight="59.0" prefWidth="278.0" text="Menu Principal">
+      <Label layoutX="301.0" layoutY="51.0" prefHeight="59.0" prefWidth="278.0" text="Menu Principal">
          <font>
             <Font size="36.0" />
          </font>
@@ -33,32 +33,28 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="268.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagendePrueba" fitHeight="214.0" fitWidth="235.0" layoutX="184.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Agregadosrecientemente2" fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Agregadosrecientemente3" fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom1" fitHeight="147.0" fitWidth="155.0" layoutX="268.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="268.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom2" fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="410.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom3" fitHeight="147.0" fitWidth="155.0" layoutX="549.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
@@ -73,5 +69,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="Agregadosrecientemente1" fitHeight="214.0" fitWidth="235.0" layoutX="194.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
