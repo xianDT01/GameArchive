@@ -9,27 +9,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1308.0" prefWidth="1408.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1097.0" prefWidth="1408.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuJuegoController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <Label layoutX="498.0" layoutY="42.0" prefHeight="58.0" prefWidth="299.0" text="Nombre del juego">
+      <Button fx:id="Volver" layoutX="20.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="28.0" prefWidth="60.0" text="Volver" />
+      <Label fx:id="NombreJuego" layoutX="498.0" layoutY="28.0" prefHeight="58.0" prefWidth="299.0" text="Nombre del juego">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <ImageView fitHeight="386.0" fitWidth="299.0" layoutX="498.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="299.0" layoutX="498.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/-5857140.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="1081.0" layoutY="599.0" prefHeight="131.0" prefWidth="84.0" text="Nota del juego" />
-      <Label layoutX="64.0" layoutY="599.0" prefHeight="145.0" prefWidth="980.0" text="Descripcion del juego" />
-      <Button layoutX="1266.0" layoutY="673.0" mnemonicParsing="false" text="Votar" />
-      <TextField layoutX="1199.0" layoutY="673.0" prefHeight="25.0" prefWidth="52.0" />
-      <Label layoutX="64.0" layoutY="541.0" prefHeight="58.0" prefWidth="197.0" text="Plataformas del juego" />
-      <Label layoutX="376.0" layoutY="541.0" prefHeight="58.0" prefWidth="209.0" text="Fecha de lanzamiento" />
-      <ScrollPane layoutX="14.0" layoutY="844.0" prefHeight="440.0" prefWidth="1311.0" />
-      <TextField layoutX="44.0" layoutY="751.0" prefHeight="83.0" prefWidth="1130.0" />
-      <Button layoutX="1199.0" layoutY="779.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="112.0" text="Comentar" />
+      <Label layoutX="1013.0" layoutY="374.0" prefHeight="131.0" prefWidth="84.0" text="Nota del juego" />
+      <Label fx:id="Descripcion" layoutX="50.0" layoutY="561.0" prefHeight="145.0" prefWidth="980.0" text="Descripcion del juego" />
+      <Button layoutX="1237.0" layoutY="440.0" mnemonicParsing="false" text="Votar" />
+      <TextField layoutX="1163.0" layoutY="440.0" prefHeight="25.0" prefWidth="52.0" />
+      <Label fx:id="Plataformas" layoutX="71.0" layoutY="505.0" prefHeight="58.0" prefWidth="197.0" text="Plataformas del juego" />
+      <Label fx:id="FechaDeLanzamiento" layoutX="378.0" layoutY="498.0" prefHeight="58.0" prefWidth="209.0" text="Fecha de lanzamiento" />
+      <ScrollPane layoutX="20.0" layoutY="750.0" prefHeight="316.0" prefWidth="1311.0" />
+      <TextField layoutX="50.0" layoutY="661.0" prefHeight="83.0" prefWidth="1130.0" />
+      <Button layoutX="1204.0" layoutY="681.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="112.0" text="Comentar" />
    </children>
 </AnchorPane>
