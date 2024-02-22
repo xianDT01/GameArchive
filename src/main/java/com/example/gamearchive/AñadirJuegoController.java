@@ -43,13 +43,25 @@ public class AñadirJuegoController {
         );
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
     }
+    public void ConexionDB() {
+        // Obtener la conexión a la base de datos utilizando el método getConnection() de DatabaseConnection
+        Connection connection = DatabaseConnection.getConnection();
+
+        if (connection != null) {
+            // Si llega a este punto, la conexión se ha establecido con éxito
+            System.out.println("¡Conexión exitosa a la base de datos!");
+            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
+        } else {
+            System.err.println("Error al conectar a la base de datos.");
+        }
+    }
 
     @FXML
     private void añadirJuego() {
-        // Resto del código...
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC", "root", "abc123.");
+            Connection connection = DatabaseConnection.getConnection();
+           // Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC", "root", "abc123.");
             String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, NombreJuego.getText());

@@ -28,11 +28,6 @@
          </image>
       </ImageView>
       <Button fx:id="Volver" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="27.0" prefWidth="62.0" text="Volver" />
-      <Label layoutX="596.0" layoutY="164.0" prefHeight="27.0" prefWidth="79.0" text="Índice">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <ImageView fx:id="imagendePrueba" fitHeight="214.0" fitWidth="235.0" layoutX="184.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="481.0" layoutY="209.0" text="Agregados Recietemente">
          <font>
@@ -74,5 +69,6 @@
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="Indice" layoutX="589.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleIrAlIndice" text="Button" />
    </children>
 </AnchorPane>

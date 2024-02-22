@@ -38,11 +38,12 @@ public class MenuJuegoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    public void initData(String nombreJuego, String fechaLanzamiento, String rutaCaratula) {
+    public void initData(String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula) {
         NombreJuego.setText(nombreJuego);
         FechaDeLanzamiento.setText(fechaLanzamiento);
         Image image = new Image(new File(rutaCaratula).toURI().toString());
         ImagenJuego.setImage(image);
+        Descripcion.setText(descriptcion);
     }
 
     @FXML
@@ -53,5 +54,7 @@ public class MenuJuegoController implements Initializable {
         ventana.setScene(scene);
         ventana.show();
     }
+
+
 
 }

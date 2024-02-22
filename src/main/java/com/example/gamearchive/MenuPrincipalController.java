@@ -23,6 +23,9 @@ public class MenuPrincipalController {
     @FXML
     private Button RegistrarUsuario;
 
+
+
+
     public void ConexionDB() {
         // URL de conexión, incluye el nombre de la base de datos y el timezone
         String url = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC&user=root&password=abc123.";

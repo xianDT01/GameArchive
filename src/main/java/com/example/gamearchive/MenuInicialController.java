@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,13 +44,28 @@ public class MenuInicialController implements Initializable {
     @FXML
     private Button ButtonBuscar;
     @FXML
-    private Label Indice;
+    private Button Indice;
+    public List<Integer> Aleatorios;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarJuegosAgregadosRecientemente();
         cargarJuegosAleatorios();
 
     }
+    public void ConexionDB() {
+        // Obtener la conexión a la base de datos utilizando el método getConnection() de DatabaseConnection
+        Connection connection = DatabaseConnection.getConnection();
+
+        if (connection != null) {
+            // Si llega a este punto, la conexión se ha establecido con éxito
+            System.out.println("¡Conexión exitosa a la base de datos!");
+            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
+        } else {
+            System.err.println("Error al conectar a la base de datos.");
+        }
+    }
+
+
     private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "abc123.";
@@ -85,7 +98,6 @@ public class MenuInicialController implements Initializable {
         List<Integer> idsJuegos = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
             // Consulta SQL para obtener los últimos juegos agregados
             String query = "SELECT idJuego, rutaCaratula FROM Juegos ORDER BY idJuego DESC LIMIT 3";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -112,7 +124,7 @@ public class MenuInicialController implements Initializable {
     private List<Integer> cargarJuegosAleatorios() {
         List<Integer> idsJuegos = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 
             // Consulta SQL para obtener juegos aleatorios
             String query = "SELECT idJuego, rutaCaratula FROM Juegos ORDER BY RAND() LIMIT 3";
@@ -126,9 +138,11 @@ public class MenuInicialController implements Initializable {
 
                 idsJuegos.add(idJuego);
                 rutasCaratulas.add(rutaCaratula);
+
             }
 
             // Asignar las imágenes a los ImageView de los juegos aleatorios
+            Aleatorios = idsJuegos;
             asignarImagenesAImageView(rutasCaratulas, Ramdom1, Ramdom2, Ramdom3);
 
         } catch (SQLException e) {
@@ -137,11 +151,11 @@ public class MenuInicialController implements Initializable {
         return idsJuegos;
     }
 
+
     @FXML
     private void abrirMenuJuego(int idJuego) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            String query = "SELECT nombre, fechaLanzamiento, rutaCaratula FROM Juegos WHERE idJuego = ?";
+            String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE idJuego = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idJuego);
             ResultSet resultSet = statement.executeQuery();
@@ -149,23 +163,26 @@ public class MenuInicialController implements Initializable {
             String nombreJuego = null;
             String fechaLanzamiento = null;
             String rutaCaratula = null;
+            String descripcion = null;
 
             if (resultSet.next()) {
                 nombreJuego = resultSet.getString("nombre");
                 fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                 rutaCaratula = resultSet.getString("rutaCaratula");
+                descripcion = resultSet.getString("descripcion");
             }
 
-            connection.close();
-
-            if (nombreJuego != null && fechaLanzamiento != null && rutaCaratula != null) {
+            if (nombreJuego != null && descripcion != null && fechaLanzamiento != null && rutaCaratula != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(nombreJuego, fechaLanzamiento, rutaCaratula);
+                controller.initData(nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
+                Stage ventanaPrincipal = (Stage) Volver.getScene().getWindow();
+                ventanaPrincipal.close();
+                DatabaseConnection.closeConnection();
             } else {
                 System.out.println("No se encontró información para el juego con id: " + idJuego);
             }
@@ -174,26 +191,30 @@ public class MenuInicialController implements Initializable {
         }
     }
 
+
     @FXML
     private void abrirMenuJuegoAgregadoRecientemente1() {
-        abrirMenuJuegoPorIndice(0); // Abrir el primer juego agregado recientemente
+        abrirMenuJuegoPorIndice(0);
     }
 
     @FXML
     private void abrirMenuJuegoAgregadoRecientemente2() {
-        abrirMenuJuegoPorIndice(1); // Abrir el segundo juego agregado recientemente
+        abrirMenuJuegoPorIndice(1);
     }
 
     @FXML
     private void abrirMenuJuegoAgregadoRecientemente3() {
-        abrirMenuJuegoPorIndice(2); // Abrir el tercer juego agregado recientemente
+        abrirMenuJuegoPorIndice(2);
     }
 
     @FXML
     private void abrirMenuJuegoAleatorio1() {
-        List<Integer> idsJuegos = cargarJuegosAleatorios();
+
+        List<Integer> idsJuegos = Aleatorios;
         if (!idsJuegos.isEmpty()) {
+
             int idJuego = idsJuegos.get(0);
+            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
             System.out.println("La lista de juegos aleatorios está vacía.");
@@ -202,23 +223,29 @@ public class MenuInicialController implements Initializable {
 
     @FXML
     private void abrirMenuJuegoAleatorio2() {
-        List<Integer> idsJuegos = cargarJuegosAleatorios();
-        if (idsJuegos.size() > 1) {
+
+        List<Integer> idsJuegos = Aleatorios;
+        if (!idsJuegos.isEmpty()) {
+
             int idJuego = idsJuegos.get(1);
+            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
-            System.out.println("La lista de juegos aleatorios no tiene suficientes juegos.");
+            System.out.println("La lista de juegos aleatorios está vacía.");
         }
     }
 
     @FXML
     private void abrirMenuJuegoAleatorio3() {
-        List<Integer> idsJuegos = cargarJuegosAleatorios();
-        if (idsJuegos.size() > 2) {
+
+        List<Integer> idsJuegos = Aleatorios;
+        if (!idsJuegos.isEmpty()) {
+
             int idJuego = idsJuegos.get(2);
+            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
-            System.out.println("La lista de juegos aleatorios no tiene suficientes juegos.");
+            System.out.println("La lista de juegos aleatorios está vacía.");
         }
     }
 
@@ -231,16 +258,17 @@ public class MenuInicialController implements Initializable {
         }
     }
 
-
-    /*
     @FXML
-    private void abrirMenuJuegoAgregadoRecientemente1() {
-        List<Integer> idsJuegos = cargarJuegosAgregadosRecientemente();
-        if (!idsJuegos.isEmpty()) {
-            int idJuego = idsJuegos.get(0);
-            abrirMenuJuego(idJuego);
-        }
+    private void handleIrAlIndice(ActionEvent event) throws IOException {
+        Stage ventana = (Stage) Indice.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Indice.fxml"));
+        Scene scene = new Scene(root);
+        ventana.setScene(scene);
+        ventana.show();
     }
-*/
+
+
+
+
 
 }
