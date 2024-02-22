@@ -52,19 +52,6 @@ public class MenuInicialController implements Initializable {
         cargarJuegosAleatorios();
 
     }
-    public void ConexionDB() {
-        // Obtener la conexión a la base de datos utilizando el método getConnection() de DatabaseConnection
-        Connection connection = DatabaseConnection.getConnection();
-
-        if (connection != null) {
-            // Si llega a este punto, la conexión se ha establecido con éxito
-            System.out.println("¡Conexión exitosa a la base de datos!");
-            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
-        } else {
-            System.err.println("Error al conectar a la base de datos.");
-        }
-    }
-
 
     private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
     private static final String USER = "root";
@@ -182,7 +169,6 @@ public class MenuInicialController implements Initializable {
                 stage.show();
                 Stage ventanaPrincipal = (Stage) Volver.getScene().getWindow();
                 ventanaPrincipal.close();
-                DatabaseConnection.closeConnection();
             } else {
                 System.out.println("No se encontró información para el juego con id: " + idJuego);
             }
@@ -190,7 +176,6 @@ public class MenuInicialController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void abrirMenuJuegoAgregadoRecientemente1() {

@@ -25,6 +25,13 @@ public class IndiceController implements Initializable {
     private ListView<String> listaJuegos;
     @FXML
     private Button Volver;
+    @FXML
+    private Button VolverIndice;
+
+    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "abc123.";
+    private static Connection connection;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,7 +49,7 @@ public class IndiceController implements Initializable {
         ObservableList<String> nombresJuegos = FXCollections.observableArrayList();
 
         // Conexión a la base de datos y consulta para obtener los nombres de los juegos
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             if (connection != null) {
                 String query = "SELECT nombre FROM Juegos";
                 PreparedStatement statement = connection.prepareStatement(query);
@@ -63,10 +70,12 @@ public class IndiceController implements Initializable {
     }
 
     // Método para abrir el menú del juego cuando se hace doble clic en un nombre de juego
+
+
     private void abrirMenuJuego() {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
         if (nombreJuegoSeleccionado != null) {
-            try (Connection connection = DatabaseConnection.getConnection()) {
+            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, nombreJuegoSeleccionado);
@@ -85,6 +94,10 @@ public class IndiceController implements Initializable {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();
+
+                    // Cerrar la ventana actual (índice)
+                    Stage ventanaActual = (Stage) listaJuegos.getScene().getWindow();
+                    ventanaActual.close();
                 } else {
                     System.out.println("No se encontró información para el juego seleccionado: " + nombreJuegoSeleccionado);
                 }
@@ -94,6 +107,9 @@ public class IndiceController implements Initializable {
             }
         }
     }
+
+
+
 
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
