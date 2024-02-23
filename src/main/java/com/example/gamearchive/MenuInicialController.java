@@ -50,6 +50,8 @@ public class MenuInicialController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarJuegosAgregadosRecientemente();
         cargarJuegosAleatorios();
+        //
+
 
     }
 
@@ -252,8 +254,43 @@ public class MenuInicialController implements Initializable {
         ventana.show();
     }
 
+    @FXML
+    private void handleBuscar(ActionEvent event) {
+        String busqueda = TextFieldBuscar.getText();
+        if (!busqueda.isEmpty()) {
+            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre LIKE ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, "%" + busqueda + "%");
+                ResultSet resultSet = statement.executeQuery();
 
+                List<Juego> juegosEncontrados = new ArrayList<>();
+                while (resultSet.next()) {
+                    String nombreJuego = resultSet.getString("nombre");
+                    String descripcion = resultSet.getString("descripcion");
+                    String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
+                    String rutaCaratula = resultSet.getString("rutaCaratula");
 
+                    juegosEncontrados.add(new Juego(nombreJuego, descripcion, fechaLanzamiento, rutaCaratula));
+                }
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultadosBusqueda.fxml"));
+                Parent root = loader.load();
+                ResultadosBusquedaController controller = loader.getController();
+                controller.mostrarResultados(juegosEncontrados);
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Cerrar la ventana actual (MenuInicial)
+                Stage ventanaActual = (Stage) TextFieldBuscar.getScene().getWindow();
+                ventanaActual.close();
+
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 }
