@@ -45,7 +45,7 @@ public class MenuPrincipalController {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC", "root", "abc123.");
 
             // Preparar la consulta SQL
-            String query = "SELECT tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
+            String query = "SELECT idUsuario,tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, correo);
             statement.setString(2, pass);
@@ -56,6 +56,7 @@ public class MenuPrincipalController {
             // Verificar si se encontró un usuario con las credenciales proporcionadas
             if (resultSet.next()) {
                 String tipoUsuario = resultSet.getString("tipo_usuario");
+                String idUsuario = resultSet.getString("idUsuario");
                 if ("usuario".equals(tipoUsuario)) {
                     // Redirigir a la pantalla de usuario
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInicial.fxml"));
@@ -64,7 +65,7 @@ public class MenuPrincipalController {
                     Stage stage = new Stage();
                     stage.setScene(scene);
                     stage.show();
-
+                    SesionUsuario.setUsuario(idUsuario);
                     // Cerrar la ventana actual
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();

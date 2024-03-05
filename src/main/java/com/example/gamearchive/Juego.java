@@ -8,6 +8,8 @@ public class Juego {
         private String fechaLanzamiento;
         private String rutaCaratula;
 
+
+
     public Juego(String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula) {
         this.nombre = nombre;
         this.descripcion = descripcion;
