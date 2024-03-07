@@ -69,7 +69,7 @@ public class ResultadosBusquedaController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
             Parent root = loader.load();
             MenuJuegoController controller = loader.getController();
-            controller.initData(juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula());
+            controller.initData(juego.getIdjuego(),juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula());
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -89,7 +89,7 @@ public class ResultadosBusquedaController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula());
+                controller.initData(juegoSeleccionado.getIdjuego(),juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula());
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();

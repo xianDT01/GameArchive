@@ -76,12 +76,13 @@ public class IndiceController implements Initializable {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
         if (nombreJuegoSeleccionado != null) {
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre = ?";
+                String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, nombreJuegoSeleccionado);
                 ResultSet resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {
+                    int idJuego = resultSet.getInt("idJuego");
                     String nombreJuego = resultSet.getString("nombre");
                     String descripcion = resultSet.getString("descripcion");
                     String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
@@ -90,7 +91,7 @@ public class IndiceController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                     Parent root = loader.load();
                     MenuJuegoController controller = loader.getController();
-                    controller.initData(nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
+                    controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();

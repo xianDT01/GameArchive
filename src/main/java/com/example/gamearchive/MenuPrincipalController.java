@@ -56,7 +56,7 @@ public class MenuPrincipalController {
             // Verificar si se encontró un usuario con las credenciales proporcionadas
             if (resultSet.next()) {
                 String tipoUsuario = resultSet.getString("tipo_usuario");
-                String idUsuario = resultSet.getString("idUsuario");
+                int idUsuario = resultSet.getInt("idUsuario");
                 if ("usuario".equals(tipoUsuario)) {
                     // Redirigir a la pantalla de usuario
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInicial.fxml"));

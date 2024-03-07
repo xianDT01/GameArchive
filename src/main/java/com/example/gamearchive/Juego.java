@@ -2,19 +2,27 @@ package com.example.gamearchive;
 
 public class Juego {
 
-
+        private  int idjuego;
         private String nombre;
         private String descripcion;
         private String fechaLanzamiento;
         private String rutaCaratula;
 
 
-
-    public Juego(String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula) {
+    public Juego(int idjuego,String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula) {
+        this.idjuego=idjuego;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaLanzamiento = fechaLanzamiento;
         this.rutaCaratula = rutaCaratula;
+    }
+
+    public int getIdjuego() {
+        return idjuego;
+    }
+
+    public void setIdjuego(int idjuego) {
+        this.idjuego = idjuego;
     }
 
     public String getNombre() {

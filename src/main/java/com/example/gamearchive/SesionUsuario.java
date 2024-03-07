@@ -1,15 +1,20 @@
 package com.example.gamearchive;
 
 public class SesionUsuario {
-    private static String usuario;
+    private static int usuario;
 
-    public static String getUsuario() {
+
+
+    public static int getUsuario() {
         return usuario;
     }
 
-    public static void setUsuario(String idusuario) {
+    public static void setUsuario(int usuario) {
         SesionUsuario.usuario = usuario;
     }
+
+
+
 }
 
 

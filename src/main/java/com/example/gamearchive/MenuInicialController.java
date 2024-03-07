@@ -144,33 +144,36 @@ public class MenuInicialController implements Initializable {
     @FXML
     private void abrirMenuJuego(int idJuego) {
         try {
-            String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE idJuego = ?";
+            String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE idJuego = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idJuego);
             ResultSet resultSet = statement.executeQuery();
-
+            int idxogo= 0;
             String nombreJuego = null;
             String fechaLanzamiento = null;
             String rutaCaratula = null;
             String descripcion = null;
 
             if (resultSet.next()) {
+                idxogo = resultSet.getInt("idJuego");
                 nombreJuego = resultSet.getString("nombre");
                 fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                 rutaCaratula = resultSet.getString("rutaCaratula");
                 descripcion = resultSet.getString("descripcion");
             }
-
+            // Dar idJuego
+            ControllerId.setIdJuego(idJuego);
             if (nombreJuego != null && descripcion != null && fechaLanzamiento != null && rutaCaratula != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
+                controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
                 Stage ventanaPrincipal = (Stage) Volver.getScene().getWindow();
                 ventanaPrincipal.close();
+
             } else {
                 System.out.println("No se encontró información para el juego con id: " + idJuego);
             }
@@ -259,19 +262,20 @@ public class MenuInicialController implements Initializable {
         String busqueda = TextFieldBuscar.getText();
         if (!busqueda.isEmpty()) {
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String query = "SELECT nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre LIKE ?";
+                String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre LIKE ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, "%" + busqueda + "%");
                 ResultSet resultSet = statement.executeQuery();
 
                 List<Juego> juegosEncontrados = new ArrayList<>();
                 while (resultSet.next()) {
+                    int idJuego = resultSet.getInt("idJuego");
                     String nombreJuego = resultSet.getString("nombre");
                     String descripcion = resultSet.getString("descripcion");
                     String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                     String rutaCaratula = resultSet.getString("rutaCaratula");
 
-                    juegosEncontrados.add(new Juego(nombreJuego, descripcion, fechaLanzamiento, rutaCaratula));
+                    juegosEncontrados.add(new Juego(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula));
                 }
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultadosBusqueda.fxml"));
