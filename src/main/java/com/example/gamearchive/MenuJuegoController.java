@@ -56,13 +56,14 @@ public class MenuJuegoController implements Initializable {
         double notaPromedio = obtenerNotaPromedio();
         mostrarNotaJuego.setText(String.valueOf(notaPromedio));
     }
-    public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula) {
+    public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula,String plataformas) {
         idJuego = idJuego;
         NombreJuego.setText(nombreJuego);
         FechaDeLanzamiento.setText(fechaLanzamiento);
         Image image = new Image(new File(rutaCaratula).toURI().toString());
         ImagenJuego.setImage(image);
         Descripcion.setText(descriptcion);
+        Plataformas.setText(plataformas);
         IdJuego = idJuego;
 
     }

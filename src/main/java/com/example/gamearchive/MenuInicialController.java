@@ -144,7 +144,7 @@ public class MenuInicialController implements Initializable {
     @FXML
     private void abrirMenuJuego(int idJuego) {
         try {
-            String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE idJuego = ?";
+            String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas FROM Juegos WHERE idJuego = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idJuego);
             ResultSet resultSet = statement.executeQuery();
@@ -153,6 +153,7 @@ public class MenuInicialController implements Initializable {
             String fechaLanzamiento = null;
             String rutaCaratula = null;
             String descripcion = null;
+            String plataformas = null;
 
             if (resultSet.next()) {
                 idxogo = resultSet.getInt("idJuego");
@@ -160,6 +161,7 @@ public class MenuInicialController implements Initializable {
                 fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                 rutaCaratula = resultSet.getString("rutaCaratula");
                 descripcion = resultSet.getString("descripcion");
+                plataformas = resultSet.getString("plataformas");
             }
             // Dar idJuego
             ControllerId.setIdJuego(idJuego);
@@ -167,7 +169,7 @@ public class MenuInicialController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula);
+                controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -262,7 +264,7 @@ public class MenuInicialController implements Initializable {
         String busqueda = TextFieldBuscar.getText();
         if (!busqueda.isEmpty()) {
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula FROM Juegos WHERE nombre LIKE ?";
+                String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas FROM Juegos WHERE nombre LIKE ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, "%" + busqueda + "%");
                 ResultSet resultSet = statement.executeQuery();
@@ -274,8 +276,8 @@ public class MenuInicialController implements Initializable {
                     String descripcion = resultSet.getString("descripcion");
                     String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                     String rutaCaratula = resultSet.getString("rutaCaratula");
-
-                    juegosEncontrados.add(new Juego(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula));
+                    String plataformas = resultSet.getString("plataformas");
+                    juegosEncontrados.add(new Juego(idJuego,nombreJuego, descripcion, fechaLanzamiento,rutaCaratula,plataformas));
                 }
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultadosBusqueda.fxml"));

@@ -3,11 +3,13 @@ package com.example.gamearchive;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import java.io.IOException;
 import java.sql.*;
 
@@ -27,6 +29,10 @@ public class MenuPrincipalController {
     private static final String USER = "root";
     private static final String PASSWORD = "abc123.";
     private static Connection connection;
+
+
+
+
     @FXML
     private void handleEntrar(ActionEvent event) throws IOException {
         String correo = correoElectronico.getText().trim();
@@ -34,7 +40,7 @@ public class MenuPrincipalController {
 
         // Verificar que los campos no estén vacíos
         if (correo.isEmpty() || pass.isEmpty()) {
-            mostrarAlerta("Error", "Por favor, complete todos los campos.");
+            mostrarNotificacion("Error", "Por favor, complete todos los campos.");
             return;
         }
 
@@ -83,11 +89,12 @@ public class MenuPrincipalController {
                     ventanaActual.close();
                 }
             } else {
-                mostrarAlerta("Error", "Credenciales incorrectas. Por favor, inténtelo de nuevo.");
+                mostrarNotificacion("Error", "Credenciales incorrectas. Por favor, inténtelo de nuevo.");
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
-            mostrarAlerta("Error", "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
+
+            mostrarNotificacion("Error", "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
         } finally {
             // Cerrar la conexión
             if (connection != null) {
@@ -100,13 +107,17 @@ public class MenuPrincipalController {
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+
+
+    private void mostrarNotificacion(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5)) // Ocultar después de 5 segundos
+                .position(Pos.BOTTOM_RIGHT) // Posición de la notificación en la pantalla
+                .showError();
     }
+
     @FXML
     private void handleRegistarUsuarios(ActionEvent event) throws IOException {
         Stage ventana = (Stage) RegistrarUsuario.getScene().getWindow();
@@ -114,6 +125,8 @@ public class MenuPrincipalController {
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
+
+
     }
 
 

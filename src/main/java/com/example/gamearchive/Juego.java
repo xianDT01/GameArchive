@@ -7,14 +7,18 @@ public class Juego {
         private String descripcion;
         private String fechaLanzamiento;
         private String rutaCaratula;
+        private  String plataformas;
 
 
-    public Juego(int idjuego,String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula) {
+
+
+    public Juego(int idjuego, String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula, String plataformas) {
         this.idjuego=idjuego;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaLanzamiento = fechaLanzamiento;
         this.rutaCaratula = rutaCaratula;
+        this.plataformas= plataformas;
     }
 
     public int getIdjuego() {
@@ -55,5 +59,13 @@ public class Juego {
 
     public void setRutaCaratula(String rutaCaratula) {
         this.rutaCaratula = rutaCaratula;
+    }
+
+    public String getPlataformas() {
+        return plataformas;
+    }
+
+    public void setPlataformas(String plataformas) {
+        this.plataformas = plataformas;
     }
 }

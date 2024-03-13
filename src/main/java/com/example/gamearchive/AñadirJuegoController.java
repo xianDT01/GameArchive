@@ -63,17 +63,16 @@ public class AñadirJuegoController {
 
     @FXML
     private void añadirJuego() {
-
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-           // Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC", "root", "abc123.");
-            String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, NombreJuego.getText());
             statement.setString(2, Descripcion.getText());
             statement.setDate(3, Date.valueOf(FechaDeLanzamiento.getValue()));
             statement.setString(4, caratulaJuegoFile.getAbsolutePath()); // Guarda la ruta de la imagen
-            // Resto del código...
+            statement.setString(5, Plataformas.getText()); // Agrega las plataformas
+
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Juego insertado exitosamente.");
@@ -81,10 +80,12 @@ public class AñadirJuegoController {
                 NombreJuego.clear();
                 Descripcion.clear();
                 FechaDeLanzamiento.setValue(null);
+                Plataformas.clear();
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
         }
     }
+
 
 }
