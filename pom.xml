@@ -58,6 +58,19 @@
         </dependency>
         <!-- Thanks for using https://jar-download.com -->
 
+        <dependency>
+            <groupId>org.rationalityfrontline.workaround</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>21.0.0</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.9</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
 
     </dependencies>
 

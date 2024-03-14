@@ -6,22 +6,8 @@ CREATE TABLE Juegos (
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
     fechaLanzamiento DATE,
-    rutaCaratula VARCHAR(255)
-);
-
-
-CREATE TABLE Plataformas (
-    idPlataforma INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
-);
-
-
-CREATE TABLE Juego_Plataforma (
-    idJuego INT,
-    idPlataforma INT,
-    PRIMARY KEY (idJuego, idPlataforma),
-    FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego),
-    FOREIGN KEY (idPlataforma) REFERENCES Plataformas(idPlataforma)
+    rutaCaratula VARCHAR(255),
+    plataformas VARCHAR(255) NOT NULL 
 );
 
 CREATE TABLE Multimedia (
@@ -32,7 +18,6 @@ CREATE TABLE Multimedia (
     FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
 );
 
-
 CREATE TABLE Usuarios (
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -41,13 +26,20 @@ CREATE TABLE Usuarios (
     tipo_usuario ENUM('usuario', 'administrador') NOT NULL DEFAULT 'usuario'
 );
 
+CREATE TABLE Comentarios (
+    idComentario INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT,
+    idJuego INT,
+    comentario TEXT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario),
+    FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
+);
 
 CREATE TABLE Reseñas (
     idReseña INT AUTO_INCREMENT PRIMARY KEY,
     idUsuario INT,
     idJuego INT,
     calificacion INT,
-    comentario TEXT,
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario),
     FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
 );
