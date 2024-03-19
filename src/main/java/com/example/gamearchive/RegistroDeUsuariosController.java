@@ -3,6 +3,7 @@ package com.example.gamearchive;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -10,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,10 +29,9 @@ public class RegistroDeUsuariosController {
     @FXML
     private TextField correoElectronico;
     @FXML
-    private
-    PasswordField contraseña;
+    private TextField contraseña;
     @FXML
-    private PasswordField RepetirContraseña;
+    private TextField RepetirContraseña;
     @FXML
     private Button Registrar;
 
@@ -68,19 +70,19 @@ public class RegistroDeUsuariosController {
         String repeatPass = RepetirContraseña.getText().trim();
 
         if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || repeatPass.isEmpty()) {
-            mostrarAlerta("Error", "Todos los campos son obligatorios.");
+            mostrarNotificacion("Error", "Todos los campos son obligatorios.");
             return;
         }
 
         // Verificar que las contraseñas coincidan
         if (!pass.equals(repeatPass)) {
-            mostrarAlerta("Error", "Las contraseñas no coinciden.");
+            mostrarNotificacion("Error", "Las contraseñas no coinciden.");
             return;
         }
 
         // Verificar que el correo electrónico tenga un formato válido
         if (!correo.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
-            mostrarAlerta("Error", "El correo electrónico no tiene un formato válido.");
+            mostrarNotificacion("Error", "El correo electrónico no tiene un formato válido.");
             return;
         }
 
@@ -100,7 +102,7 @@ public class RegistroDeUsuariosController {
             // Ejecutar la consulta
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                mostrarAlerta("Éxito", "Usuario registrado exitosamente.");
+                mostrarNotificacionExito("Éxito","Usuario registrado exitosamente.");
                 // Limpiar los campos después del registro exitoso
                 nombreUsuario.clear();
                 correoElectronico.clear();
@@ -109,7 +111,7 @@ public class RegistroDeUsuariosController {
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
-            mostrarAlerta("Error", "Error al registrar el usuario. Por favor, inténtelo de nuevo.");
+            mostrarNotificacion("Error","Error al registrar el usuario. Por favor, inténtelo de nuevo.");
         } finally {
             // Cerrar la conexión
             if (connection != null) {
@@ -123,12 +125,22 @@ public class RegistroDeUsuariosController {
     }
 
 
-    private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+
+    private void mostrarNotificacion(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showError();
+    }
+    private void mostrarNotificacionExito(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showInformation();
     }
 
 

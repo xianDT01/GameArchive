@@ -10,8 +10,6 @@ public class Juego {
         private  String plataformas;
 
 
-
-
     public Juego(int idjuego, String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula, String plataformas) {
         this.idjuego=idjuego;
         this.nombre = nombre;

@@ -6,7 +6,6 @@ public class JuegoInfo {
     private String descripcion;
     private String rutaCaratula;
 
-    // Constructor
     public JuegoInfo(String nombreJuego, String fechaLanzamiento, String descripcion, String rutaCaratula) {
         this.nombreJuego = nombreJuego;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -14,12 +13,10 @@ public class JuegoInfo {
         this.rutaCaratula = rutaCaratula;
     }
 
-    // Método getter para obtener el nombre del juego
     public String getNombreJuego() {
         return nombreJuego;
     }
 
-    // Otros métodos getter para obtener otros atributos
     public String getFechaLanzamiento() {
         return fechaLanzamiento;
     }

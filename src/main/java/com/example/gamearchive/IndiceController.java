@@ -70,8 +70,6 @@ public class IndiceController implements Initializable {
     }
 
     // Método para abrir el menú del juego cuando se hace doble clic en un nombre de juego
-
-
     private void abrirMenuJuego() {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
         if (nombreJuegoSeleccionado != null) {
@@ -109,9 +107,6 @@ public class IndiceController implements Initializable {
             }
         }
     }
-
-
-
 
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {

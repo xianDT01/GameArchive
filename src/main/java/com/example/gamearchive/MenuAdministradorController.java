@@ -3,6 +3,7 @@ package com.example.gamearchive;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,8 +11,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +22,8 @@ import java.sql.*;
 
 public class MenuAdministradorController {
 
-
+    @FXML
+    private Button Volver;
     @FXML
     private Button AñadirJuego;
     @FXML
@@ -64,6 +68,25 @@ public class MenuAdministradorController {
                 PanelModificarJuego.setVisible(false);
             }
     }
+
+
+
+    @FXML
+    private void handleVolverPantallaInicial(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage ventana = new Stage();
+        ventana.initStyle(StageStyle.TRANSPARENT);
+        ventana.setTitle("GameArchive");
+        scene.setFill(Color.TRANSPARENT);
+        ventana.setScene(scene);
+        ventana.centerOnScreen();
+        ventana.show();
+        Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ventanaActual.close();
+    }
+
 
 
     /*
@@ -144,6 +167,7 @@ public class MenuAdministradorController {
 /*
 Modificar juegos
  */
+
 
 
 
