@@ -35,23 +35,10 @@ public class RegistroDeUsuariosController {
     @FXML
     private Button Registrar;
 
-    public void ConexionDB() {
-        // URL de conexión, incluye el nombre de la base de datos y el timezone
-        String url = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC&user=root&password=abc123.";
-        try {
-            // Cargar el controlador de MySQL
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Establecer la conexión
-            Connection connection = DriverManager.getConnection(url);
-            // Si llega a este punto, la conexión se ha establecido con éxito
-            System.out.println("¡Conexión exitosa a la base de datos!");
-            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
-        } catch (ClassNotFoundException e) {
-            System.err.println("Error al cargar el controlador de MySQL: " + e.getMessage());
-        } catch (SQLException e) {
-            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
-        }
-    }
+    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "abc123.";
+
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) VolverPantallaPrincipal.getScene().getWindow();
@@ -79,20 +66,14 @@ public class RegistroDeUsuariosController {
             mostrarNotificacion("Error", "Las contraseñas no coinciden.");
             return;
         }
-
         // Verificar que el correo electrónico tenga un formato válido
         if (!correo.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
             mostrarNotificacion("Error", "El correo electrónico no tiene un formato válido.");
             return;
         }
-
-        // Realizar la conexión a la base de datos y realizar la inserción
         Connection connection = null;
         try {
-            // Establecer la conexión
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC", "root", "abc123.");
-
-            // Preparar la consulta SQL
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
             String query = "INSERT INTO Usuarios (nombre, correo, contraseña, tipo_usuario) VALUES (?, ?, ?, 'usuario')";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, nombre);

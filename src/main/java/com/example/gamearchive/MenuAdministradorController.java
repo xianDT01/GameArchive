@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -77,6 +78,7 @@ public class MenuAdministradorController {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage ventana = new Stage();
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.initStyle(StageStyle.TRANSPARENT);
         ventana.setTitle("GameArchive");
         scene.setFill(Color.TRANSPARENT);

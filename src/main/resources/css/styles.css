@@ -1,7 +1,4 @@
-/* 
-    Created on : Feb 22, 2020, 2:39:34 PM
-    Author     : Admin
-*/
+
 .parent{
     -fx-background-color: transparent;
 }
@@ -34,5 +31,11 @@
     -fx-background-color: #2196f3;
     -fx-background-radius: 5px;
     -fx-text-fill: #FFFFFF;
+}
+
+#tableView {
+    -fx-background-color: #333333; /* Cambia este color según tu preferencia */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-control-inner-background: transparent; /* Fondo de las celdas */
 }
 

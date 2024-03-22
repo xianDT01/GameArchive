@@ -84,6 +84,7 @@ public class MenuInicialController implements Initializable {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage ventana = new Stage();
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.initStyle(StageStyle.TRANSPARENT);
         ventana.setTitle("GameArchive");
         scene.setFill(Color.TRANSPARENT);
@@ -97,7 +98,7 @@ public class MenuInicialController implements Initializable {
     private List<Integer> cargarJuegosAgregadosRecientemente() {
         List<Integer> idsJuegos = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DatabaseConnection.getConnection();
             // Consulta SQL para obtener los últimos juegos agregados
             String query = "SELECT idJuego, rutaCaratula FROM Juegos ORDER BY idJuego DESC LIMIT 3";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -124,7 +125,7 @@ public class MenuInicialController implements Initializable {
     private List<Integer> cargarJuegosAleatorios() {
         List<Integer> idsJuegos = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DatabaseConnection.getConnection();
 
             // Consulta SQL para obtener juegos aleatorios
             String query = "SELECT idJuego, rutaCaratula FROM Juegos ORDER BY RAND() LIMIT 3";
@@ -182,6 +183,7 @@ public class MenuInicialController implements Initializable {
                 MenuJuegoController controller = loader.getController();
                 controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas);
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
                 Stage ventanaPrincipal = (Stage) Volver.getScene().getWindow();
@@ -264,11 +266,15 @@ public class MenuInicialController implements Initializable {
     @FXML
     private void handleIrAlIndice(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Indice.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Indice.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Indice.fxml"));
+        Parent root = fxmlLoader.load();
+        Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
+        ventana.getIcons().add(icono);
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
     }
+
 
     @FXML
     private void handleBuscar(ActionEvent event) {
@@ -296,6 +302,7 @@ public class MenuInicialController implements Initializable {
                 ResultadosBusquedaController controller = loader.getController();
                 controller.mostrarResultados(juegosEncontrados);
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
 

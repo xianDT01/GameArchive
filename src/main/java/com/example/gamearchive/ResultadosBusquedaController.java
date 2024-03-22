@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -28,9 +29,6 @@ public class ResultadosBusquedaController implements Initializable {
     @FXML
     private Button VolverMenuInicial;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
 
     @Override
     public void initialize(java.net.URL url, ResourceBundle resourceBundle) {
@@ -71,6 +69,7 @@ public class ResultadosBusquedaController implements Initializable {
             MenuJuegoController controller = loader.getController();
             controller.initData(juego.getIdjuego(),juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula(),juego.getPlataformas());
             Stage stage = new Stage();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -91,6 +90,7 @@ public class ResultadosBusquedaController implements Initializable {
                 MenuJuegoController controller = loader.getController();
                 controller.initData(juegoSeleccionado.getIdjuego(),juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula(),juegoSeleccionado.getPlataformas());
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
 

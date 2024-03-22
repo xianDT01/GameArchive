@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -47,7 +48,6 @@ public class EntarUsuarioController {
             return;
         }
 
-        // Realizar la conexión a la base de datos y verificar las credenciales
         Connection connection = null;
         try {
             // Establecer la conexión
@@ -72,6 +72,7 @@ public class EntarUsuarioController {
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
+                    stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(scene);
                     stage.show();
                     SesionUsuario.setUsuario(idUsuario);
@@ -84,6 +85,7 @@ public class EntarUsuarioController {
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
+                    stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(scene);
                     stage.show();
 

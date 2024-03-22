@@ -1,23 +1,26 @@
 package com.example.gamearchive;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuJuegoController implements Initializable {
@@ -50,11 +53,17 @@ public class MenuJuegoController implements Initializable {
     private static Connection connection;
     int IdJuego = ControllerId.getIdJuego();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         double notaPromedio = obtenerNotaPromedio();
         mostrarNotaJuego.setText(String.valueOf(notaPromedio));
+        BotonComentar.setOnAction(this::agregarComentario);
+        // Asignar las propiedades de las columnas
+        usuarioColumna.setCellValueFactory(cellData -> cellData.getValue().usuarioProperty());
+        comentarioColumna.setCellValueFactory(cellData -> cellData.getValue().comentarioProperty());
+
+        // Actualizar la lista de comentarios al iniciar
+        actualizarListaComentarios();
     }
     public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula,String plataformas) {
         idJuego = idJuego;
@@ -115,11 +124,11 @@ public class MenuJuegoController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                // La calificación está fuera del rango válido
+
                 mostrarAlerta("Error", "Calificación inválida", "La calificación debe estar entre 1 y 10.");
             }
         } else {
-            // El usuario ya ha votado para este juego
+
             mostrarAlerta("Error", "Usuario ya ha votado", "El usuario ya ha votado para este juego.");
         }
     }
@@ -149,18 +158,133 @@ public class MenuJuegoController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
-
-
-
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuInicial.fxml"));
+        Parent root = fxmlLoader.load();
+        Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
+        ventana.getIcons().add(icono);
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
     }
 
 
+    @FXML
+    private TextField comentario;
+
+    @FXML
+    private Button BotonComentar;
+
+    @FXML
+    private TableView<Comentario> tablaComentarios;
+
+    @FXML
+    private TableColumn<Comentario, String> usuarioColumna;
+
+    @FXML
+    private TableColumn<Comentario, String> comentarioColumna;
+
+    // Método que se llama cuando se presiona el botón de comentar
+    private void agregarComentario(ActionEvent event) {
+        String textoComentario = comentario.getText();
+
+        // Verificar que el comentario no esté en blanco
+        if (textoComentario.trim().isEmpty()) {
+            mostrarNotificacion("Error","Tienes que escribir algo antes de comentar");
+            return;
+        }
+
+        // Verificar si el usuario ya ha dejado un comentario para este juego
+        if (usuarioYaComento()) {
+           mostrarNotificacion("Error","El usuario ya comento en este Juego, no se pueden comentar dos veces por juego");
+            return;
+        }
+
+        // Guardar el comentario en la base de datos
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String query = "INSERT INTO Comentarios (idUsuario, idJuego, comentario) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, SesionUsuario.getUsuario());
+            statement.setInt(2, IdJuego);
+            statement.setString(3, textoComentario);
+            statement.executeUpdate();
+
+            // Limpiar el campo de comentario después de agregarlo
+            comentario.clear();
+
+            // Actualizar la lista de comentarios en la interfaz de usuario
+            actualizarListaComentarios();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar errores de conexión o consulta SQL
+        }
+    }
+
+    private boolean usuarioYaComento() {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String query = "SELECT COUNT(*) AS numComentarios FROM Comentarios WHERE idUsuario = ? AND idJuego = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, SesionUsuario.getUsuario());
+            statement.setInt(2, IdJuego);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int numComentarios = resultSet.getInt("numComentarios");
+                return numComentarios > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar errores de conexión o consulta SQL
+        }
+        return false;
+    }
+
+
+
+    // Método para actualizar la lista de comentarios en el TableView
+    private void actualizarListaComentarios() {
+        ObservableList<Comentario> comentarios = FXCollections.observableArrayList();
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String query = "SELECT u.nombre AS nombreUsuario, c.comentario " +
+                    "FROM Comentarios c " +
+                    "JOIN Usuarios u ON c.idUsuario = u.idUsuario " +
+                    "WHERE c.idJuego = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, IdJuego); // Suponiendo que tienes un identificador de juego llamado IdJuego
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String nombreUsuario = resultSet.getString("nombreUsuario");
+                String comentario = resultSet.getString("comentario");
+                comentarios.add(new Comentario(nombreUsuario, comentario));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar errores de conexión o consulta SQL
+        }
+
+        // Actualizar los datos en la TableView
+        tablaComentarios.setItems(comentarios);
+    }
+
+    private void mostrarNotificacion(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showError();
+    }
+    private void mostrarNotificacionExito(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showInformation();
+    }
 
 }
+
