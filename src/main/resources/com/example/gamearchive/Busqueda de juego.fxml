@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1057.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="304.0" layoutY="98.0" text="Búsqueda del Juego">
+      <Label layoutX="350.0" layoutY="100.0" text="Búsqueda del Juego" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <ScrollPane layoutX="29.0" layoutY="168.0" prefHeight="440.0" prefWidth="841.0" />
+      <ScrollPane layoutX="29.0" layoutY="168.0" prefHeight="509.0" prefWidth="991.0" />
    </children>
 </AnchorPane>

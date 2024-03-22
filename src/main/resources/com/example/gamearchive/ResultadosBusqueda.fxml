@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ResultadosBusquedaController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="1016.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ResultadosBusquedaController">
    <children>
-      <Label layoutX="229.0" layoutY="42.0" prefHeight="57.0" prefWidth="463.0" text="Resultados de la búsquedas">
+      <Label layoutX="229.0" layoutY="42.0" prefHeight="57.0" prefWidth="463.0" text="Resultados de la búsquedas" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <Button fx:id="VolverMenuInicial" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleVolverMenuInicial" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <ListView fx:id="resultadosListView" layoutX="28.0" layoutY="117.0" onEditStart="#abrirMenuJuego" prefHeight="490.0" prefWidth="853.0" />
+      <ListView fx:id="resultadosListView" layoutX="28.0" layoutY="117.0" onEditStart="#abrirMenuJuego" prefHeight="566.0" prefWidth="966.0" />
       <VBox layoutX="24.0" layoutY="204.0" prefHeight="200.0" prefWidth="456.0" />
    </children>
 </AnchorPane>

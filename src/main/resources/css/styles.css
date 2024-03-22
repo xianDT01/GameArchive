@@ -34,8 +34,8 @@
 }
 
 #tableView {
-    -fx-background-color: #333333; /* Cambia este color según tu preferencia */
-    -fx-text-fill: white; /* Color del texto */
-    -fx-control-inner-background: transparent; /* Fondo de las celdas */
+    -fx-background-color: #333333; 
+    -fx-text-fill: white; 
+    -fx-control-inner-background: transparent;
 }
 

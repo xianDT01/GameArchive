@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.IndiceController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1091.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.IndiceController">
    <children>
-      <Label layoutX="373.0" layoutY="96.0" text="índice">
+      <Label layoutX="480.0" layoutY="107.0" text="índice" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <Button fx:id="Volver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <ListView fx:id="listaJuegos" layoutX="23.0" layoutY="188.0" prefHeight="400.0" prefWidth="842.0" />
+      <ListView fx:id="listaJuegos" layoutX="23.0" layoutY="188.0" prefHeight="490.0" prefWidth="1046.0" />
    </children>
 </AnchorPane>
