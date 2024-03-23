@@ -305,8 +305,6 @@ public class MenuInicialController implements Initializable {
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
-
-                // Cerrar la ventana actual (MenuInicial)
                 Stage ventanaActual = (Stage) TextFieldBuscar.getScene().getWindow();
                 ventanaActual.close();
 

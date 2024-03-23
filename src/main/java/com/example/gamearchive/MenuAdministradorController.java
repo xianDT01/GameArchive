@@ -156,7 +156,6 @@ public class MenuAdministradorController {
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Juego insertado exitosamente.");
-                // Restablecer los campos después de la inserción exitosa
                 NombreJuego.clear();
                 Descripcion.clear();
                 FechaDeLanzamiento.setValue(null);

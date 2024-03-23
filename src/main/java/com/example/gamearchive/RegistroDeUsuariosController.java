@@ -50,7 +50,7 @@ public class RegistroDeUsuariosController {
 
     @FXML
     public void handleBotonRegistarUsuario(ActionEvent event) {
-        // Verificar que los campos no estén vacíos
+
         String nombre = nombreUsuario.getText().trim();
         String correo = correoElectronico.getText().trim();
         String pass = contraseña.getText().trim();
@@ -61,12 +61,12 @@ public class RegistroDeUsuariosController {
             return;
         }
 
-        // Verificar que las contraseñas coincidan
+
         if (!pass.equals(repeatPass)) {
             mostrarNotificacion("Error", "Las contraseñas no coinciden.");
             return;
         }
-        // Verificar que el correo electrónico tenga un formato válido
+
         if (!correo.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
             mostrarNotificacion("Error", "El correo electrónico no tiene un formato válido.");
             return;
@@ -80,11 +80,11 @@ public class RegistroDeUsuariosController {
             statement.setString(2, correo);
             statement.setString(3, pass);
 
-            // Ejecutar la consulta
+
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 mostrarNotificacionExito("Éxito","Usuario registrado exitosamente.");
-                // Limpiar los campos después del registro exitoso
+
                 nombreUsuario.clear();
                 correoElectronico.clear();
                 contraseña.clear();
@@ -94,7 +94,7 @@ public class RegistroDeUsuariosController {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
             mostrarNotificacion("Error","Error al registrar el usuario. Por favor, inténtelo de nuevo.");
         } finally {
-            // Cerrar la conexión
+
             if (connection != null) {
                 try {
                     connection.close();

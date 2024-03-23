@@ -33,8 +33,6 @@ public class ResultadosBusquedaController implements Initializable {
     @Override
     public void initialize(java.net.URL url, ResourceBundle resourceBundle) {
 
-
-        // Agregar un listener para manejar el evento de doble clic en un elemento de la lista
         resultadosListView.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 abrirMenuJuego();
@@ -73,7 +71,7 @@ public class ResultadosBusquedaController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Cerrar la ventana actual (resultados de búsqueda)
+
             Stage ventanaActual = (Stage) resultadosListView.getScene().getWindow();
             ventanaActual.close();
         } catch (IOException e) {
@@ -94,7 +92,7 @@ public class ResultadosBusquedaController implements Initializable {
                 stage.setScene(new Scene(root));
                 stage.show();
 
-                // Cerrar la ventana actual (resultados de búsqueda)
+
                 Stage ventanaActual = (Stage) resultadosListView.getScene().getWindow();
                 ventanaActual.close();
                 return true;

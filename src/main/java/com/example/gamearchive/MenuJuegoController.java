@@ -218,7 +218,7 @@ public class MenuJuegoController implements Initializable {
             actualizarListaComentarios();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar errores de conexión o consulta SQL
+
         }
     }
 
@@ -235,7 +235,7 @@ public class MenuJuegoController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar errores de conexión o consulta SQL
+
         }
         return false;
     }
@@ -262,7 +262,7 @@ public class MenuJuegoController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar errores de conexión o consulta SQL
+
         }
 
         // Actualizar los datos en la TableView

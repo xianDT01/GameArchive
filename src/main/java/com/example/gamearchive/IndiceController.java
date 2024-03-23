@@ -35,8 +35,6 @@ public class IndiceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarNombresJuegos();
-
-        // Agregar un listener para manejar el evento de doble clic en un elemento de la lista del indice
         listaJuegos.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 abrirMenuJuego();
@@ -53,7 +51,7 @@ public class IndiceController implements Initializable {
                 PreparedStatement statement = connection.prepareStatement(query);
                 ResultSet resultSet = statement.executeQuery();
 
-                // Bucle para resultados y agregar los nombres de los juegos a la lista
+
                 while (resultSet.next()) {
                     String nombreJuego = resultSet.getString("nombre");
                     nombresJuegos.add(nombreJuego);
@@ -63,11 +61,9 @@ public class IndiceController implements Initializable {
             e.printStackTrace();
         }
 
-        // Establecer los nombres de juegos en el ListView
         listaJuegos.setItems(nombresJuegos);
     }
 
-    // Método para abrir el menú del juego cuando se hace doble clic en un nombre de juego
     private void abrirMenuJuego() {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
         if (nombreJuegoSeleccionado != null) {
@@ -94,7 +90,7 @@ public class IndiceController implements Initializable {
                     stage.setScene(new Scene(root));
                     stage.show();
 
-                    // Cerrar la ventana actual (índice)
+
                     Stage ventanaActual = (Stage) listaJuegos.getScene().getWindow();
                     ventanaActual.close();
                 } else {

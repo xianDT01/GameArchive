@@ -58,13 +58,12 @@ public class AñadirJuegoController {
             statement.setString(1, NombreJuego.getText());
             statement.setString(2, Descripcion.getText());
             statement.setDate(3, Date.valueOf(FechaDeLanzamiento.getValue()));
-            statement.setString(4, caratulaJuegoFile.getAbsolutePath()); // Guarda la ruta de la imagen
-            statement.setString(5, Plataformas.getText()); // Agrega las plataformas
+            statement.setString(4, caratulaJuegoFile.getAbsolutePath());
+            statement.setString(5, Plataformas.getText());
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Juego insertado exitosamente.");
-                // Restablecer los campos después de la inserción exitosa
                 NombreJuego.clear();
                 Descripcion.clear();
                 FechaDeLanzamiento.setValue(null);
@@ -74,8 +73,4 @@ public class AñadirJuegoController {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
         }
     }
-
-
-
-
 }
