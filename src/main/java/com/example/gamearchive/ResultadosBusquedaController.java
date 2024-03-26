@@ -93,6 +93,7 @@ public class ResultadosBusquedaController implements Initializable {
                 MenuJuegoController controller = loader.getController();
                 controller.initData(juegoSeleccionado.getIdjuego(),juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula(),juegoSeleccionado.getPlataformas());
                 Stage stage = new Stage();
+                stage.setTitle("GameArchive");
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -112,6 +113,7 @@ public class ResultadosBusquedaController implements Initializable {
         Stage ventana = (Stage) VolverMenuInicial.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
+        ventana.setTitle("GameArchive");
         ventana.setScene(scene);
         ventana.show();
     }

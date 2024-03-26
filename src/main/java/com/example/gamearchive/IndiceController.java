@@ -27,10 +27,6 @@ public class IndiceController implements Initializable {
     private Button Volver;
     @FXML
     private Button VolverIndice;
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
-    private static Connection connection;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,7 +41,7 @@ public class IndiceController implements Initializable {
     public void cargarNombresJuegos() {
         ObservableList<String> nombresJuegos = FXCollections.observableArrayList();
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT nombre FROM Juegos";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
@@ -65,7 +61,7 @@ public class IndiceController implements Initializable {
     private void abrirMenuJuego() {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
         if (nombreJuegoSeleccionado != null) {
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas FROM Juegos WHERE nombre = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, nombreJuegoSeleccionado);
@@ -106,6 +102,7 @@ public class IndiceController implements Initializable {
         Stage ventana = (Stage) Volver.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
+        ventana.setTitle("GameArchive");
         ventana.setScene(scene);
         ventana.show();
     }

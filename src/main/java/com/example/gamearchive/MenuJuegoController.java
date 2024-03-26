@@ -51,11 +51,6 @@ public class MenuJuegoController implements Initializable {
     private Button Votar;
     @FXML
     private TextField NotaJuego;
-
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
-    private static Connection connection;
     int IdJuego = ControllerId.getIdJuego();
 
     @FXML
@@ -80,7 +75,7 @@ public class MenuJuegoController implements Initializable {
                 "FROM Usuarios u " +
                 "JOIN Reseñas r ON u.idUsuario = r.idUsuario " +
                 "WHERE r.idJuego = " + IdJuego;
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -115,7 +110,7 @@ public class MenuJuegoController implements Initializable {
     private double obtenerNotaPromedio() {
         double promedio = 0.0;
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT COALESCE((SELECT AVG(calificacion) FROM Reseñas WHERE idJuego = ?), 0) AS promedio";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, ControllerId.getIdJuego());
@@ -148,7 +143,7 @@ public class MenuJuegoController implements Initializable {
             if (calificacion >= 1 && calificacion <= 10) {
                 String query = "INSERT INTO reseñas (idJuego, idUsuario, calificacion) VALUES (?, ?, ?)";
 
-                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                try (Connection connection = DatabaseConnection.getConnection();
                      PreparedStatement statement = connection.prepareStatement(query)) {
                     statement.setInt(1, idJuego);
                     statement.setInt(2, idUsuario);
@@ -170,7 +165,7 @@ public class MenuJuegoController implements Initializable {
 
     private boolean usuarioHaVotado(int idUsuario, int idJuego) {
         String query = "SELECT COUNT(*) FROM reseñas WHERE idUsuario = ? AND idJuego = ?";
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, idUsuario);
             statement.setInt(2, idJuego);
@@ -200,6 +195,7 @@ public class MenuJuegoController implements Initializable {
         Parent root = fxmlLoader.load();
         Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
         ventana.getIcons().add(icono);
+        ventana.setTitle("GameArchive");
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
@@ -230,15 +226,13 @@ public class MenuJuegoController implements Initializable {
             mostrarNotificacion("Error","Tienes que escribir algo antes de comentar");
             return;
         }
-
         // Verificar si el usuario ya ha dejado un comentario para este juego
         if (usuarioYaComento()) {
            mostrarNotificacion("Error","El usuario ya comento en este Juego, no se pueden comentar dos veces por juego");
             return;
         }
-
         // Guardar el comentario en la base de datos
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "INSERT INTO Comentarios (idUsuario, idJuego, comentario) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, SesionUsuario.getUsuario());
@@ -258,7 +252,7 @@ public class MenuJuegoController implements Initializable {
     }
 
     private boolean usuarioYaComento() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT COUNT(*) AS numComentarios FROM Comentarios WHERE idUsuario = ? AND idJuego = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, SesionUsuario.getUsuario());
@@ -281,13 +275,13 @@ public class MenuJuegoController implements Initializable {
     private void actualizarListaComentarios() {
         ObservableList<Comentario> comentarios = FXCollections.observableArrayList();
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT u.nombre AS nombreUsuario, c.comentario " +
                     "FROM Comentarios c " +
                     "JOIN Usuarios u ON c.idUsuario = u.idUsuario " +
                     "WHERE c.idJuego = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, IdJuego); // Suponiendo que tienes un identificador de juego llamado IdJuego
+            statement.setInt(1, IdJuego);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

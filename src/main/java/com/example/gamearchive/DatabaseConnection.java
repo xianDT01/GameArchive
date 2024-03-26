@@ -9,20 +9,18 @@ public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "abc123.";
-    private static Connection connection;
 
     public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }
 
-    public static void closeConnection() {
+    public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();
@@ -31,6 +29,4 @@ public class DatabaseConnection {
             }
         }
     }
-
-
 }

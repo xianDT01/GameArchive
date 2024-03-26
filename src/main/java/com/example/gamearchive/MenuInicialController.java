@@ -55,13 +55,9 @@ public class MenuInicialController implements Initializable {
         cargarJuegosAgregadosRecientemente();
         cargarJuegosAleatorios();
         //
-
-
     }
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
+
     private static Connection connection;
 
     // Método para asignar las imágenes a los ImageView
@@ -183,6 +179,7 @@ public class MenuInicialController implements Initializable {
                 MenuJuegoController controller = loader.getController();
                 controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas);
                 Stage stage = new Stage();
+                stage.setTitle("GameArchive");
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -270,6 +267,7 @@ public class MenuInicialController implements Initializable {
         Parent root = fxmlLoader.load();
         Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
         ventana.getIcons().add(icono);
+        ventana.setTitle("GameArchive");
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
@@ -280,7 +278,7 @@ public class MenuInicialController implements Initializable {
     private void handleBuscar(ActionEvent event) {
         String busqueda = TextFieldBuscar.getText();
         if (!busqueda.isEmpty()) {
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            try (Connection connection =DatabaseConnection.getConnection()) {
                 String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas FROM Juegos WHERE nombre LIKE ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, "%" + busqueda + "%");
@@ -304,6 +302,7 @@ public class MenuInicialController implements Initializable {
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
+                stage.setTitle("GameArchive");
                 stage.show();
                 Stage ventanaActual = (Stage) TextFieldBuscar.getScene().getWindow();
                 ventanaActual.close();

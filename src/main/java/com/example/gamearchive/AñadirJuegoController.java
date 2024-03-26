@@ -34,9 +34,6 @@ public class AñadirJuegoController {
     @FXML
     private Button AñadirJuego;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
     private static Connection connection;
 
     @FXML
@@ -52,7 +49,7 @@ public class AñadirJuegoController {
     @FXML
     private void añadirJuego() {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DatabaseConnection.getConnection();
             String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, NombreJuego.getText());

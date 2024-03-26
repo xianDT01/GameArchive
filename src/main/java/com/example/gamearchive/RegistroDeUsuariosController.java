@@ -32,14 +32,11 @@ public class RegistroDeUsuariosController {
     @FXML
     private Button Registrar;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
-
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) VolverPantallaPrincipal.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"));
+        ventana.setTitle("GameArchive");
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
@@ -67,7 +64,7 @@ public class RegistroDeUsuariosController {
             return;
         }
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             // Verificar si el nombre de usuario ya está en uso
             String queryUsuario = "SELECT COUNT(*) AS count FROM Usuarios WHERE nombre = ?";
             PreparedStatement statementUsuario = connection.prepareStatement(queryUsuario);

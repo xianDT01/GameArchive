@@ -32,11 +32,6 @@ public class EntarUsuarioController {
     private VBox vbox;
     private Parent fxml;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
-    private static Connection connection;
-
     @FXML
     private void handleEntrar(ActionEvent event) throws IOException {
         String correo = correoElectronico.getText().trim();
@@ -48,7 +43,7 @@ public class EntarUsuarioController {
         Connection connection = null;
         try {
 
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DatabaseConnection.getConnection();
 
 
             String query = "SELECT idUsuario,tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
@@ -77,9 +72,11 @@ public class EntarUsuarioController {
 
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
+
                 } else if ("administrador".equals(tipoUsuario)) {
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuAdministrador.fxml"));
+
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -90,7 +87,9 @@ public class EntarUsuarioController {
                     // Cerrar la ventana actual
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
+
                 }
+
             } else {
                 mostrarNotificacion("Error", "Credenciales incorrectas. Por favor, inténtelo de nuevo.");
             }

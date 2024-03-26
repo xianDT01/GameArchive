@@ -114,10 +114,6 @@ public class MenuAdministradorController {
     @FXML
     private Button BotonAñadirJuego;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gamearchive?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "abc123.";
-    private static Connection connection;
 
     @FXML
     private void seleccionarCaratula(ActionEvent event) {
@@ -128,23 +124,11 @@ public class MenuAdministradorController {
         );
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
     }
-    public void ConexionDB() throws SQLException {
-        // Obtener la conexión a la base de datos utilizando el método getConnection() de DatabaseConnection
-        Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
-        if (connection != null) {
-            // Si llega a este punto, la conexión se ha establecido con éxito
-            System.out.println("¡Conexión exitosa a la base de datos!");
-            // Puedes utilizar 'connection' para ejecutar consultas SQL, etc.
-        } else {
-            System.err.println("Error al conectar a la base de datos.");
-        }
-    }
 
     @FXML
     private void HandleañadirJuego() {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DatabaseConnection.getConnection();
             String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, NombreJuego.getText());
