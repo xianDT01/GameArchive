@@ -21,7 +21,10 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="correoElectronico" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="correoElectronico" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
             <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
          </children>
          <VBox.margin>
@@ -30,7 +33,10 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <TextField promptText="Password" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+            <TextField promptText="Password" styleClass="tf_box" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
             <FontAwesomeIconView fx:id="contraseña" fill="WHITE" glyphName="LOCK" size="1.3em" />
          </children>
          <VBox.margin>

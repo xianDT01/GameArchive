@@ -38,4 +38,7 @@
     -fx-text-fill: white; 
     -fx-control-inner-background: transparent;
 }
+.text-field-custom {
+    -fx-text-fill: red; 
+}
 

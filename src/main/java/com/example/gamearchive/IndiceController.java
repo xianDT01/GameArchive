@@ -46,16 +46,13 @@ public class IndiceController implements Initializable {
         ObservableList<String> nombresJuegos = FXCollections.observableArrayList();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            if (connection != null) {
-                String query = "SELECT nombre FROM Juegos";
-                PreparedStatement statement = connection.prepareStatement(query);
-                ResultSet resultSet = statement.executeQuery();
+            String query = "SELECT nombre FROM Juegos";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
 
-
-                while (resultSet.next()) {
-                    String nombreJuego = resultSet.getString("nombre");
-                    nombresJuegos.add(nombreJuego);
-                }
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                nombresJuegos.add(nombreJuego);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,6 +60,7 @@ public class IndiceController implements Initializable {
 
         listaJuegos.setItems(nombresJuegos);
     }
+
 
     private void abrirMenuJuego() {
         String nombreJuegoSeleccionado = listaJuegos.getSelectionModel().getSelectedItem();
@@ -80,7 +78,7 @@ public class IndiceController implements Initializable {
                     String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                     String rutaCaratula = resultSet.getString("rutaCaratula");
                     String plataformas = resultSet.getString("plataformas");
-
+                    ControllerId.setIdJuego(idJuego);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                     Parent root = loader.load();
                     MenuJuegoController controller = loader.getController();

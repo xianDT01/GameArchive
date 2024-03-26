@@ -10,5 +10,6 @@ public class ControllerId {
 
     public static void setIdJuego(int idJuego) {
         ControllerId.idJuego = idJuego;
+
     }
 }

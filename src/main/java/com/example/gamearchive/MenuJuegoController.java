@@ -1,5 +1,7 @@
 package com.example.gamearchive;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -20,6 +23,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -53,17 +58,47 @@ public class MenuJuegoController implements Initializable {
     private static Connection connection;
     int IdJuego = ControllerId.getIdJuego();
 
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox contentBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         double notaPromedio = obtenerNotaPromedio();
-        mostrarNotaJuego.setText(String.valueOf(notaPromedio));
+        String notaFormateada = String.format("%.1f", notaPromedio);
+        mostrarNotaJuego.setText(String.valueOf(notaFormateada));
         BotonComentar.setOnAction(this::agregarComentario);
         // Asignar las propiedades de las columnas
         usuarioColumna.setCellValueFactory(cellData -> cellData.getValue().usuarioProperty());
         comentarioColumna.setCellValueFactory(cellData -> cellData.getValue().comentarioProperty());
-
         // Actualizar la lista de comentarios al iniciar
         actualizarListaComentarios();
+        // --------------------------------------------------------------------------------------
+        // Mostrar las notas de los usuarios
+        String query = "SELECT u.nombre, r.calificacion " +
+                "FROM Usuarios u " +
+                "JOIN Reseñas r ON u.idUsuario = r.idUsuario " +
+                "WHERE r.idJuego = " + IdJuego;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                String nombreUsuario = resultSet.getString("nombre");
+                int calificacion = resultSet.getInt("calificacion");
+
+                // Crear un nuevo Label para cada usuario y su nota
+                Label usuarioLabel = new Label("Nombre Usuario: " + nombreUsuario + "\nNota: " + calificacion + "");
+
+                contentBox.getChildren().add(usuarioLabel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Configurar el contenido del ScrollPane
+        scrollPane.setContent(contentBox);
     }
     public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula,String plataformas) {
         idJuego = idJuego;

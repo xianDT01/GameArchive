@@ -66,6 +66,9 @@ public class ResultadosBusquedaController implements Initializable {
             Parent root = loader.load();
             MenuJuegoController controller = loader.getController();
             controller.initData(juego.getIdjuego(),juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula(),juego.getPlataformas());
+            int idjuego =juego.getIdjuego();
+            ControllerId.setIdJuego(juego.getIdjuego());
+            System.out.println("Id juego desde abrirMenuJuego buscador es:" + idjuego);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
             stage.setScene(new Scene(root));
@@ -83,6 +86,8 @@ public class ResultadosBusquedaController implements Initializable {
         if (index >= 0 && index < resultados.size()) {
             Juego juegoSeleccionado = resultados.get(index);
             try {
+                int idjuego =juegoSeleccionado.getIdjuego();
+                ControllerId.setIdJuego(juegoSeleccionado.getIdjuego());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();

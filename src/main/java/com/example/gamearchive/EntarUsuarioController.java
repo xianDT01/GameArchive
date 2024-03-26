@@ -72,6 +72,7 @@ public class EntarUsuarioController {
                     stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(scene);
                     stage.show();
+                    // Guardamos el id de el usuario que inició sesion para saber que usuario está usando la aplicación
                     SesionUsuario.setUsuario(idUsuario);
 
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
