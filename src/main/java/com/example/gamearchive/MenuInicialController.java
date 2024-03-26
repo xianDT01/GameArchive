@@ -48,6 +48,8 @@ public class MenuInicialController implements Initializable {
     @FXML
     private Button ButtonBuscar;
     @FXML
+    private Button abrirJuegosMasValorados;
+    @FXML
     private Button Indice;
     public List<Integer> Aleatorios;
     @Override
@@ -312,6 +314,24 @@ public class MenuInicialController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void abrirJuegosMasValorados(ActionEvent event) {
+        try {
+            Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            ventanaActual.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("JuegosMasValorados.fxml"));
+            Parent root = loader.load();
+            JuegosMasValoradosController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 }
