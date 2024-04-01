@@ -29,7 +29,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="137.0" prefWidth="539.0" />
+            <HBox prefHeight="137.0" prefWidth="398.0" />
             <HBox prefHeight="117.0" prefWidth="152.0">
                <children>
                   <Button fx:id="Indice" mnemonicParsing="false" onAction="#handleIrAlIndice" prefHeight="102.0" prefWidth="128.0">
@@ -53,6 +53,22 @@
                         <ImageView fitHeight="112.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/podioJuegos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox prefHeight="117.0" prefWidth="152.0">
+               <children>
+                  <Button fx:id="Foro" mnemonicParsing="false" onAction="#abrirForo" prefHeight="102.0" prefWidth="128.0">
+                     <graphic>
+                        <ImageView fitHeight="112.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/2894666.png" />
                            </image>
                         </ImageView>
                      </graphic>

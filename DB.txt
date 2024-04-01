@@ -43,3 +43,23 @@ CREATE TABLE Reseñas (
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario),
     FOREIGN KEY (idJuego) REFERENCES Juegos(idJuego)
 );
+
+CREATE TABLE Foro (
+    idForo INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    fechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    autor VARCHAR(50) NOT NULL,
+    FOREIGN KEY (autor) REFERENCES Usuarios(nombre)
+);
+
+CREATE TABLE ForoComentarios (
+    idComentario INT AUTO_INCREMENT PRIMARY KEY,
+    idForo INT,
+    idUsuario INT,
+    comentario TEXT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idForo) REFERENCES Foro(idForo),
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
+);
+

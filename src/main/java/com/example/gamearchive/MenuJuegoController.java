@@ -1,7 +1,5 @@
 package com.example.gamearchive;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuJuegoController implements Initializable {
@@ -133,7 +128,6 @@ public class MenuJuegoController implements Initializable {
         String nota = NotaJuego.getText();
         int calificacion = Integer.parseInt(nota);
 
-        // Asumiendo que tienes los ID de usuario y juego almacenados en variables adecuadas
         int idUsuario = SesionUsuario.getUsuario();
         int idJuego = IdJuego;
 
@@ -287,7 +281,8 @@ public class MenuJuegoController implements Initializable {
             while (resultSet.next()) {
                 String nombreUsuario = resultSet.getString("nombreUsuario");
                 String comentario = resultSet.getString("comentario");
-                comentarios.add(new Comentario(nombreUsuario, comentario));
+                int idComentario = 0;
+                comentarios.add(new ComentariosForo(idComentario, nombreUsuario, comentario));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -50,6 +50,8 @@ public class MenuInicialController implements Initializable {
     @FXML
     private Button abrirJuegosMasValorados;
     @FXML
+    private Button Foro;
+    @FXML
     private Button Indice;
     public List<Integer> Aleatorios;
     @Override
@@ -329,6 +331,18 @@ public class MenuInicialController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void abrirForo(ActionEvent event) throws IOException {
+        Stage ventana = (Stage) Foro.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Foro.fxml"));
+        Parent root = fxmlLoader.load();
+        Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
+        ventana.getIcons().add(icono);
+        ventana.setTitle("GameArchive Foro");
+        Scene scene = new Scene(root);
+        ventana.setScene(scene);
+        ventana.show();
     }
 
 

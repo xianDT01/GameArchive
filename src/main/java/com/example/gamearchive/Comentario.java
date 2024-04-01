@@ -8,7 +8,7 @@ public class Comentario {
     private final StringProperty usuario;
     private final StringProperty comentario;
 
-    public Comentario(String usuario, String comentario) {
+    public Comentario(int idComentario, String usuario, String comentario) {
         this.usuario = new SimpleStringProperty(usuario);
         this.comentario = new SimpleStringProperty(comentario);
     }

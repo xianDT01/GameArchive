@@ -46,7 +46,7 @@ public class EntarUsuarioController {
             connection = DatabaseConnection.getConnection();
 
 
-            String query = "SELECT idUsuario,tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
+            String query = "SELECT idUsuario,nombre,tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, correo);
             statement.setString(2, pass);
@@ -58,6 +58,7 @@ public class EntarUsuarioController {
             if (resultSet.next()) {
                 String tipoUsuario = resultSet.getString("tipo_usuario");
                 int idUsuario = resultSet.getInt("idUsuario");
+                String nombreUsuario = resultSet.getString("nombre");
                 if ("usuario".equals(tipoUsuario)) {
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInicial.fxml"));
@@ -69,7 +70,7 @@ public class EntarUsuarioController {
                     stage.show();
                     // Guardamos el id de el usuario que inició sesion para saber que usuario está usando la aplicación
                     SesionUsuario.setUsuario(idUsuario);
-
+                    SesionUsuario.setNombreUsuario(nombreUsuario);
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
 
