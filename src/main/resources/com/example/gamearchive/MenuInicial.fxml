@@ -114,32 +114,32 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="Agregadosrecientemente1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Agregadosrecientemente1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente1" onMouseEntered="#onMouseEnteredAgregadosrecientemente1" onMouseExited="#onMouseExitedAgregadosrecientemente1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Agregadosrecientemente2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Agregadosrecientemente2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente2" onMouseEntered="#onMouseEnteredAgregadosrecientemente2" onMouseExited="#onMouseExitedAgregadosrecientemente2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Agregadosrecientemente3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Agregadosrecientemente3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente3" onMouseEntered="#onMouseEnteredAgregadosrecientemente3" onMouseExited="#onMouseExitedAgregadosrecientemente3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Ramdom1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio1" onMouseEntered="#onMouseEnteredRamdom1" onMouseExited="#onMouseExitedRamdom1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Ramdom2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio2" onMouseEntered="#onMouseEnteredRamdom2" onMouseExited="#onMouseExitedRamdom2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Ramdom3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Ramdom3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio3" onMouseEntered="#onMouseEnteredRamdom3" onMouseExited="#onMouseExitedRamdom3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>

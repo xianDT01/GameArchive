@@ -1,5 +1,6 @@
 package com.example.gamearchive;
 
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -220,7 +222,6 @@ public class MenuInicialController implements Initializable {
         if (!idsJuegos.isEmpty()) {
 
             int idJuego = idsJuegos.get(0);
-            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
             System.out.println("La lista de juegos aleatorios está vacía.");
@@ -234,7 +235,6 @@ public class MenuInicialController implements Initializable {
         if (!idsJuegos.isEmpty()) {
 
             int idJuego = idsJuegos.get(1);
-            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
             System.out.println("La lista de juegos aleatorios está vacía.");
@@ -248,7 +248,6 @@ public class MenuInicialController implements Initializable {
         if (!idsJuegos.isEmpty()) {
 
             int idJuego = idsJuegos.get(2);
-            System.out.println(idJuego);
             abrirMenuJuego(idJuego);
         } else {
             System.out.println("La lista de juegos aleatorios está vacía.");
@@ -345,6 +344,79 @@ public class MenuInicialController implements Initializable {
         ventana.show();
     }
 
+    @FXML
+    private void onMouseEnteredAgregadosrecientemente1() {
+        aplicarAnimacion(Agregadosrecientemente1);
+    }
+
+    @FXML
+    private void onMouseExitedAgregadosrecientemente1() {
+        quitarAnimacion(Agregadosrecientemente1);
+    }
+
+    @FXML
+    private void onMouseEnteredAgregadosrecientemente2() {
+        aplicarAnimacion(Agregadosrecientemente2);
+    }
+
+    @FXML
+    private void onMouseExitedAgregadosrecientemente2() {
+        quitarAnimacion(Agregadosrecientemente2);
+    }
+
+    @FXML
+    private void onMouseEnteredAgregadosrecientemente3() {
+        aplicarAnimacion(Agregadosrecientemente3);
+    }
+
+    @FXML
+    private void onMouseExitedAgregadosrecientemente3() {
+        quitarAnimacion(Agregadosrecientemente3);
+    }
+
+    @FXML
+    private void onMouseEnteredRamdom1() {
+        aplicarAnimacion(Ramdom1);
+    }
+
+    @FXML
+    private void onMouseExitedRamdom1() {
+        quitarAnimacion(Ramdom1);
+    }
+
+    @FXML
+    private void onMouseEnteredRamdom2() {
+        aplicarAnimacion(Ramdom2);
+    }
+
+    @FXML
+    private void onMouseExitedRamdom2() {
+        quitarAnimacion(Ramdom2);
+    }
+
+    @FXML
+    private void onMouseEnteredRamdom3() {
+        aplicarAnimacion(Ramdom3);
+    }
+
+    @FXML
+    private void onMouseExitedRamdom3() {
+        quitarAnimacion(Ramdom3);
+    }
+
+    private void aplicarAnimacion(ImageView imageView) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+        scaleTransition.setToX(1.2);
+        scaleTransition.setToY(1.2);
+        scaleTransition.play();
+    }
+
+    private void quitarAnimacion(ImageView imageView) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+        scaleTransition.setToX(1.0);
+        scaleTransition.setToY(1.0);
+        scaleTransition.play();
+    }
 
 
 

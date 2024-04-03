@@ -14,6 +14,6 @@
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <ScrollPane layoutX="29.0" layoutY="168.0" prefHeight="509.0" prefWidth="991.0" />
+      <ScrollPane layoutX="29.0" layoutY="168.0" prefHeight="509.0" prefWidth="991.0" style="-fx-background-color: transparent;" stylesheets="@../../../css/ScrollPanel.css" />
    </children>
 </AnchorPane>

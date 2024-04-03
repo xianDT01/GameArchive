@@ -63,3 +63,5 @@ CREATE TABLE ForoComentarios (
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
 );
 
+INSERT INTO Usuarios (nombre, contraseña, correo, tipo_usuario)
+VALUES ('admin', 'abc123.', 'admin@admin.com', 'administrador');

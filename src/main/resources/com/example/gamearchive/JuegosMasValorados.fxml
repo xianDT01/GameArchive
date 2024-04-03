@@ -9,53 +9,53 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="1126.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.JuegosMasValoradosController">
    <children>
-      <ImageView fx:id="Top1" fitHeight="277.0" fitWidth="191.0" layoutX="68.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top1" fitHeight="277.0" fitWidth="191.0" layoutX="68.0" layoutY="101.0" onMouseEntered="#onMouseTop1" onMouseExited="#onMouseExitedTop1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
       <Button fx:id="Volver" layoutX="8.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="34.0" prefWidth="75.0" text="Volver" />
-      <ImageView fx:id="Top2" fitHeight="277.0" fitWidth="191.0" layoutX="279.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top2" fitHeight="277.0" fitWidth="191.0" layoutX="279.0" layoutY="101.0" onMouseEntered="#onMouseTop2" onMouseExited="#onMouseExitedTop2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top3" fitHeight="277.0" fitWidth="191.0" layoutX="499.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top3" fitHeight="277.0" fitWidth="191.0" layoutX="499.0" layoutY="101.0" onMouseEntered="#onMouseTop3" onMouseExited="#onMouseExitedTop3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top4" fitHeight="277.0" fitWidth="191.0" layoutX="711.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top4" fitHeight="277.0" fitWidth="191.0" layoutX="711.0" layoutY="101.0" onMouseEntered="#onMouseTop4" onMouseExited="#onMouseExitedTop4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top5" fitHeight="277.0" fitWidth="191.0" layoutX="928.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top5" fitHeight="277.0" fitWidth="191.0" layoutX="928.0" layoutY="101.0" onMouseEntered="#onMouseTop5" onMouseExited="#onMouseExitedTop5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top6" fitHeight="277.0" fitWidth="191.0" layoutX="68.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top6" fitHeight="277.0" fitWidth="191.0" layoutX="68.0" layoutY="412.0" onMouseEntered="#onMouseTop6" onMouseExited="#onMouseExitedTop6" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top7" fitHeight="277.0" fitWidth="191.0" layoutX="279.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top7" fitHeight="277.0" fitWidth="191.0" layoutX="279.0" layoutY="412.0" onMouseEntered="#onMouseTop7" onMouseExited="#onMouseExitedTop7" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top8" fitHeight="277.0" fitWidth="191.0" layoutX="499.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top8" fitHeight="277.0" fitWidth="191.0" layoutX="499.0" layoutY="412.0" onMouseEntered="#onMouseTop8" onMouseExited="#onMouseExitedTop8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top9" fitHeight="277.0" fitWidth="191.0" layoutX="711.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top9" fitHeight="277.0" fitWidth="191.0" layoutX="711.0" layoutY="412.0" onMouseEntered="#onMouseTop9" onMouseExited="#onMouseExitedTop9" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Top10" fitHeight="277.0" fitWidth="191.0" layoutX="928.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Top10" fitHeight="277.0" fitWidth="191.0" layoutX="928.0" layoutY="412.0" onMouseEntered="#onMouseTop10" onMouseExited="#onMouseExitedTop10" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />
          </image>

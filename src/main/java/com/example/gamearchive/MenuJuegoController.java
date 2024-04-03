@@ -113,6 +113,15 @@ public class MenuJuegoController implements Initializable {
 
             if (resultSet.next()) {
                 promedio = resultSet.getDouble("promedio");
+                if (promedio >= 0 && promedio < 5) {
+                    mostrarNotaJuego.setStyle("-fx-background-color: #FF6874; -fx-text-fill: black; -fx-background-radius: 5;");
+                } else if (promedio >= 5 && promedio < 8) {
+                    mostrarNotaJuego.setStyle("-fx-background-color: #FFBD3F; -fx-text-fill: black; -fx-background-radius: 5;");
+                } else if (promedio >= 8 && promedio < 9) {
+                    mostrarNotaJuego.setStyle("-fx-background-color: #00CE7A; -fx-text-fill: black; -fx-background-radius: 5;");
+                } else if (promedio >= 9) {
+                    mostrarNotaJuego.setStyle("-fx-background-color: #00CE7A; -fx-text-fill: gold; -fx-background-radius: 5;");
+                }
 
             }
         } catch (SQLException e) {

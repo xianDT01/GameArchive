@@ -1,5 +1,6 @@
 package com.example.gamearchive;
 
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -178,6 +180,99 @@ public class JuegosMasValoradosController implements Initializable {
         }
 
         return notaMedia;
+    }
+    @FXML
+    private void onMouseTop1() {
+        aplicarAnimacion(Top1);
+    }
+    @FXML
+    private void onMouseTop2() {
+        aplicarAnimacion(Top2);
+    }
+    @FXML
+    private void onMouseTop3() {
+        aplicarAnimacion(Top3);
+    }
+    @FXML
+    private void onMouseTop4() {
+        aplicarAnimacion(Top4);
+    }
+    @FXML
+    private void onMouseTop5() {
+        aplicarAnimacion(Top5);
+    }
+    @FXML
+    private void onMouseTop6() {
+        aplicarAnimacion(Top6);
+    }
+    @FXML
+    private void onMouseTop7() {
+        aplicarAnimacion(Top7);
+    }
+    @FXML
+    private void onMouseTop8() {
+        aplicarAnimacion(Top8);
+    }
+    @FXML
+    private void onMouseTop9() {
+        aplicarAnimacion(Top9);
+    }
+    @FXML
+    private void onMouseTop10() {
+        aplicarAnimacion(Top10);
+    }
+    @FXML
+    private void onMouseExitedTop1() {
+        quitarAnimacion(Top1);
+    }
+    @FXML
+    private void onMouseExitedTop2() {
+        quitarAnimacion(Top2);
+    }
+    @FXML
+    private void onMouseExitedTop3() {
+        quitarAnimacion(Top3);
+    }
+    @FXML
+    private void onMouseExitedTop4() {
+        quitarAnimacion(Top4);
+    }
+    @FXML
+    private void onMouseExitedTop5() {
+        quitarAnimacion(Top5);
+    }
+    @FXML
+    private void onMouseExitedTop6() {
+        quitarAnimacion(Top6);
+    }
+    @FXML
+    private void onMouseExitedTop7() {
+        quitarAnimacion(Top7);
+    }
+    @FXML
+    private void onMouseExitedTop8() {
+        quitarAnimacion(Top8);
+    }
+    @FXML
+    private void onMouseExitedTop9() {
+        quitarAnimacion(Top9);
+    }
+    @FXML
+    private void onMouseExitedTop10() {
+        quitarAnimacion(Top10);
+    }
+    private void aplicarAnimacion(ImageView imageView) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+        scaleTransition.setToX(1.2);
+        scaleTransition.setToY(1.2);
+        scaleTransition.play();
+    }
+
+    private void quitarAnimacion(ImageView imageView) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+        scaleTransition.setToX(1.0);
+        scaleTransition.setToY(1.0);
+        scaleTransition.play();
     }
 
     @FXML
