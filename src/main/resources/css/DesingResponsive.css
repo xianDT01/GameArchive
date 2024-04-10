@@ -1,0 +1,4 @@
+.vbox-expandable, .hbox-expandable {
+    -fx-hgrow: always;
+    -fx-vgrow: always;
+}

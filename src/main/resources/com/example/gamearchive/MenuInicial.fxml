@@ -3,17 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1300.0" styleClass="dark-background" stylesheets="@../../../css/sytes.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="873.0" prefWidth="1253.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/DesingResponsive.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
    <children>
-      <HBox layoutX="10.0" layoutY="-4.0" prefHeight="139.0" prefWidth="1288.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
+      <HBox prefHeight="139.0" prefWidth="1288.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
             <HBox prefHeight="125.0" prefWidth="134.0">
                <children>
@@ -29,7 +29,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="137.0" prefWidth="398.0" />
+            <HBox prefHeight="137.0" prefWidth="201.0" />
             <HBox prefHeight="117.0" prefWidth="152.0">
                <children>
                   <Button fx:id="Indice" mnemonicParsing="false" onAction="#handleIrAlIndice" prefHeight="102.0" prefWidth="128.0">
@@ -102,47 +102,92 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </HBox>
+            <MenuButton mnemonicParsing="false" prefHeight="90.0" prefWidth="164.0" style="-fx-background-color: transparent;">
+               <items>
+                  <MenuItem fx:id="MenuUsuario" mnemonicParsing="false" onAction="#handleMenuUsuario" text="Ir menu usuario" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Action 2" />
+               </items>
+               <graphic>
+                  <ImageView fx:id="ImagenDePerfil" fitHeight="111.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </MenuButton>
          </children>
       </HBox>
-      <Label layoutX="508.0" layoutY="142.0" text="Agregados Recietemente" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="571.0" layoutY="499.0" text="Aleatorios" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="Agregadosrecientemente1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente1" onMouseEntered="#onMouseEnteredAgregadosrecientemente1" onMouseExited="#onMouseExitedAgregadosrecientemente1" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Agregadosrecientemente2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente2" onMouseEntered="#onMouseEnteredAgregadosrecientemente2" onMouseExited="#onMouseExitedAgregadosrecientemente2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Agregadosrecientemente3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="191.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente3" onMouseEntered="#onMouseEnteredAgregadosrecientemente3" onMouseExited="#onMouseExitedAgregadosrecientemente3" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Ramdom1" fitHeight="301.0" fitWidth="206.0" layoutX="280.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio1" onMouseEntered="#onMouseEnteredRamdom1" onMouseExited="#onMouseExitedRamdom1" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Ramdom2" fitHeight="301.0" fitWidth="206.0" layoutX="562.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio2" onMouseEntered="#onMouseEnteredRamdom2" onMouseExited="#onMouseExitedRamdom2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="Ramdom3" fitHeight="301.0" fitWidth="206.0" layoutX="838.0" layoutY="541.0" onMouseClicked="#abrirMenuJuegoAleatorio3" onMouseEntered="#onMouseEnteredRamdom3" onMouseExited="#onMouseExitedRamdom3" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/img_negro.jpg" />
-         </image>
-      </ImageView>
+      <HBox prefHeight="675.0" prefWidth="238.0">
+         <children>
+            <VBox prefHeight="673.0" prefWidth="209.0" />
+            <VBox prefHeight="612.0" prefWidth="148.0">
+               <children>
+                  <VBox prefHeight="341.0" prefWidth="169.0">
+                     <children>
+                        <ImageView fx:id="Agregadosrecientemente1" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente1" onMouseEntered="#onMouseEnteredAgregadosrecientemente1" onMouseExited="#onMouseExitedAgregadosrecientemente1" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/img_negro.jpg" />
+                           </image>
+                        </ImageView>
+                     </children></VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <ImageView fx:id="Ramdom1" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAleatorio1" onMouseEntered="#onMouseEnteredRamdom1" onMouseExited="#onMouseExitedRamdom1" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/img_negro.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <HBox prefHeight="673.0" prefWidth="182.0" />
+            <VBox prefHeight="612.0" prefWidth="148.0">
+               <children>
+                  <VBox prefHeight="341.0" prefWidth="169.0">
+                     <children>
+                        <ImageView fx:id="Agregadosrecientemente2" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente2" onMouseEntered="#onMouseEnteredAgregadosrecientemente2" onMouseExited="#onMouseExitedAgregadosrecientemente2" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/img_negro.jpg" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                     </children></VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <ImageView fx:id="Ramdom2" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAleatorio2" onMouseEntered="#onMouseEnteredRamdom2" onMouseExited="#onMouseExitedRamdom2" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/img_negro.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+            <HBox prefHeight="673.0" prefWidth="182.0" />
+            <VBox prefHeight="612.0" prefWidth="148.0">
+               <children>
+                  <VBox prefHeight="341.0" prefWidth="169.0">
+                     <children>
+                        <ImageView fx:id="Agregadosrecientemente3" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente3" onMouseEntered="#onMouseEnteredAgregadosrecientemente3" onMouseExited="#onMouseExitedAgregadosrecientemente3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/img_negro.jpg" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                     </children></VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <ImageView fx:id="Ramdom3" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAleatorio3" onMouseEntered="#onMouseEnteredRamdom3" onMouseExited="#onMouseExitedRamdom3" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/img_negro.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

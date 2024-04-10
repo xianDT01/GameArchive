@@ -9,15 +9,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -55,9 +58,14 @@ public class MenuInicialController implements Initializable {
     private Button Foro;
     @FXML
     private Button Indice;
+    @FXML
+    private MenuItem MenuUsuario;
+    @FXML
+    private ImageView ImagenDePerfil;
     public List<Integer> Aleatorios;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cargarImagenDesdeBD();
         cargarJuegosAgregadosRecientemente();
         cargarJuegosAleatorios();
         //
@@ -114,7 +122,6 @@ public class MenuInicialController implements Initializable {
                 idsJuegos.add(idJuego);
                 rutasCaratulas.add(rutaCaratula);
             }
-
             // Asignar las imágenes a los ImageView de los juegos agregados recientemente
             asignarImagenesAImageView(rutasCaratulas, Agregadosrecientemente1, Agregadosrecientemente2, Agregadosrecientemente3);
 
@@ -343,7 +350,57 @@ public class MenuInicialController implements Initializable {
         ventana.setScene(scene);
         ventana.show();
     }
+    @FXML
+    void handleMenuUsuario(ActionEvent event) {
+        try {
+            // Cargar la nueva escena desde el archivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuUsuario.fxml"));
+            Parent root = loader.load();
 
+            // Obtener la ventana actual y configurar la nueva escena
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // Método para cargar la imagen de perfil desde la base de datos y mostrarla en el ImageView
+    private void cargarImagenDesdeBD() {
+        // Obtener la ruta de la imagen de perfil desde la base de datos
+        String rutaImagenPerfil = getRutaImagenPerfilFromDB();
+        if (rutaImagenPerfil != null && !rutaImagenPerfil.isEmpty()) {
+            try {
+                // Cargar la imagen desde la ruta obtenida y mostrarla en el ImageView
+                Image image = new Image(new FileInputStream(rutaImagenPerfil));
+                ImagenDePerfil.setImage(image);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Manejar el error adecuadamente
+            }
+        }
+    }
+    private String getRutaImagenPerfilFromDB() {
+        String rutaImagenPerfil = null;
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT imagen_de_perfil FROM usuarios WHERE idUsuario = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            // Aquí necesitarás obtener el id del usuario actual
+            // Supongamos que el id del usuario actual es 1
+            int idUsuario = SesionUsuario.getUsuario();
+            statement.setInt(1, idUsuario);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                rutaImagenPerfil = resultSet.getString("imagen_de_perfil");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar el error adecuadamente
+        }
+        System.out.println("Metodo getRutaImagen");
+        return rutaImagenPerfil;
+    }
     @FXML
     private void onMouseEnteredAgregadosrecientemente1() {
         aplicarAnimacion(Agregadosrecientemente1);
