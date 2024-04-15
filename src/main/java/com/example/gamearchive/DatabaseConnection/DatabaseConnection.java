@@ -1,4 +1,4 @@
-package com.example.gamearchive;
+package com.example.gamearchive.DatabaseConnection;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

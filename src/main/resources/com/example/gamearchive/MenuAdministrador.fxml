@@ -21,7 +21,7 @@
          <children>
             <AnchorPane fx:id="PanelAñadirJuego" layoutX="53.0" prefHeight="684.0" prefWidth="933.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="AñadirCaratulaJuego" layoutX="401.0" layoutY="82.0" mnemonicParsing="false" onAction="#seleccionarCaratula" prefHeight="51.0" prefWidth="142.0" text="Cargar Carátula" />
+                  <Button fx:id="AñadirCaratulaJuego" layoutX="401.0" layoutY="82.0" mnemonicParsing="false" onAction="#seleccionarCaratula" prefHeight="51.0" prefWidth="142.0" text="Cargar Carátula"  />
                   <TextField fx:id="Descripcion" layoutX="170.0" layoutY="355.0" prefHeight="147.0" prefWidth="605.0" />
                   <Label layoutX="370.0" layoutY="309.0" prefHeight="35.0" prefWidth="158.0" text="Descripción">
                      <font>

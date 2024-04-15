@@ -1,5 +1,10 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.Comentario;
+import com.example.gamearchive.model.ComentariosForo;
+import com.example.gamearchive.model.ControllerId;
+import com.example.gamearchive.model.SesionUsuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

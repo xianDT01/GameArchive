@@ -1,5 +1,8 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.ControllerId;
+import com.example.gamearchive.model.SesionUsuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;

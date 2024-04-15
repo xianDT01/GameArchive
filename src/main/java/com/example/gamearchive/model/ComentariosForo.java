@@ -1,4 +1,6 @@
-package com.example.gamearchive;
+package com.example.gamearchive.model;
+
+import com.example.gamearchive.model.Comentario;
 
 public class ComentariosForo extends Comentario {
 
@@ -11,7 +13,6 @@ public class ComentariosForo extends Comentario {
         this.textoComentario = textoComentario;
     }
 
-    // Getters y setters
     public int getIdComentario() {
         return idComentario;
     }

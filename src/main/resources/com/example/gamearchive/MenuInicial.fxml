@@ -104,7 +104,7 @@
             </HBox>
             <MenuButton mnemonicParsing="false" prefHeight="90.0" prefWidth="164.0" style="-fx-background-color: transparent;">
                <items>
-                  <MenuItem fx:id="MenuUsuario" mnemonicParsing="false" onAction="#handleMenuUsuario" text="Ir menu usuario" />
+                  <MenuItem fx:id="MenuUsuario" mnemonicParsing="false" onAction="#handleMenuUsuario" text="Tu perfil" />
                   <MenuItem disable="true" mnemonicParsing="false" text="Action 2" />
                </items>
                <graphic>

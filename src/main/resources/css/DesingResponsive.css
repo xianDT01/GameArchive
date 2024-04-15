@@ -2,3 +2,9 @@
     -fx-hgrow: always;
     -fx-vgrow: always;
 }
+.anchorpane-expandable {
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
+}

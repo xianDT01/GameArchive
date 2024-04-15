@@ -1,5 +1,7 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.SesionUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,7 +75,7 @@ public class MenuUsuarioController implements Initializable {
             PanelBienvenida.setVisible(true);
             PanelPerfilUsuario.setVisible(false);
             PanelModificarUsuario.setVisible(false);
-            } else if ( event.getSource() == ModificarUsuaruio) {
+        } else if ( event.getSource() == ModificarUsuaruio) {
             PanelModificarUsuario.setVisible(true);
             PanelBienvenida.setVisible(false);
             PanelPerfilUsuario.setVisible(false);
@@ -98,7 +100,6 @@ public class MenuUsuarioController implements Initializable {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                // Manejar el error adecuadamente
             }
         }
     }
@@ -107,8 +108,6 @@ public class MenuUsuarioController implements Initializable {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT imagen_de_perfil FROM usuarios WHERE idUsuario = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            // Aquí necesitarás obtener el id del usuario actual
-            // Supongamos que el id del usuario actual es 1
             int idUsuario = SesionUsuario.getUsuario();
             statement.setInt(1, idUsuario);
             ResultSet resultSet = statement.executeQuery();
@@ -225,7 +224,6 @@ public class MenuUsuarioController implements Initializable {
             ResultSet resultSetComentarios = statementComentarios.executeQuery();
             if (resultSetComentarios.next()) {
                 int totalComentarios = resultSetComentarios.getInt("totalComentarios");
-                // Mostrar el número de comentarios en el Label correspondiente
                 TotalComentarios.setText(String.valueOf(totalComentarios));
             }
 
@@ -276,13 +274,11 @@ public class MenuUsuarioController implements Initializable {
 
     @FXML
     private void actualizarDatosUsuario() {
-        // Obtener el ID del usuario
         int idUsuario = SesionUsuario.getUsuario();
 
         // Obtener el nuevo correo electrónico ingresado por el usuario
         String nuevoCorreoElectronico = ModificarCorreoElectronico.getText();
 
-        // Verificar si el campo está vacío
         if (nuevoCorreoElectronico.isEmpty()) {
             mostrarNotificacion("Error", "Por favor, complete el campo de correo electrónico");
             return;
@@ -315,7 +311,7 @@ public class MenuUsuarioController implements Initializable {
     }
 
     private boolean validarFormatoCorreo(String correoElectronico) {
-        // Expresión regular para validar el formato del correo electrónico
+        // validar el formato del correo electrónico
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return correoElectronico.matches(regex);
     }
@@ -382,9 +378,6 @@ public class MenuUsuarioController implements Initializable {
             // Manejar la excepción adecuadamente
         }
     }
-
-
-
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -393,7 +386,6 @@ public class MenuUsuarioController implements Initializable {
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
     }
-
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();

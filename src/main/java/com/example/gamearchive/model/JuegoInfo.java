@@ -1,4 +1,4 @@
-package com.example.gamearchive;
+package com.example.gamearchive.model;
 
 public class JuegoInfo {
     private String nombreJuego;

@@ -1,5 +1,9 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.Comentario;
+import com.example.gamearchive.model.ControllerId;
+import com.example.gamearchive.model.SesionUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

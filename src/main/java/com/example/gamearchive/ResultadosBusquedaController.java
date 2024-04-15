@@ -1,5 +1,7 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.model.ControllerId;
+import com.example.gamearchive.model.Juego;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +17,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.*;
 import java.util.List;
 import java.util.ResourceBundle;
 

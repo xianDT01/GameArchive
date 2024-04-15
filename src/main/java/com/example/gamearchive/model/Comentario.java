@@ -1,4 +1,4 @@
-package com.example.gamearchive;
+package com.example.gamearchive.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

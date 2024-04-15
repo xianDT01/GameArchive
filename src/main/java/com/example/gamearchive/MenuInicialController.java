@@ -1,5 +1,9 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.ControllerId;
+import com.example.gamearchive.model.Juego;
+import com.example.gamearchive.model.SesionUsuario;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -386,8 +389,6 @@ public class MenuInicialController implements Initializable {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT imagen_de_perfil FROM usuarios WHERE idUsuario = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            // Aquí necesitarás obtener el id del usuario actual
-            // Supongamos que el id del usuario actual es 1
             int idUsuario = SesionUsuario.getUsuario();
             statement.setInt(1, idUsuario);
             ResultSet resultSet = statement.executeQuery();
@@ -396,9 +397,7 @@ public class MenuInicialController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar el error adecuadamente
         }
-        System.out.println("Metodo getRutaImagen");
         return rutaImagenPerfil;
     }
     @FXML
