@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -66,6 +67,8 @@ public class MenuInicialController implements Initializable {
     @FXML
     private ImageView ImagenDePerfil;
     public List<Integer> Aleatorios;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarImagenDesdeBD();

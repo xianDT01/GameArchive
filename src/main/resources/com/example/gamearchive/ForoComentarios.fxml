@@ -10,28 +10,38 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="955.0" prefWidth="1403.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ForoComentariosController">
    <children>
-      <Button fx:id="Volver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleVolverForo" prefHeight="28.0" prefWidth="60.0" text="Volver" />
-      <TextField fx:id="comentarioTextField" layoutX="319.0" layoutY="358.0" prefHeight="28.0" prefWidth="490.0" />
-      <Button layoutX="839.0" layoutY="360.0" mnemonicParsing="false" onAction="#agregarComentario" text="Comentar" />
+      <Button fx:id="Volver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleVolverForo" prefHeight="38.0" prefWidth="79.0" stylesheets="@../../../css/Button.css" text="Volver" />
+      <TextField fx:id="comentarioTextField" layoutX="395.0" layoutY="363.0" prefHeight="28.0" prefWidth="490.0" />
+      <Button layoutX="915.0" layoutY="365.0" mnemonicParsing="false" onAction="#agregarComentario" text="Comentar" />
       <Label alignment="CENTER" contentDisplay="TOP" layoutX="414.0" layoutY="11.0" prefHeight="63.0" prefWidth="402.0" text="Foro" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewComentarios" layoutX="51.0" layoutY="402.0" prefHeight="523.0" prefWidth="1276.0" stylesheets="@../../../css/tableview.css">
+      <TableView fx:id="tableViewComentarios" layoutX="51.0" layoutY="405.0" prefHeight="523.0" prefWidth="1276.0" stylesheets="@../../../css/tableview.css">
         <columns>
           <TableColumn fx:id="comentarioColumna" prefWidth="225.0" text="Usuario" />
           <TableColumn fx:id="usuarioColumna" prefWidth="849.0" text="Mensage" />
         </columns>
       </TableView>
-      <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" layoutX="403.0" layoutY="183.0" prefHeight="137.0" prefWidth="453.0" text="Descripción" textFill="WHITE" wrapText="true">
+      <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" layoutX="414.0" layoutY="183.0" prefHeight="137.0" prefWidth="453.0" text="Descripción" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="tituloLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" layoutX="447.0" layoutY="91.0" prefHeight="75.0" prefWidth="337.0" text="Título" textFill="WHITE" wrapText="true">
+      <Label fx:id="tituloLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" layoutX="414.0" layoutY="91.0" prefHeight="75.0" prefWidth="337.0" text="Título" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="325.0" layoutY="91.0" text="Título" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="278.0" layoutY="183.0" text="Descripción" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
          </font>
       </Label>
    </children>

@@ -14,7 +14,7 @@
             <Image url="@../../../img/img_negro.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="Volver" layoutX="8.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="34.0" prefWidth="75.0" text="Volver" />
+      <Button fx:id="Volver" layoutX="8.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="34.0" prefWidth="75.0" stylesheets="@../../../css/Button.css" text="Volver" />
       <ImageView fx:id="Top2" fitHeight="277.0" fitWidth="191.0" layoutX="279.0" layoutY="101.0" onMouseEntered="#onMouseTop2" onMouseExited="#onMouseExitedTop2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/img_negro.jpg" />

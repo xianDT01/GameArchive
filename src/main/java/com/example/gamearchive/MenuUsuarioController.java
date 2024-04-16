@@ -127,8 +127,10 @@ public class MenuUsuarioController implements Initializable {
         if (rutaDeLaImagen != null && !rutaDeLaImagen.isEmpty()) {
             guardarRutaImagenPerfilEnBD(rutaDeLaImagen);
             System.out.println("Guardada imagen de perfil");
+            mostrarNotificacionExito("Éxito","La imagen de perfil se guardo correctamente");
         } else {
             System.out.println("Error al guardar imagen");
+            mostrarNotificacion("Error", "Error al guardar la imagen");
         }
     }
 
@@ -176,10 +178,8 @@ public class MenuUsuarioController implements Initializable {
         }
     }
 
-
     // Método para guardar la imagen de perfil en el directorio correspondiente
     private String getRutaImagenPerfil() {
-        // Simplemente devuelve una ruta de ejemplo por ahora
         return "src/main/resources/profiles_images/default_profile.png";
     }
 
@@ -194,8 +194,10 @@ public class MenuUsuarioController implements Initializable {
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {
                 System.out.println("Ruta de imagen de perfil actualizada en la base de datos.");
+                mostrarNotificacionExito("Éxito", "Se guardo la imagen correctamente");
             } else {
                 System.out.println("No se pudo actualizar la ruta de imagen de perfil en la base de datos.");
+                mostrarNotificacion("Erorr","No se pudo guardar la imagen");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -212,7 +214,7 @@ public class MenuUsuarioController implements Initializable {
             if (resultSetUsuario.next()) {
                 String nombreUsuario = resultSetUsuario.getString("nombre");
                 String correoUsuario = resultSetUsuario.getString("correo");
-                // Mostrar nombre y correo del usuario en los Labels correspondientes
+                // Mostrar nombre y correo del usuario en los Labels
                 nombre.setText(nombreUsuario);
                 correo.setText(correoUsuario);
             }
@@ -239,7 +241,6 @@ public class MenuUsuarioController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar la excepción adecuadamente
         }
     }
 
@@ -267,7 +268,6 @@ public class MenuUsuarioController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar la excepción adecuadamente
         }
     }
 
@@ -303,7 +303,7 @@ public class MenuUsuarioController implements Initializable {
             statementActualizar.setInt(2, idUsuario);
             statementActualizar.executeUpdate();
 
-            mostrarNotificacion("Éxito", "Correo electrónico actualizado correctamente");
+            mostrarNotificacionExito("Éxito", "Correo electrónico actualizado correctamente");
         } catch (SQLException e) {
             e.printStackTrace();
             // Manejar la excepción adecuadamente
@@ -372,7 +372,7 @@ public class MenuUsuarioController implements Initializable {
             statementActualizar.setInt(2, idUsuario);
             statementActualizar.executeUpdate();
 
-            mostrarNotificacion("Éxito", "Contraseña actualizada correctamente");
+            mostrarNotificacionExito("Éxito", "Contraseña actualizada correctamente");
         } catch (SQLException e) {
             e.printStackTrace();
             // Manejar la excepción adecuadamente
@@ -385,6 +385,14 @@ public class MenuUsuarioController implements Initializable {
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
+    }
+    private void mostrarNotificacionExito(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showInformation();
     }
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {

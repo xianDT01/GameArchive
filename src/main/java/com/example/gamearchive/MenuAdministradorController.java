@@ -4,6 +4,7 @@ import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,27 +73,6 @@ public class MenuAdministradorController {
             }
     }
 
-
-
-    @FXML
-    private void handleVolverPantallaInicial(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        Stage ventana = new Stage();
-        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
-        ventana.initStyle(StageStyle.TRANSPARENT);
-        ventana.setTitle("GameArchive");
-        scene.setFill(Color.TRANSPARENT);
-        ventana.setScene(scene);
-        ventana.centerOnScreen();
-        ventana.show();
-        Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        ventanaActual.close();
-    }
-
-
-
     /*
     Añadir Juegos
      */
@@ -139,6 +121,7 @@ public class MenuAdministradorController {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
+                mostrarNotificacionExito("Éxito","Juego añadido correctamente");
                 System.out.println("Juego insertado exitosamente.");
                 NombreJuego.clear();
                 Descripcion.clear();
@@ -147,6 +130,7 @@ public class MenuAdministradorController {
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            mostrarNotificacion("Error", "Error al conectar a la base de datos:" + e.getMessage());
         }
     }
 /*
@@ -156,6 +140,37 @@ Modificar juegos
 
 
 
-
+    @FXML
+    private void handleVolverPantallaInicial(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage ventana = new Stage();
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
+        ventana.initStyle(StageStyle.TRANSPARENT);
+        ventana.setTitle("GameArchive");
+        scene.setFill(Color.TRANSPARENT);
+        ventana.setScene(scene);
+        ventana.centerOnScreen();
+        ventana.show();
+        Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ventanaActual.close();
+    }
+    private void mostrarNotificacion(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showError();
+    }
+    private void mostrarNotificacionExito(String titulo, String mensaje) {
+        Notifications.create()
+                .title(titulo)
+                .text(mensaje)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .showInformation();
+    }
 
 }

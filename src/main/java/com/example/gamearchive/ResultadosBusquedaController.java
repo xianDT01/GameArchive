@@ -24,7 +24,6 @@ public class ResultadosBusquedaController implements Initializable {
 
     @FXML
     private ListView<String> resultadosListView;
-
     private List<Juego> resultados;
     @FXML
     private Button VolverMenuInicial;
@@ -68,7 +67,6 @@ public class ResultadosBusquedaController implements Initializable {
             controller.initData(juego.getIdjuego(),juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula(),juego.getPlataformas());
             int idjuego =juego.getIdjuego();
             ControllerId.setIdJuego(juego.getIdjuego());
-            System.out.println("Id juego desde abrirMenuJuego buscador es:" + idjuego);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
             stage.setScene(new Scene(root));

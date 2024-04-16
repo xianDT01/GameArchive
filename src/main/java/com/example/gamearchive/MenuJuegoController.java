@@ -157,7 +157,7 @@ public class MenuJuegoController implements Initializable {
                     statement.setInt(2, idUsuario);
                     statement.setInt(3, calificacion);
                     statement.executeUpdate();
-                    mostrarAlerta("Aceptado", "Calificado", "Tu voto se guardo correctamente");
+                    mostrarNotificacionExito("Éxito","Tu voto se guardo correctamente");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -247,10 +247,7 @@ public class MenuJuegoController implements Initializable {
             statement.setInt(2, IdJuego);
             statement.setString(3, textoComentario);
             statement.executeUpdate();
-
-            // Limpiar el campo de comentario después de agregarlo
             comentario.clear();
-
             // Actualizar la lista de comentarios en la interfaz de usuario
             actualizarListaComentarios();
         } catch (SQLException e) {
@@ -302,7 +299,6 @@ public class MenuJuegoController implements Initializable {
             e.printStackTrace();
 
         }
-
         // Actualizar los datos en la TableView
         tablaComentarios.setItems(comentarios);
     }

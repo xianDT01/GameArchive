@@ -1,9 +1,26 @@
--fx-background-color: #008287;
-         -fx-border-color: #FFFFFF;
-         -fx-border-width: 2;
-         -fx-text-fill: #FFFFFF;
-         -fx-font-family: "Times New Roman";
-         -fx-font-style: italic;
-         -fx-font-size: 28px;
-         -fx-background-radius: 10 10 10 10;
-         -fx-border-radius: 10 10 10 10;
+/* Estilos por defecto del botón */
+.button {
+    -fx-background-color: #4CAF50; 
+    -fx-text-fill: white; 
+    -fx-font-size: 14px; 
+    -fx-padding: 8px 15px; 
+    -fx-border-radius: 5px; 
+    -fx-cursor: hand; 
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent; 
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 0,0,0,1 ); 
+}
+
+
+.button:hover {
+    -fx-background-color: #45a049; 
+    -fx-border-color: #45a049; 
+    -fx-transition: background-color 0.3s, border-color 0.3s; 
+}
+
+
+.button:pressed {
+    -fx-background-color: #388e3c; 
+    -fx-border-color: #388e3c; 
+    -fx-transition: background-color 0s, border-color 0s; 
+}
