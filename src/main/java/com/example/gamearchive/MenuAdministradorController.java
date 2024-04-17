@@ -22,6 +22,9 @@ import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 
 public class MenuAdministradorController {
@@ -104,7 +107,12 @@ public class MenuAdministradorController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
         );
+
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
+
+        if (caratulaJuegoFile != null) {
+            mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
+        }
     }
 
     @FXML
@@ -116,12 +124,21 @@ public class MenuAdministradorController {
             statement.setString(1, NombreJuego.getText());
             statement.setString(2, Descripcion.getText());
             statement.setDate(3, Date.valueOf(FechaDeLanzamiento.getValue()));
-            statement.setString(4, caratulaJuegoFile.getAbsolutePath()); // Guarda la ruta de la imagen
+
+            // Copiar la imagen seleccionada a la carpeta de caratulas
+            File caratulaDestino = new File("src/main/resources/caratulas/" + caratulaJuegoFile.getName());
+            Files.copy(caratulaJuegoFile.toPath(), caratulaDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            // Obtener la ruta relativa
+            String rutaRelativa = "src\\main\\resources\\caratulas\\" + caratulaJuegoFile.getName();
+
+            // Establecer la ruta de la imagen relativa a la carpeta de caratulas
+            statement.setString(4, rutaRelativa); // Guarda la ruta relativa de la imagen
             statement.setString(5, Plataformas.getText()); // Agrega las plataformas
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                mostrarNotificacionExito("Éxito","Juego añadido correctamente");
+                mostrarNotificacionExito("Éxito", "Juego añadido correctamente");
                 System.out.println("Juego insertado exitosamente.");
                 NombreJuego.clear();
                 Descripcion.clear();
@@ -131,8 +148,12 @@ public class MenuAdministradorController {
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
             mostrarNotificacion("Error", "Error al conectar a la base de datos:" + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al copiar la imagen de la carátula: " + e.getMessage());
+            mostrarNotificacion("Error", "Error al copiar la imagen de la carátula: " + e.getMessage());
         }
     }
+
 /*
 Modificar juegos
  */

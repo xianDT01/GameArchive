@@ -143,6 +143,7 @@ public class MenuUsuarioController implements Initializable {
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.gif", "*.bmp"));
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
+            mostrarNotificacionExito("Éxito", "Se cargo la imagen correctamente");
             FileInputStream fis = null;
             try {
                 // Obtener la ruta relativa del archivo seleccionado
