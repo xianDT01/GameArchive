@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -25,9 +26,9 @@ public class RegistroDeUsuariosController {
     @FXML
     private TextField correoElectronico;
     @FXML
-    private TextField contraseña;
+    private PasswordField contraseña;
     @FXML
-    private TextField RepetirContraseña;
+    private PasswordField RepetirContraseña;
     @FXML
     private Button Registrar;
 

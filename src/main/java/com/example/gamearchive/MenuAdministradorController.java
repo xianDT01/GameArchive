@@ -1,16 +1,16 @@
 package com.example.gamearchive;
 
 import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
+import com.example.gamearchive.model.Juego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -22,12 +22,21 @@ import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class MenuAdministradorController {
+public class MenuAdministradorController implements Initializable {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
+    }
 
     @FXML
     private Button Volver;
@@ -68,12 +77,12 @@ public class MenuAdministradorController {
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
-        }else if (event.getSource() ==PanelBienvenida) {
-                PanelBienvenida.setVisible(true);
-                PanelBorrarJuego.setVisible(false);
-                PanelAñadirJuego.setVisible(false);
-                PanelModificarJuego.setVisible(false);
-            }
+        } else if (event.getSource() == PanelBienvenida) {
+            PanelBienvenida.setVisible(true);
+            PanelBorrarJuego.setVisible(false);
+            PanelAñadirJuego.setVisible(false);
+            PanelModificarJuego.setVisible(false);
+        }
     }
 
     /*
@@ -159,7 +168,240 @@ Modificar juegos
  */
 
 
+    @FXML
+    private ComboBox nombreJuegos;
+    @FXML
+    private Button ModificarcaratulaJuego;
+    @FXML
+    private File ModificarcaratulaJuegoFile;
 
+    @FXML
+    private TextField ModificarNombreJuego;
+
+    @FXML
+    private TextField ModificarPlataformas;
+
+    @FXML
+    private DatePicker ModificarFechaDeLanzamiento;
+
+    @FXML
+    private TextField ModificarDescripcion;
+    @FXML
+    private Button guardar;
+    public static final String RUTA_POR_DEFECTO = "src\\main\\resources\\caratulas\\caratula.jpg";
+
+    @FXML
+    private void ModificarCaratula(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar Carátula del Juego");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        ModificarcaratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
+
+        if (ModificarcaratulaJuego != null) {
+            mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
+        }
+    }
+
+    private void cargarNombresJuegos() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT nombre FROM Juegos";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                nombreJuegos.getItems().add(nombreJuego);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @FXML
+    private void seleccionarJuego() {
+        String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
+        if (nombreJuegoSeleccionado != null) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                String query = "SELECT * FROM Juegos WHERE nombre = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, nombreJuegoSeleccionado);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    ModificarNombreJuego.setText(resultSet.getString("nombre"));
+                    ModificarDescripcion.setText(resultSet.getString("descripcion"));
+                    ModificarFechaDeLanzamiento.setValue(resultSet.getDate("fechaLanzamiento").toLocalDate());
+                    ModificarPlataformas.setText(resultSet.getString("plataformas"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
+
+    @FXML
+    private void guardarCambios() {
+        String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
+        if (nombreJuegoSeleccionado != null) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                String query = "UPDATE Juegos SET nombre = ?, descripcion = ?, fechaLanzamiento = ?, plataformas = ?, rutaCaratula = ? WHERE nombre = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, ModificarNombreJuego.getText());
+                statement.setString(2, ModificarDescripcion.getText());
+                statement.setDate(3, Date.valueOf(ModificarFechaDeLanzamiento.getValue()));
+                statement.setString(4, ModificarPlataformas.getText());
+
+                // Si se ha seleccionado una nueva carátula, actualizar la ruta de la carátula
+                if (ModificarcaratulaJuegoFile != null) {
+                    // Copiar la nueva carátula al directorio de recursos del proyecto
+                    Path destino = Paths.get("src\\main\\resources\\caratulas\\", ModificarcaratulaJuegoFile.getName());
+                    Files.copy(ModificarcaratulaJuegoFile.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Obtener la nueva ruta de la carátula
+                    String rutaNuevaCaratula = "src\\main\\resources\\caratulas\\" + ModificarcaratulaJuegoFile.getName();
+                    statement.setString(5, rutaNuevaCaratula);
+                } else {
+                    // Si no se seleccionó una nueva carátula, mantener la ruta existente
+                    statement.setString(5, obtenerRutaCaratulaActual(nombreJuegoSeleccionado));
+                }
+
+                statement.setString(6, nombreJuegoSeleccionado);
+                int rowsUpdated = statement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    mostrarNotificacionExito("Éxito", "Cambios guardados correctamente");
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static String obtenerRutaCaratulaActual(String nombreJuego) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT rutaCaratula FROM Juegos WHERE nombre = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nombreJuego);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("rutaCaratula");
+            } else {
+                // Si no se encuentra la carátula, se devuelve la ruta por defecto
+                return RUTA_POR_DEFECTO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @FXML
+    private ComboBox NombreJuegos;
+    @FXML
+    private Label mostrarJuego;
+    @FXML
+    private Button borrarJuego;
+
+    private void cargarNombresJuegos2() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT nombre FROM Juegos";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                NombreJuegos.getItems().add(nombreJuego);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @FXML
+    private void seleccionarJuegoNombreJuego() {
+        String nombreJuegoSeleccionado = (String) NombreJuegos.getValue();
+        if (nombreJuegoSeleccionado != null) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                String query = "SELECT * FROM Juegos WHERE nombre = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, nombreJuegoSeleccionado);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    // Mostrar la información del juego seleccionado en el label
+                    String informacionJuego = "Nombre: " + resultSet.getString("nombre") + "\n" +
+                            "Descripción: " + resultSet.getString("descripcion") + "\n" +
+                            "Fecha de lanzamiento: " + resultSet.getDate("fechaLanzamiento") + "\n" +
+                            "Plataformas: " + resultSet.getString("plataformas");
+                    mostrarJuego.setText(informacionJuego);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void borrarJuego() {
+        String nombreJuegoSeleccionado = (String) NombreJuegos.getValue();
+        if (nombreJuegoSeleccionado != null) {
+            // Mostrar un cuadro de diálogo de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmar eliminación");
+            alert.setHeaderText("¿Estás seguro de que deseas eliminar este juego?");
+            alert.setContentText("Esta acción eliminará el juego seleccionado junto con todos los comentarios y reseñas asociados.");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                try (Connection connection = DatabaseConnection.getConnection()) {
+                    // Obtener el ID del juego
+                    int idJuego = obtenerIdJuego(nombreJuegoSeleccionado);
+
+                    // Eliminar los comentarios asociados al juego
+                    String eliminarComentariosQuery = "DELETE FROM Comentarios WHERE idJuego = ?";
+                    PreparedStatement eliminarComentariosStatement = connection.prepareStatement(eliminarComentariosQuery);
+                    eliminarComentariosStatement.setInt(1, idJuego);
+                    eliminarComentariosStatement.executeUpdate();
+
+                    // Eliminar las reseñas asociadas al juego
+                    String eliminarReseñasQuery = "DELETE FROM Reseñas WHERE idJuego = ?";
+                    PreparedStatement eliminarReseñasStatement = connection.prepareStatement(eliminarReseñasQuery);
+                    eliminarReseñasStatement.setInt(1, idJuego);
+                    eliminarReseñasStatement.executeUpdate();
+
+                    // Eliminar el juego
+                    String eliminarJuegoQuery = "DELETE FROM Juegos WHERE nombre = ?";
+                    PreparedStatement eliminarJuegoStatement = connection.prepareStatement(eliminarJuegoQuery);
+                    eliminarJuegoStatement.setString(1, nombreJuegoSeleccionado);
+                    int rowsDeleted = eliminarJuegoStatement.executeUpdate();
+                    if (rowsDeleted > 0) {
+                        mostrarNotificacionExito("Éxito", "Juego eliminado correctamente");
+                        // Limpiar los campos o actualizar la lista de juegos en el ComboBox si es necesario
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    // Manejo de errores
+                }
+            }
+        }
+    }
+
+
+    private int obtenerIdJuego(String nombreJuego) throws SQLException {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT idJuego FROM Juegos WHERE nombre = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nombreJuego);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("idJuego");
+            } else {
+                return -1; // Si no se encuentra el juego
+            }
+        }
+    }
 
     @FXML
     private void handleVolverPantallaInicial(ActionEvent event) throws IOException {

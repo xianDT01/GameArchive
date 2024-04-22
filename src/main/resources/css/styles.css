@@ -42,3 +42,7 @@
     -fx-text-fill: red; 
 }
 
+.text-field,
+.password-field {
+    -fx-text-fill: white;
+}
