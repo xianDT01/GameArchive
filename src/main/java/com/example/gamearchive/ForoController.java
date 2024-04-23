@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -141,6 +142,7 @@ public class ForoController {
         Stage ventana = (Stage) Volver.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.setTitle("GameArchive");
         ventana.setScene(scene);
         ventana.show();

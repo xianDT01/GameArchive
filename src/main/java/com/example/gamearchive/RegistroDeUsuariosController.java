@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -37,6 +38,7 @@ public class RegistroDeUsuariosController {
         Stage ventana = (Stage) VolverPantallaPrincipal.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"));
         ventana.setTitle("GameArchive");
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();

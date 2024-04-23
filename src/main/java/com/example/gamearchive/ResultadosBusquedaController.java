@@ -111,6 +111,7 @@ public class ResultadosBusquedaController implements Initializable {
         Stage ventana = (Stage) VolverMenuInicial.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.setTitle("GameArchive");
         ventana.setScene(scene);
         ventana.show();

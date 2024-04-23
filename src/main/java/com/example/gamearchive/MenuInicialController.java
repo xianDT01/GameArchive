@@ -4,21 +4,23 @@ import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
 import com.example.gamearchive.model.ControllerId;
 import com.example.gamearchive.model.Juego;
 import com.example.gamearchive.model.SesionUsuario;
-import javafx.animation.ScaleTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -30,6 +32,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MenuInicialController implements Initializable {
@@ -67,13 +70,42 @@ public class MenuInicialController implements Initializable {
     @FXML
     private ImageView ImagenDePerfil;
     public List<Integer> Aleatorios;
-
+    @FXML
+    private ImageView GIF;
+    private File[] gifFiles;
+    private Random random;
+    private int currentIndex;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarImagenDesdeBD();
         cargarJuegosAgregadosRecientemente();
         cargarJuegosAleatorios();
+        // Carga de gifs
+
+        // Configurar la transición secuencial
+        File folder = new File("src/main/resources/sprites");
+        gifFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".gif"));
+
+        // Verificar si hay archivos GIF
+        if (gifFiles != null && gifFiles.length > 0) {
+            // Inicializar el generador de números aleatorios
+            random = new Random();
+
+            // Obtener las dimensiones de la pantalla
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            double screenWidth = screenBounds.getWidth();
+
+            // Establecer el ajuste de la imagen al ancho de la pantalla
+            GIF.setPreserveRatio(true);
+            GIF.setFitWidth(screenWidth);
+
+            // Comenzar la primera animación
+            playNextAnimation();
+        } else {
+            System.out.println("No se encontraron archivos GIF en la carpeta especificada.");
+        }
+
         //
     }
 
@@ -365,6 +397,7 @@ public class MenuInicialController implements Initializable {
 
             // Obtener la ventana actual y configurar la nueva escena
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -477,6 +510,44 @@ public class MenuInicialController implements Initializable {
         scaleTransition.play();
     }
 
+    private void playNextAnimation() {
+        // Seleccionar el siguiente archivo GIF aleatorio
+        currentIndex = random.nextInt(gifFiles.length);
+        File randomGifFile = gifFiles[currentIndex];
 
+        // Cargar el GIF aleatorio
+        Image image = new Image(randomGifFile.toURI().toString());
 
-}
+        // Establecer la imagen en la ImageView
+        GIF.setImage(image);
+
+        // Configurar la transición de desplazamiento
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(15), GIF);
+        translateTransition.setFromX(-GIF.getFitWidth()); // Comienza fuera del lado izquierdo de la pantalla
+        translateTransition.setToX(GIF.getFitWidth()); // Moverse hasta el final de la pantalla
+
+        // Configurar la transición de opacidad para que aparezca gradualmente
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), GIF);
+        fadeTransition.setFromValue(0.0); // Comienza con opacidad 0
+        fadeTransition.setToValue(1.0); // Termina con opacidad 1
+
+        // Iniciar la animación
+        translateTransition.play();
+        fadeTransition.play();
+
+        // Detectar el final de la animación y cargar la siguiente
+        translateTransition.setOnFinished(event -> {
+            // Reproducir la siguiente animación después de un breve retraso
+            // Esto evita problemas de visualización intermitente al cambiar de GIF
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1);
+                    playNextAnimation();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        });
+    }
+    }
+

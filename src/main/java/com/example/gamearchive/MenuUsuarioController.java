@@ -401,6 +401,7 @@ public class MenuUsuarioController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
         ventana.setTitle("GameArchive");
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.setScene(scene);
         ventana.show();
     }

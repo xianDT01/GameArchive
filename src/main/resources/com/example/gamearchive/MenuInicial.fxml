@@ -210,5 +210,14 @@
             <VBox prefHeight="675.0" prefWidth="279.0" />
          </children>
       </HBox>
+      <HBox prefHeight="102.0" prefWidth="1276.0">
+         <children>
+            <VBox prefHeight="74.0" prefWidth="1279.0">
+               <children>
+                  <ImageView fx:id="GIF" fitHeight="78.0" fitWidth="1276.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </VBox>

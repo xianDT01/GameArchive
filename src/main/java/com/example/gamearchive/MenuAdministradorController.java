@@ -153,6 +153,7 @@ public class MenuAdministradorController implements Initializable {
                 Descripcion.clear();
                 FechaDeLanzamiento.setValue(null);
                 Plataformas.clear();
+                AñadirCaratulaJuego = null;
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
@@ -273,6 +274,7 @@ Modificar juegos
                 if (rowsUpdated > 0) {
                     mostrarNotificacionExito("Éxito", "Cambios guardados correctamente");
                 }
+
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
@@ -356,7 +358,7 @@ Modificar juegos
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 try (Connection connection = DatabaseConnection.getConnection()) {
-                    // Obtener el ID del juego
+                    // Obtenemos el ID del juego
                     int idJuego = obtenerIdJuego(nombreJuegoSeleccionado);
 
                     // Eliminar los comentarios asociados al juego

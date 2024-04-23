@@ -103,6 +103,7 @@ public class IndiceController implements Initializable {
         Stage ventana = (Stage) Volver.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MenuInicial.fxml"));
         Scene scene = new Scene(root);
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         ventana.setTitle("GameArchive");
         ventana.setScene(scene);
         ventana.show();

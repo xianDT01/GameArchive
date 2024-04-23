@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -111,6 +112,7 @@ public class ForoComentariosController implements Initializable {
     private void handleVolverForo(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Foro.fxml"));
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
         Scene scene = new Scene(root);
         ventana.setTitle("GameArchive");
         ventana.setScene(scene);
