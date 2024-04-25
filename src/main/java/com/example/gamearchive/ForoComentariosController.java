@@ -69,7 +69,7 @@ public class ForoComentariosController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejo de errores
+
         }
     }
     private void cargarTituloYDescripcionForo() {
@@ -100,11 +100,11 @@ public class ForoComentariosController implements Initializable {
                 statement.setInt(2, idUsuarioActual);
                 statement.setString(3, textoComentario);
                 statement.executeUpdate();
-                cargarComentarios(); // Recargar los comentarios después de agregar uno nuevo
+                cargarComentarios();
                 comentarioTextField.clear();
             } catch (SQLException e) {
                 e.printStackTrace();
-                // Manejo de errores
+
             }
         }
     }

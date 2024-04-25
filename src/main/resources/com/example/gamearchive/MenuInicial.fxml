@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="873.0" prefWidth="1276.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/DesingResponsive.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="912.0" prefWidth="1309.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/DesingResponsive.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuInicialController">
    <children>
       <HBox prefHeight="139.0" prefWidth="1288.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
@@ -20,7 +20,7 @@
                   <Button mnemonicParsing="false" prefHeight="109.0" prefWidth="108.0" text="Button" />
                   <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="101.0" prefWidth="101.0">
                      <graphic>
-                        <ImageView fitHeight="104.0" fitWidth="95.0">
+                        <ImageView fitHeight="125.0" fitWidth="104.0">
                            <image>
                               <Image url="@../../../img/salir.png" />
                            </image>
@@ -136,12 +136,12 @@
             </HBox>
          </children>
       </HBox>
-      <HBox prefHeight="675.0" prefWidth="238.0">
+      <HBox prefHeight="697.0" prefWidth="1276.0">
          <children>
             <VBox prefHeight="675.0" prefWidth="279.0" />
-            <VBox prefHeight="612.0" prefWidth="148.0">
+            <VBox prefHeight="533.0" prefWidth="152.0">
                <children>
-                  <VBox prefHeight="341.0" prefWidth="169.0">
+                  <VBox prefHeight="287.0" prefWidth="156.0">
                      <children>
                         <ImageView fx:id="Agregadosrecientemente1" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAgregadoRecientemente1" onMouseEntered="#onMouseEnteredAgregadosrecientemente1" onMouseExited="#onMouseExitedAgregadosrecientemente1" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -149,7 +149,7 @@
                            </image>
                         </ImageView>
                      </children></VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="103.0" prefWidth="140.0" />
                   <ImageView fx:id="Ramdom1" fitHeight="301.0" fitWidth="206.0" onMouseClicked="#abrirMenuJuegoAleatorio1" onMouseEntered="#onMouseEnteredRamdom1" onMouseExited="#onMouseExitedRamdom1" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -214,7 +214,7 @@
          <children>
             <VBox prefHeight="74.0" prefWidth="1279.0">
                <children>
-                  <ImageView fx:id="GIF" fitHeight="78.0" fitWidth="1276.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="GIF" fitHeight="83.0" fitWidth="1276.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>

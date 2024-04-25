@@ -291,7 +291,7 @@ Modificar juegos
             if (resultSet.next()) {
                 return resultSet.getString("rutaCaratula");
             } else {
-                // Si no se encuentra la carátula, se devuelve la ruta por defecto
+                // Si no se encuentra la carátula, da una por defecto. Mirar que caratula da por defecto, si no da null o en blanco
                 return RUTA_POR_DEFECTO;
             }
         } catch (SQLException e) {

@@ -75,18 +75,14 @@ public class EntarUsuarioController {
                     SesionUsuario.setNombreUsuario(nombreUsuario);
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
-
                 } else if ("administrador".equals(tipoUsuario)) {
-
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuAdministrador.fxml"));
-
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(scene);
                     stage.show();
-
                     // Cerrar la ventana actual
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
