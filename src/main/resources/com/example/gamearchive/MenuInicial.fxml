@@ -28,27 +28,32 @@
                      </graphic>
                   </Button>
                </children>
+               <HBox.margin>
+                  <Insets bottom="30.0" />
+               </HBox.margin>
             </HBox>
-            <HBox prefHeight="130.0" prefWidth="200.0">
+            <HBox prefHeight="152.0" prefWidth="70.0" />
+            <HBox prefHeight="95.0" prefWidth="112.0" styleClass="d" stylesheets="@../../../css/hover.css">
                <children>
-                  <Button fx:id="Indice" mnemonicParsing="false" onAction="#handleIrAlIndice" prefHeight="102.0" prefWidth="128.0">
+                  <Button fx:id="Indice" mnemonicParsing="false" onAction="#handleIrAlIndice" prefHeight="112.0" prefWidth="97.0">
                      <graphic>
-                        <ImageView fitHeight="104.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="104.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/6315317.png" />
                            </image>
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="20.0" top="20.0" />
                </HBox.margin>
             </HBox>
-            <HBox prefHeight="127.0" prefWidth="190.0">
+            <HBox prefHeight="152.0" prefWidth="62.0" />
+            <HBox prefHeight="122.0" prefWidth="109.0" styleClass="d" stylesheets="@../../../css/hover.css">
                <children>
                   <Button fx:id="abrirJuegosMasValorados" mnemonicParsing="false" onAction="#abrirJuegosMasValorados" prefHeight="102.0" prefWidth="128.0">
                      <graphic>
@@ -61,9 +66,10 @@
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="20.0" top="10.0" />
                </HBox.margin>
             </HBox>
+            <HBox prefHeight="152.0" prefWidth="67.0" />
             <HBox prefHeight="150.0" prefWidth="194.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +81,7 @@
                      </HBox.margin>
                   </ImageView>
                </children></HBox>
-            <HBox prefHeight="117.0" prefWidth="152.0">
+            <HBox prefHeight="122.0" prefWidth="115.0" styleClass="d" stylesheets="@../../../css/hover.css">
                <children>
                   <Button fx:id="Foro" mnemonicParsing="false" onAction="#abrirForo" prefHeight="102.0" prefWidth="128.0">
                      <graphic>
@@ -88,9 +94,10 @@
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="20.0" top="10.0" />
                </HBox.margin>
             </HBox>
+            <HBox prefHeight="152.0" prefWidth="56.0" />
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="259.0">
                <children>
                   <TextField fx:id="TextFieldBuscar" prefHeight="37.0" prefWidth="192.0">

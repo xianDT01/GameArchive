@@ -52,10 +52,6 @@ public class MenuInicialController implements Initializable {
     @FXML
     private ImageView Ramdom3;
     @FXML
-    private ImageView publicidad1;
-    @FXML
-    private ImageView publicidad2;
-    @FXML
     private TextField TextFieldBuscar;
     @FXML
     private Button ButtonBuscar;
@@ -126,22 +122,7 @@ public class MenuInicialController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        Stage ventana = new Stage();
-        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
-        ventana.initStyle(StageStyle.TRANSPARENT);
-        ventana.setTitle("GameArchive");
-        scene.setFill(Color.TRANSPARENT);
-        ventana.setScene(scene);
-        ventana.centerOnScreen();
-        ventana.show();
-        Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        ventanaActual.close();
-    }
+
 
     private List<Integer> cargarJuegosAgregadosRecientemente() {
         List<Integer> idsJuegos = new ArrayList<>();
@@ -370,6 +351,9 @@ public class MenuInicialController implements Initializable {
             Parent root = loader.load();
             JuegosMasValoradosController controller = loader.getController();
             Stage stage = new Stage();
+            stage.setTitle("GameArchive");
+            Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
+            stage.getIcons().add(icono);
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -383,7 +367,7 @@ public class MenuInicialController implements Initializable {
         Parent root = fxmlLoader.load();
         Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
         ventana.getIcons().add(icono);
-        ventana.setTitle("GameArchive Foro");
+        ventana.setTitle("GameArchive");
         Scene scene = new Scene(root);
         ventana.setScene(scene);
         ventana.show();
@@ -391,13 +375,12 @@ public class MenuInicialController implements Initializable {
     @FXML
     void handleMenuUsuario(ActionEvent event) {
         try {
-            // Cargar la nueva escena desde el archivo FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuUsuario.fxml"));
             Parent root = loader.load();
-
-            // Obtener la ventana actual y configurar la nueva escena
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
+            Image icono = new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png"));
+            stage.getIcons().add(icono);
+            stage.setTitle("GameArchive Foro");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -416,7 +399,6 @@ public class MenuInicialController implements Initializable {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                // Manejar el error adecuadamente
             }
         }
     }
@@ -508,6 +490,22 @@ public class MenuInicialController implements Initializable {
         scaleTransition.setToX(1.0);
         scaleTransition.setToY(1.0);
         scaleTransition.play();
+    }
+    @FXML
+    private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage ventana = new Stage();
+        ventana.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
+        ventana.initStyle(StageStyle.TRANSPARENT);
+        ventana.setTitle("GameArchive");
+        scene.setFill(Color.TRANSPARENT);
+        ventana.setScene(scene);
+        ventana.centerOnScreen();
+        ventana.show();
+        Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ventanaActual.close();
     }
 
     private void playNextAnimation() {

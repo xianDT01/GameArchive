@@ -69,6 +69,7 @@ public class ResultadosBusquedaController implements Initializable {
             ControllerId.setIdJuego(juego.getIdjuego());
             Stage stage = new Stage();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
+            stage.setTitle("GameArchive Foro");
             stage.setScene(new Scene(root));
             stage.show();
 

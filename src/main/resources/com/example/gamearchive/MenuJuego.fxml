@@ -30,8 +30,8 @@
       </HBox>
       <HBox prefHeight="673.0" prefWidth="1551.0">
          <children>
-            <HBox prefHeight="582.0" prefWidth="90.0" />
-            <VBox prefHeight="540.0" prefWidth="296.0">
+            <HBox prefHeight="553.0" prefWidth="90.0" />
+            <VBox prefHeight="553.0" prefWidth="267.0">
                <children>
                   <VBox prefHeight="184.0" prefWidth="267.0">
                      <children>
@@ -40,7 +40,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="63.0" prefWidth="267.0">
+                        <HBox prefHeight="47.0" prefWidth="281.0">
                            <children>
                               <Label prefHeight="44.0" prefWidth="239.0" text="Fecha de lanzamiento:" textFill="WHITE">
                                  <font>
@@ -51,7 +51,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="170.0" prefWidth="267.0">
+                  <HBox prefHeight="48.0" prefWidth="281.0">
                      <children>
                         <Label text="Descripción del Juego:" textFill="#f7f7f7">
                            <font>
@@ -61,9 +61,9 @@
                      </children>
                   </HBox>
                </children></VBox>
-            <VBox prefHeight="539.0" prefWidth="384.0">
+            <VBox prefHeight="533.0" prefWidth="304.0">
                <children>
-                  <HBox prefHeight="79.0" prefWidth="185.0">
+                  <HBox prefHeight="89.0" prefWidth="394.0">
                      <children>
                         <Label fx:id="Plataformas" prefHeight="58.0" prefWidth="150.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
                            <font>
@@ -71,7 +71,7 @@
                            </font>
                         </Label>
                      </children></HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="60.0" prefWidth="394.0">
                      <children>
                         <Label fx:id="FechaDeLanzamiento" prefHeight="58.0" prefWidth="224.0" text="Fecha de lanzamiento" textFill="WHITE">
                            <font>
@@ -80,7 +80,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="395.0" prefWidth="383.0" text="Descripción" textFill="WHITE" wrapText="true">
+                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="365.0" prefWidth="333.0" text="Descripción" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -90,11 +90,11 @@
                   <Insets top="20.0" />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="540.0" prefWidth="375.0">
+            <VBox prefHeight="553.0" prefWidth="408.0">
                <children>
-                  <VBox prefHeight="103.0" prefWidth="338.0">
+                  <VBox prefHeight="124.0" prefWidth="406.0">
                      <children>
-                        <Label fx:id="NombreJuego" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="621.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
+                        <Label fx:id="NombreJuego" alignment="TOP_CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="126.0" prefWidth="406.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -103,7 +103,7 @@
                   </VBox>
                   <HBox prefHeight="158.0" prefWidth="338.0">
                      <children>
-                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/-5857140.jpg" />
                            </image>
