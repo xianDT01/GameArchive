@@ -1,5 +1,5 @@
-create database gamearchive;
-use gamearchive;
+CREATE DATABASE gamearchive;
+USE gamearchive;
 
 CREATE TABLE Juegos (
     idJuego INT AUTO_INCREMENT PRIMARY KEY,
@@ -7,7 +7,7 @@ CREATE TABLE Juegos (
     descripcion TEXT,
     fechaLanzamiento DATE,
     rutaCaratula VARCHAR(255),
-    plataformas VARCHAR(255) NOT NULL 
+    plataformas VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Multimedia (
@@ -24,9 +24,9 @@ CREATE TABLE Usuarios (
     contraseña VARCHAR(255) NOT NULL,
     correo VARCHAR(100) NOT NULL,
     tipo_usuario ENUM('usuario', 'administrador') NOT NULL DEFAULT 'usuario',
-    imagen_de_perfil VARCHAR(255)
+    imagen_de_perfil VARCHAR(255),
+    INDEX idx_nombre (nombre)
 );
-
 CREATE TABLE Comentarios (
     idComentario INT AUTO_INCREMENT PRIMARY KEY,
     idUsuario INT,
@@ -53,6 +53,11 @@ CREATE TABLE Foro (
     autor VARCHAR(50) NOT NULL,
     FOREIGN KEY (autor) REFERENCES Usuarios(nombre)
 );
+
+ALTER TABLE Foro
+ADD CONSTRAINT fk_autor
+FOREIGN KEY (autor) REFERENCES Usuarios(nombre);
+
 
 CREATE TABLE ForoComentarios (
     idComentario INT AUTO_INCREMENT PRIMARY KEY,
