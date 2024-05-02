@@ -191,6 +191,7 @@ Modificar juegos
     private Button guardar;
     public static final String RUTA_POR_DEFECTO = "src\\main\\resources\\caratulas\\caratula.jpg";
 
+
     @FXML
     private void ModificarCaratula(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -199,9 +200,9 @@ Modificar juegos
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
         );
 
-        ModificarcaratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
+        caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
 
-        if (ModificarcaratulaJuego != null) {
+        if (caratulaJuegoFile != null) {
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
         }
     }
