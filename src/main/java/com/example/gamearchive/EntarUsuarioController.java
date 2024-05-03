@@ -115,4 +115,5 @@ public class EntarUsuarioController {
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
     }
+
 }

@@ -126,6 +126,11 @@ public class MenuAdministradorController implements Initializable {
 
     @FXML
     private void HandleañadirJuego() {
+        if (NombreJuego.getText().isEmpty() || Descripcion.getText().isEmpty() || FechaDeLanzamiento.getValue() == null || caratulaJuegoFile == null || Plataformas.getText().isEmpty()) {
+            mostrarNotificacion("Error", "Por favor, complete todos los campos.");
+            return; // Sale del método si algún campo está vacío
+        }
+
         try {
             Connection connection = DatabaseConnection.getConnection();
             String query = "INSERT INTO Juegos (nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas) VALUES (?, ?, ?, ?, ?)";
@@ -163,6 +168,7 @@ public class MenuAdministradorController implements Initializable {
             mostrarNotificacion("Error", "Error al copiar la imagen de la carátula: " + e.getMessage());
         }
     }
+
 
 /*
 Modificar juegos
@@ -248,6 +254,11 @@ Modificar juegos
     private void guardarCambios() {
         String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
         if (nombreJuegoSeleccionado != null) {
+            if (ModificarNombreJuego.getText().isEmpty() || ModificarDescripcion.getText().isEmpty() || ModificarFechaDeLanzamiento.getValue() == null || ModificarcaratulaJuegoFile == null || ModificarPlataformas.getText().isEmpty()) {
+                mostrarNotificacion("Error", "Por favor, complete todos los campos.");
+                return; // Sale del método si algún campo está vacío
+            }
+
             try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "UPDATE Juegos SET nombre = ?, descripcion = ?, fechaLanzamiento = ?, plataformas = ?, rutaCaratula = ? WHERE nombre = ?";
                 PreparedStatement statement = connection.prepareStatement(query);

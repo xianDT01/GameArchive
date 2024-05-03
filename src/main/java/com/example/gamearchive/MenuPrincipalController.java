@@ -1,6 +1,8 @@
 package com.example.gamearchive;
 
+import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,6 +71,10 @@ public class MenuPrincipalController implements Initializable {
 
             }
         });
+    }
+    @FXML
+    private void SalirApp(ActionEvent event) {
+        Platform.exit();
     }
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
