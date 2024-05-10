@@ -117,16 +117,20 @@ public class RegistroDeUsuariosController {
                 .text(mensaje)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)
+                .darkStyle()
                 .showError();
     }
+
     private void mostrarNotificacionExito(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
                 .text(mensaje)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)
+                .darkStyle()
                 .showInformation();
     }
+
 
 
 }
