@@ -15,7 +15,7 @@
    <children>
       <HBox prefHeight="139.0" prefWidth="1288.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
-            <HBox prefHeight="125.0" prefWidth="134.0">
+            <HBox prefHeight="125.0" prefWidth="134.0" styleClass="d" stylesheets="@../../../css/hover.css">
                <children>
                   <Button mnemonicParsing="false" prefHeight="109.0" prefWidth="108.0" text="Button" />
                   <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="101.0" prefWidth="101.0">
@@ -29,7 +29,7 @@
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets bottom="30.0" />
+                  <Insets bottom="20.0" />
                </HBox.margin>
             </HBox>
             <HBox prefHeight="152.0" prefWidth="70.0" />
@@ -140,6 +140,9 @@
                      </HBox.margin>
                   </MenuButton>
                </children>
+               <HBox.margin>
+                  <Insets bottom="30.0" />
+               </HBox.margin>
             </HBox>
          </children>
       </HBox>

@@ -60,6 +60,7 @@ public class MenuJuegoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         double notaPromedio = obtenerNotaPromedio();
         String notaFormateada = String.format("%.1f", notaPromedio);
         mostrarNotaJuego.setText(String.valueOf(notaFormateada));

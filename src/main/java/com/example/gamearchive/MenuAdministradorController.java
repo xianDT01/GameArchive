@@ -36,6 +36,7 @@ public class MenuAdministradorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarNombresJuegos();
         cargarNombresJuegos2();
+
     }
 
     @FXML
@@ -77,7 +78,7 @@ public class MenuAdministradorController implements Initializable {
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
-        } else if (event.getSource() == PanelBienvenida) {
+        } else if (event.getSource() == Bienvenida) {
             PanelBienvenida.setVisible(true);
             PanelBorrarJuego.setVisible(false);
             PanelAñadirJuego.setVisible(false);
@@ -107,6 +108,7 @@ public class MenuAdministradorController implements Initializable {
 
     @FXML
     private Button BotonAñadirJuego;
+
 
 
     @FXML
@@ -167,6 +169,8 @@ public class MenuAdministradorController implements Initializable {
             System.err.println("Error al copiar la imagen de la carátula: " + e.getMessage());
             mostrarNotificacion("Error", "Error al copiar la imagen de la carátula: " + e.getMessage());
         }
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
     }
 
 
@@ -248,6 +252,8 @@ Modificar juegos
 
             }
         }
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
     }
 
     @FXML
@@ -291,6 +297,8 @@ Modificar juegos
                 e.printStackTrace();
             }
         }
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
     }
 
 
@@ -355,6 +363,8 @@ Modificar juegos
                 e.printStackTrace();
             }
         }
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
     }
 
     @FXML
