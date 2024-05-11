@@ -108,6 +108,8 @@ public class MenuAdministradorController implements Initializable {
 
     @FXML
     private Button BotonAñadirJuego;
+    @FXML
+    private Label RutaImagen;
 
 
 
@@ -122,6 +124,7 @@ public class MenuAdministradorController implements Initializable {
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
 
         if (caratulaJuegoFile != null) {
+            RutaImagen.setText(caratulaJuegoFile.getAbsolutePath());
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
         }
     }
@@ -199,6 +202,9 @@ Modificar juegos
     private TextField ModificarDescripcion;
     @FXML
     private Button guardar;
+
+    @FXML
+    private Label RutaImagen2;
     public static final String RUTA_POR_DEFECTO = "src\\main\\resources\\caratulas\\caratula.jpg";
 
 
@@ -213,6 +219,7 @@ Modificar juegos
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
 
         if (caratulaJuegoFile != null) {
+            RutaImagen2.setText(caratulaJuegoFile.getAbsolutePath());
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
         }
     }
