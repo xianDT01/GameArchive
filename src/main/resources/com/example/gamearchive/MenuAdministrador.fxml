@@ -20,9 +20,9 @@
             <Blend />
          </effect>
          <children>
-            <AnchorPane fx:id="PanelBorrarJuego" layoutX="52.0" prefHeight="684.0" prefWidth="926.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="PanelBorrarJuego" prefHeight="684.0" prefWidth="926.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="319.0" layoutY="20.0" prefHeight="84.0" prefWidth="319.0" text="Panel borrar Juego">
+                  <Label layoutX="349.0" layoutY="20.0" prefHeight="84.0" prefWidth="319.0" text="Borrar Juego">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -38,9 +38,9 @@
             </AnchorPane>
             <AnchorPane fx:id="PanelModificarJuego" layoutX="29.0" layoutY="10.0" prefHeight="684.0" prefWidth="963.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="300.0" layoutY="14.0" prefHeight="119.0" prefWidth="448.0" text="Modificar Juego">
+                  <Label layoutX="360.0" layoutY="38.0" prefHeight="119.0" prefWidth="448.0" text="Modificar Juego">
                      <font>
-                        <Font size="48.0" />
+                        <Font size="36.0" />
                      </font>
                   </Label>
                   <ComboBox fx:id="nombreJuegos" layoutX="418.0" layoutY="144.0" onAction="#seleccionarJuego" prefWidth="150.0" />
@@ -102,6 +102,11 @@
                   </Label>
                   <Button id="sale" fx:id="AñadirJuego" layoutX="413.0" layoutY="597.0" mnemonicParsing="false" onAction="#HandleañadirJuego" prefHeight="46.0" prefWidth="95.0" stylesheets="@../../../css/cssButtons.css" text="Añadir" />
                   <Label fx:id="RutaImagen" layoutX="328.0" layoutY="215.0" prefHeight="35.0" prefWidth="302.0" />
+                  <Label layoutX="364.0" layoutY="62.0" prefHeight="46.0" prefWidth="217.0" text="Añadir Juego">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelBienvenida" layoutX="32.0" prefHeight="684.0" prefWidth="941.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">

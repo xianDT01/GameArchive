@@ -139,7 +139,7 @@
                   <Image url="@../../../img/4e66ff886c62bb160486f3c6457dd552-removebg-preview.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="Volver" layoutX="7.0" layoutY="231.0" onAction="#handleVolverPantallaPrincipal" prefHeight="84.0" prefWidth="321.0" text="Salir">
+            <JFXButton fx:id="Volver" layoutX="7.0" layoutY="231.0" onAction="#handleVolverPantallaPrincipal" prefHeight="84.0" prefWidth="321.0" text="Volver">
                <font>
                   <Font size="24.0" />
                </font>

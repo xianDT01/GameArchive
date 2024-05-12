@@ -165,6 +165,8 @@ public class MenuAdministradorController implements Initializable {
                 Plataformas.clear();
                 AñadirCaratulaJuego = null;
             }
+            cargarNombresJuegos2();
+            cargarNombresJuegos();
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
             mostrarNotificacion("Error", "Error al conectar a la base de datos:" + e.getMessage());
@@ -172,8 +174,7 @@ public class MenuAdministradorController implements Initializable {
             System.err.println("Error al copiar la imagen de la carátula: " + e.getMessage());
             mostrarNotificacion("Error", "Error al copiar la imagen de la carátula: " + e.getMessage());
         }
-        cargarNombresJuegos();
-        cargarNombresJuegos2();
+
     }
 
 
@@ -220,11 +221,16 @@ Modificar juegos
 
         if (caratulaJuegoFile != null) {
             RutaImagen2.setText(caratulaJuegoFile.getAbsolutePath());
+            ModificarcaratulaJuegoFile = caratulaJuegoFile; // Asignar el archivo seleccionado
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
         }
     }
 
+
     private void cargarNombresJuegos() {
+        if (!nombreJuegos.getItems().isEmpty()) {
+            nombreJuegos.getItems().clear();
+        }
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT nombre FROM Juegos";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -241,6 +247,7 @@ Modificar juegos
 
     @FXML
     private void seleccionarJuego() {
+
         String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
         if (nombreJuegoSeleccionado != null) {
             try (Connection connection = DatabaseConnection.getConnection()) {
@@ -259,7 +266,6 @@ Modificar juegos
 
             }
         }
-        cargarNombresJuegos();
         cargarNombresJuegos2();
     }
 
@@ -267,11 +273,6 @@ Modificar juegos
     private void guardarCambios() {
         String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
         if (nombreJuegoSeleccionado != null) {
-            if (ModificarNombreJuego.getText().isEmpty() || ModificarDescripcion.getText().isEmpty() || ModificarFechaDeLanzamiento.getValue() == null || ModificarcaratulaJuegoFile == null || ModificarPlataformas.getText().isEmpty()) {
-                mostrarNotificacion("Error", "Por favor, complete todos los campos.");
-                return; // Sale del método si algún campo está vacío
-            }
-
             try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "UPDATE Juegos SET nombre = ?, descripcion = ?, fechaLanzamiento = ?, plataformas = ?, rutaCaratula = ? WHERE nombre = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
@@ -304,8 +305,6 @@ Modificar juegos
                 e.printStackTrace();
             }
         }
-        cargarNombresJuegos();
-        cargarNombresJuegos2();
     }
 
 
@@ -335,6 +334,9 @@ Modificar juegos
     private Button borrarJuego;
 
     private void cargarNombresJuegos2() {
+        if (!NombreJuegos.getItems().isEmpty()) {
+            NombreJuegos.getItems().clear();
+        }
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT nombre FROM Juegos";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -345,9 +347,10 @@ Modificar juegos
             }
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
+
+
 
     @FXML
     private void seleccionarJuegoNombreJuego() {
@@ -370,8 +373,7 @@ Modificar juegos
                 e.printStackTrace();
             }
         }
-        cargarNombresJuegos();
-        cargarNombresJuegos2();
+
     }
 
     @FXML
@@ -411,6 +413,8 @@ Modificar juegos
                         mostrarNotificacionExito("Éxito", "Juego eliminado correctamente");
                         // Limpiar los campos o actualizar la lista de juegos en el ComboBox si es necesario
                     }
+                    cargarNombresJuegos();
+                    cargarNombresJuegos2();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     // Manejo de errores
