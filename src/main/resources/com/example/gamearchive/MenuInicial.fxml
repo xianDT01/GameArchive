@@ -132,7 +132,7 @@
                      <graphic>
                         <ImageView fx:id="ImagenDePerfil" fitHeight="111.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../img/user.png" />
+                              <Image url="@../../../img/user-removebg-preview.png" />
                            </image></ImageView>
                      </graphic>
                      <HBox.margin>
