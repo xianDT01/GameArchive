@@ -28,7 +28,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox prefHeight="673.0" prefWidth="1551.0">
+      <HBox prefHeight="712.0" prefWidth="1557.0">
          <children>
             <HBox prefHeight="553.0" prefWidth="90.0" />
             <VBox prefHeight="553.0" prefWidth="267.0">
@@ -71,16 +71,17 @@
                            </font>
                         </Label>
                      </children></HBox>
-                  <HBox prefHeight="60.0" prefWidth="394.0">
+                  <HBox prefHeight="39.0" prefWidth="302.0">
                      <children>
-                        <Label fx:id="FechaDeLanzamiento" prefHeight="58.0" prefWidth="224.0" text="Fecha de lanzamiento" textFill="WHITE">
+                        <Label fx:id="FechaDeLanzamiento" prefHeight="108.0" prefWidth="224.0" text="Fecha de lanzamiento" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="365.0" prefWidth="333.0" text="Descripción" textFill="WHITE" wrapText="true">
+                  <HBox prefHeight="43.0" prefWidth="302.0" />
+                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="392.0" prefWidth="302.0" text="Descripción" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -122,7 +122,7 @@ public class MenuUsuarioController implements Initializable {
     }
 
     @FXML
-    private void aceptarCambios(ActionEvent event) {
+    private void aceptarCambios() {
         // Verifica si se ha seleccionado una imagen antes de guardarla
         if (rutaDeLaImagen != null && !rutaDeLaImagen.isEmpty()) {
             guardarRutaImagenPerfilEnBD(rutaDeLaImagen);
@@ -165,6 +165,7 @@ public class MenuUsuarioController implements Initializable {
                 ImagenDePerfil.setImage(image);
                 // Almacenar la ruta de la imagen seleccionada en la variable de instancia
                 rutaDeLaImagen = rutaDestino;
+                aceptarCambios();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

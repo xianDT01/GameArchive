@@ -13,93 +13,88 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuUsuarioController">
    <children>
-      <AnchorPane fx:id="PanelPerfilUsuario" prefHeight="684.0" prefWidth="871.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label contentDisplay="TEXT_ONLY" layoutX="776.0" layoutY="300.0" prefHeight="35.0" prefWidth="84.0" text="Correo" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="306.0" layoutY="300.0" text="Nombre de Usuario" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="521.0" layoutY="21.0" prefHeight="35.0" prefWidth="204.0" text="Imagen de perfil" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="358.0" prefHeight="63.0" prefWidth="227.0" text="Nombre del usuario" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="721.0" layoutY="367.0" prefHeight="46.0" prefWidth="254.0" text="Correo del usuario" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="343.0" layoutY="460.0" text="Comentarios" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="736.0" layoutY="460.0" text="Juegos cualificados" textFill="#f8f8f8">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Button id="ipad" layoutX="498.0" layoutY="227.0" mnemonicParsing="false" onAction="#cargarImagenPerfil" prefHeight="57.0" prefWidth="284.0" stylesheets="@../../../css/cssButtons.css" text="Cambiar Imágen de Perfil" />
-            <ImageView fx:id="ImagenDePerfil" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/user-removebg-preview.png" />
-               </image></ImageView>
-            <Button id="ipad" layoutX="598.0" layoutY="596.0" mnemonicParsing="false" onAction="#aceptarCambios" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
-            <Label fx:id="TotalComentarios" alignment="CENTER" contentDisplay="CENTER" layoutX="345.0" layoutY="515.0" prefHeight="35.0" prefWidth="135.0" text="comentarios" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="TotalNotas" alignment="CENTER" contentDisplay="CENTER" layoutX="799.0" layoutY="515.0" prefHeight="35.0" prefWidth="99.0" text="Total juegos cualificados" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="PanelModificarUsuario" prefHeight="684.0" prefWidth="963.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="ModificarCorreoElectronico" layoutX="681.0" layoutY="221.0" />
-            <Label layoutX="598.0" layoutY="171.0" prefHeight="35.0" prefWidth="328.0" text="Modificar correo electrónico" textFill="WHITE">
+            <TextField fx:id="ModificarCorreoElectronico" layoutX="916.0" layoutY="167.0" />
+            <Label layoutX="827.0" layoutY="101.0" prefHeight="35.0" prefWidth="328.0" text="Modificar correo electrónico" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="521.0" layoutY="445.0" prefHeight="35.0" prefWidth="209.0" text="Contraseña" textFill="WHITE">
+            <Label layoutX="555.0" layoutY="440.0" prefHeight="35.0" prefWidth="209.0" text="Contraseña" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="824.0" layoutY="445.0" prefHeight="35.0" prefWidth="227.0" text="Repetir contraseña" textFill="WHITE">
+            <Label layoutX="858.0" layoutY="440.0" prefHeight="35.0" prefWidth="227.0" text="Repetir contraseña" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="642.0" layoutY="367.0" prefHeight="35.0" prefWidth="254.0" text="Cambiar contraseña" textFill="WHITE">
+            <Label layoutX="676.0" layoutY="362.0" prefHeight="35.0" prefWidth="254.0" text="Cambiar contraseña" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="623.0" layoutY="78.0" prefHeight="35.0" prefWidth="291.0" text="Cambiar datos del usuario" textFill="WHITE">
+            <Button id="ipad" fx:id="Atecptar" layoutX="930.0" layoutY="234.0" mnemonicParsing="false" onAction="#actualizarDatosUsuario" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
+            <Button id="ipad" fx:id="ModificarContraseñas" layoutX="754.0" layoutY="566.0" mnemonicParsing="false" onAction="#actualizarContraseña" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
+            <PasswordField fx:id="ModificarContraseña" layoutX="551.0" layoutY="505.0" />
+            <PasswordField fx:id="RepetirContraseña" layoutX="897.0" layoutY="505.0" />
+            <Label alignment="CENTER" layoutX="572.0" layoutY="29.0" prefHeight="35.0" prefWidth="204.0" text="Imagen de perfil" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button id="ipad" fx:id="Atecptar" layoutX="702.0" layoutY="296.0" mnemonicParsing="false" onAction="#actualizarDatosUsuario" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
-            <Button id="ipad" fx:id="ModificarContraseñas" layoutX="720.0" layoutY="571.0" mnemonicParsing="false" onAction="#actualizarContraseña" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
-            <PasswordField fx:id="ModificarContraseña" layoutX="517.0" layoutY="510.0" />
-            <PasswordField fx:id="RepetirContraseña" layoutX="863.0" layoutY="510.0" />
+            <ImageView fx:id="ImagenDePerfil" fitHeight="150.0" fitWidth="200.0" layoutX="599.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/user-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Button id="ipad" layoutX="547.0" layoutY="234.0" mnemonicParsing="false" onAction="#cargarImagenPerfil" prefHeight="57.0" prefWidth="276.0" stylesheets="@../../../css/cssButtons.css" text="Cambiar Imágen de Perfil" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="PanelPerfilUsuario" prefHeight="684.0" prefWidth="871.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="TEXT_ONLY" layoutX="777.0" layoutY="173.0" prefHeight="35.0" prefWidth="84.0" text="Correo" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="307.0" layoutY="173.0" text="Nombre de Usuario" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="307.0" layoutY="231.0" prefHeight="63.0" prefWidth="227.0" text="Nombre del usuario" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="722.0" layoutY="240.0" prefHeight="46.0" prefWidth="254.0" text="Correo del usuario" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="344.0" layoutY="333.0" text="Comentarios" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="737.0" layoutY="333.0" text="Juegos cualificados" textFill="#f8f8f8">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="TotalComentarios" alignment="CENTER" contentDisplay="CENTER" layoutX="346.0" layoutY="388.0" prefHeight="35.0" prefWidth="135.0" text="comentarios" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="TotalNotas" alignment="CENTER" contentDisplay="CENTER" layoutX="800.0" layoutY="388.0" prefHeight="35.0" prefWidth="99.0" text="Total juegos cualificados" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="PanelBienvenida" prefHeight="684.0" prefWidth="871.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">
