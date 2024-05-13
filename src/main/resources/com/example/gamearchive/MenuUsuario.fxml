@@ -15,7 +15,7 @@
    <children>
       <AnchorPane fx:id="PanelModificarUsuario" prefHeight="684.0" prefWidth="963.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="ModificarCorreoElectronico" layoutX="916.0" layoutY="167.0" />
+            <TextField fx:id="ModificarCorreoElectronico" layoutX="917.0" layoutY="185.0" />
             <Label layoutX="827.0" layoutY="101.0" prefHeight="35.0" prefWidth="328.0" text="Modificar correo electrónico" textFill="WHITE">
                <font>
                   <Font size="24.0" />
@@ -36,21 +36,21 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button id="ipad" fx:id="Atecptar" layoutX="930.0" layoutY="234.0" mnemonicParsing="false" onAction="#actualizarDatosUsuario" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
+            <Button id="ipad" fx:id="Atecptar" layoutX="924.0" layoutY="254.0" mnemonicParsing="false" onAction="#actualizarDatosUsuario" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
             <Button id="ipad" fx:id="ModificarContraseñas" layoutX="754.0" layoutY="566.0" mnemonicParsing="false" onAction="#actualizarContraseña" prefHeight="57.0" prefWidth="135.0" stylesheets="@../../../css/cssButtons.css" text="Aceptar" />
             <PasswordField fx:id="ModificarContraseña" layoutX="551.0" layoutY="505.0" />
             <PasswordField fx:id="RepetirContraseña" layoutX="897.0" layoutY="505.0" />
-            <Label alignment="CENTER" layoutX="572.0" layoutY="29.0" prefHeight="35.0" prefWidth="204.0" text="Imagen de perfil" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="539.0" layoutY="49.0" prefHeight="35.0" prefWidth="204.0" text="Imagen de perfil" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="ImagenDePerfil" fitHeight="150.0" fitWidth="200.0" layoutX="599.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ImagenDePerfil" fitHeight="150.0" fitWidth="200.0" layoutX="566.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/user-removebg-preview.png" />
                </image>
             </ImageView>
-            <Button id="ipad" layoutX="547.0" layoutY="234.0" mnemonicParsing="false" onAction="#cargarImagenPerfil" prefHeight="57.0" prefWidth="276.0" stylesheets="@../../../css/cssButtons.css" text="Cambiar Imágen de Perfil" />
+            <Button id="ipad" layoutX="514.0" layoutY="254.0" mnemonicParsing="false" onAction="#cargarImagenPerfil" prefHeight="57.0" prefWidth="276.0" stylesheets="@../../../css/cssButtons.css" text="Cambiar Imágen de Perfil" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="PanelPerfilUsuario" prefHeight="684.0" prefWidth="871.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">

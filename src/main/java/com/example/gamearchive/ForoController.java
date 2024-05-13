@@ -157,13 +157,15 @@ public class ForoController {
         ventana.setScene(scene);
         ventana.show();
     }
+
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
                 .text(mensaje)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)
-                .showError();
+                .darkStyle()
+                .showInformation();
     }
     private void mostrarMensajeError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
