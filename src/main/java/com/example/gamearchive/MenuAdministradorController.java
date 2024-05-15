@@ -305,6 +305,8 @@ Modificar juegos
                 e.printStackTrace();
             }
         }
+        cargarNombresJuegos();
+        cargarNombresJuegos2();
     }
 
 
