@@ -170,6 +170,12 @@ public class MenuJuegoController implements Initializable {
 
             mostrarAlerta("Error", "Usuario ya ha votado", "El usuario ya ha votado para este juego.");
         }
+        double notaPromedioAntes = obtenerNotaPromedio();
+        double notaPromedioDespues = obtenerNotaPromedio();
+        String notaFormateada = String.format("%.1f", notaPromedioDespues);
+        mostrarNotaJuego.setText(String.valueOf(notaFormateada));
+
+        obtenerNotaPromedio();
     }
 
     private boolean usuarioHaVotado(int idUsuario, int idJuego) {
@@ -303,7 +309,6 @@ public class MenuJuegoController implements Initializable {
         // Actualizar los datos en la TableView
         tablaComentarios.setItems(comentarios);
     }
-
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
