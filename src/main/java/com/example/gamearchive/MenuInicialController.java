@@ -137,7 +137,6 @@ public class MenuInicialController implements Initializable {
             while (resultSet.next()) {
                 int idJuego = resultSet.getInt("idJuego");
                 String rutaCaratula = resultSet.getString("rutaCaratula");
-
                 idsJuegos.add(idJuego);
                 rutasCaratulas.add(rutaCaratula);
             }
@@ -155,9 +154,20 @@ public class MenuInicialController implements Initializable {
         try {
             Connection connection = DatabaseConnection.getConnection();
 
-            // Consulta SQL para obtener juegos aleatorios
-            String query = "SELECT idJuego, rutaCaratula FROM Juegos ORDER BY RAND() LIMIT 3";
+            // Obtener los IDs de los últimos 3 registros
+            String lastThreeIdsQuery = "SELECT idJuego FROM Juegos ORDER BY idJuego DESC LIMIT 3";
+            PreparedStatement lastThreeIdsStatement = connection.prepareStatement(lastThreeIdsQuery);
+            ResultSet lastThreeIdsResult = lastThreeIdsStatement.executeQuery();
+            List<Integer> lastThreeIds = new ArrayList<>();
+            while (lastThreeIdsResult.next()) {
+                lastThreeIds.add(lastThreeIdsResult.getInt("idJuego"));
+            }
+            // Consulta SQL para obtener juegos aleatorios excluyendo los últimos 3 registros
+            String query = "SELECT idJuego, rutaCaratula FROM Juegos WHERE idJuego NOT IN (?, ?, ?) ORDER BY RAND() LIMIT 3";
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, lastThreeIds.get(0));
+            statement.setInt(2, lastThreeIds.get(1));
+            statement.setInt(3, lastThreeIds.get(2));
             ResultSet resultSet = statement.executeQuery();
 
             List<String> rutasCaratulas = new ArrayList<>();
@@ -167,9 +177,7 @@ public class MenuInicialController implements Initializable {
 
                 idsJuegos.add(idJuego);
                 rutasCaratulas.add(rutaCaratula);
-
             }
-
             // Asignar las imágenes a los ImageView de los juegos aleatorios
             Aleatorios = idsJuegos;
             asignarImagenesAImageView(rutasCaratulas, Ramdom1, Ramdom2, Ramdom3);
@@ -179,6 +187,7 @@ public class MenuInicialController implements Initializable {
         }
         return idsJuegos;
     }
+
 
 
     @FXML
