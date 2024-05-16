@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -203,7 +204,8 @@ public class MenuAdministradorController implements Initializable {
     private Button BotonAñadirJuego;
     @FXML
     private Label RutaImagen;
-
+    @FXML
+    private ImageView ImagenJuego;
 
 
     @FXML
@@ -219,8 +221,13 @@ public class MenuAdministradorController implements Initializable {
         if (caratulaJuegoFile != null) {
             RutaImagen.setText(caratulaJuegoFile.getAbsolutePath());
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
+
+            // Cargar la imagen en el ImageView
+            Image image = new Image(caratulaJuegoFile.toURI().toString());
+            ImagenJuego.setImage(image);
         }
     }
+
 
     @FXML
     private void HandleañadirJuego() {
@@ -299,6 +306,8 @@ Modificar juegos
 
     @FXML
     private Label RutaImagen2;
+    @FXML
+    private ImageView ModificarImagenJuego;
     public static final String RUTA_POR_DEFECTO = "src\\main\\resources\\caratulas\\caratula.jpg";
 
 
@@ -340,7 +349,6 @@ Modificar juegos
 
     @FXML
     private void seleccionarJuego() {
-
         String nombreJuegoSeleccionado = (String) nombreJuegos.getValue();
         if (nombreJuegoSeleccionado != null) {
             try (Connection connection = DatabaseConnection.getConnection()) {
@@ -353,14 +361,27 @@ Modificar juegos
                     ModificarDescripcion.setText(resultSet.getString("descripcion"));
                     ModificarFechaDeLanzamiento.setValue(resultSet.getDate("fechaLanzamiento").toLocalDate());
                     ModificarPlataformas.setText(resultSet.getString("plataformas"));
+
+                    // Obtener la ruta de la carátula del juego seleccionado
+                    String rutaCaratula = resultSet.getString("rutaCaratula");
+                    if (rutaCaratula != null) {
+                        // Cargar la imagen en el ImageView
+                        Image imagenCaratula = new Image(new File(rutaCaratula).toURI().toString());
+                        ModificarImagenJuego.setImage(imagenCaratula);
+                    } else {
+                        // Si no hay ruta de carátula, cargar una imagen por defecto o dejar el ImageView vacío
+                        // Aquí puedes establecer una imagen por defecto o dejar el ImageView vacío, según tus preferencias
+                        ModificarImagenJuego.setImage(null); // Esto deja el ImageView vacío
+                        // ModificarImagenJuego.setImage(new Image(getClass().getResourceAsStream("ruta/a/imagen/por/defecto.jpg"))); // Esto establece una imagen por defecto
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-
             }
         }
         cargarNombresJuegos2();
     }
+
 
     @FXML
     private void guardarCambios() {
