@@ -36,9 +36,102 @@ public class MenuAdministradorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarNombresJuegos();
         cargarNombresJuegos2();
+        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarJuego(newValue); // Escuchar cambios en el texto del ComboBox
+        });
+
+        // Agregar evento para filtrar los resultados al hacer clic en el ComboBox
+        nombreJuegos.setOnMouseClicked(event -> {
+            if (!nombreJuegos.isShowing()) {
+                actualizarComboBox();
+            }
+        });
+
+        // Agregar un listener al campo de texto para actualizar el ComboBox automáticamente
+        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!nombreJuegos.isShowing()) {
+                actualizarComboBox();
+            }
+        });
+        //Filtrar combobox de borrar juego
+
+        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarJuego(newValue); // Escuchar cambios en el texto del ComboBox
+        });
+
+        // Agregar evento para filtrar los resultados al hacer clic en el ComboBox
+        nombreJuegos.setOnMouseClicked(event -> {
+            if (!nombreJuegos.isShowing()) {
+                actualizarComboBox();
+            }
+        });
+
+        // Agregar un listener al campo de texto para actualizar el ComboBox automáticamente
+        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!nombreJuegos.isShowing()) {
+                actualizarComboBox();
+            }
+        });
+
+        // Borrar juego
+
 
     }
 
+    // Método para cargar nombres de juegos filtrados según el texto de búsqueda
+    private void cargarNombresJuegosFiltrados(String textoBusqueda) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT nombre FROM Juegos WHERE nombre LIKE ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + textoBusqueda + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                nombreJuegos.getItems().add(nombreJuego);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void buscarJuego(String nombreJuego) {
+        if (nombreJuego != null && !nombreJuego.isEmpty()) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                String query = "SELECT * FROM Juegos WHERE nombre LIKE ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, "%" + nombreJuego + "%"); // Usar LIKE para buscar por substring
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    ModificarNombreJuego.setText(resultSet.getString("nombre"));
+                    ModificarDescripcion.setText(resultSet.getString("descripcion"));
+                    ModificarFechaDeLanzamiento.setValue(resultSet.getDate("fechaLanzamiento").toLocalDate());
+                    ModificarPlataformas.setText(resultSet.getString("plataformas"));
+                } else {
+                    // Limpiar campos si no se encuentra ningún juego
+                    ModificarNombreJuego.clear();
+                    ModificarDescripcion.clear();
+                    ModificarFechaDeLanzamiento.setValue(null);
+                    ModificarPlataformas.clear();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Limpiar campos si el texto está vacío
+            ModificarNombreJuego.clear();
+            ModificarDescripcion.clear();
+            ModificarFechaDeLanzamiento.setValue(null);
+            ModificarPlataformas.clear();
+        }
+    }
+    private void actualizarComboBox() {
+        nombreJuegos.getItems().clear(); // Limpiar los elementos del ComboBox
+        String textoBusqueda = nombreJuegos.getEditor().getText();
+        if (!textoBusqueda.isEmpty()) {
+            cargarNombresJuegosFiltrados(textoBusqueda);
+        } else {
+            cargarNombresJuegos(); // Si no hay texto de búsqueda, cargar todos los juegos
+        }
+    }
     @FXML
     private Button Volver;
     @FXML
@@ -426,6 +519,7 @@ Modificar juegos
     }
 
 
+
     private int obtenerIdJuego(String nombreJuego) throws SQLException {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT idJuego FROM Juegos WHERE nombre = ?";
@@ -439,6 +533,8 @@ Modificar juegos
             }
         }
     }
+
+
 
     @FXML
     private void handleVolverPantallaInicial(ActionEvent event) throws IOException {

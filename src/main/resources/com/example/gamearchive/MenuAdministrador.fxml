@@ -33,7 +33,7 @@
                      </font>
                   </Label>
                   <Button id="sale" fx:id="borrarJuego" layoutX="422.0" layoutY="619.0" mnemonicParsing="false" onAction="#borrarJuego" prefHeight="51.0" prefWidth="114.0" stylesheets="@../../../css/cssButtons.css" text="Borrar" />
-                  <ComboBox fx:id="NombreJuegos" layoutX="361.0" layoutY="119.0" onAction="#seleccionarJuegoNombreJuego" prefHeight="46.0" prefWidth="217.0" />
+                  <ComboBox fx:id="NombreJuegos" editable="true" layoutX="361.0" layoutY="119.0" onAction="#seleccionarJuegoNombreJuego" prefHeight="46.0" prefWidth="217.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelModificarJuego" layoutX="29.0" layoutY="10.0" prefHeight="684.0" prefWidth="963.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
@@ -43,7 +43,7 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="nombreJuegos" layoutX="418.0" layoutY="144.0" onAction="#seleccionarJuego" prefWidth="150.0" />
+                  <ComboBox fx:id="nombreJuegos" editable="true" layoutX="418.0" layoutY="144.0" onAction="#seleccionarJuego" prefWidth="150.0" />
                   <Button fx:id="ModificarcaratulaJuego" layoutX="407.0" layoutY="219.0" mnemonicParsing="false" onAction="#ModificarCaratula" prefHeight="51.0" prefWidth="172.0" text="Cargar carátula" />
                   <TextField fx:id="ModificarNombreJuego" layoutX="135.0" layoutY="396.0" />
                   <TextField fx:id="ModificarPlataformas" layoutX="435.0" layoutY="396.0" />
