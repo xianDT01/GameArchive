@@ -7,10 +7,16 @@ public class Comentario {
 
     private final StringProperty usuario;
     private final StringProperty comentario;
+    private final int idComentario;
 
     public Comentario(int idComentario, String usuario, String comentario) {
+        this.idComentario = idComentario;
         this.usuario = new SimpleStringProperty(usuario);
         this.comentario = new SimpleStringProperty(comentario);
+    }
+
+    public int getIdComentario() {
+        return idComentario;
     }
 
     public String getUsuario() {

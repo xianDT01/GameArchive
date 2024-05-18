@@ -1,0 +1,5 @@
+.round-image-view {
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-clip-rect: 50%;
+}

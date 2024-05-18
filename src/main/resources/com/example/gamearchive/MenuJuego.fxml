@@ -28,69 +28,54 @@
             </HBox>
          </children>
       </HBox>
-      <HBox prefHeight="712.0" prefWidth="1557.0">
+      <HBox prefHeight="580.0" prefWidth="1557.0">
          <children>
             <HBox prefHeight="553.0" prefWidth="90.0" />
-            <VBox prefHeight="553.0" prefWidth="267.0">
+            <VBox prefHeight="498.0" prefWidth="616.0">
                <children>
                   <VBox prefHeight="184.0" prefWidth="267.0">
                      <children>
-                        <Label prefHeight="104.0" prefWidth="239.0" text="Plataformas del juego:" textFill="WHITE">
+                        <Label prefHeight="79.0" prefWidth="257.0" text="Plataformas del juego:" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
+                        <Label fx:id="Plataformas" prefHeight="27.0" prefWidth="541.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                         <HBox prefHeight="47.0" prefWidth="281.0">
                            <children>
-                              <Label prefHeight="44.0" prefWidth="239.0" text="Fecha de lanzamiento:" textFill="WHITE">
+                              <Label prefHeight="44.0" prefWidth="239.0" text="Fecha de lanzamiento" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
+                        <Label fx:id="FechaDeLanzamiento" prefHeight="58.0" prefWidth="498.0" text="Fecha de lanzamiento" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <HBox prefHeight="48.0" prefWidth="281.0">
                      <children>
-                        <Label text="Descripción del Juego:" textFill="#f7f7f7">
+                        <Label text="Descripción del Juego" textFill="#f7f7f7">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-               </children></VBox>
-            <VBox prefHeight="533.0" prefWidth="304.0">
-               <children>
-                  <HBox prefHeight="89.0" prefWidth="394.0">
-                     <children>
-                        <Label fx:id="Plataformas" prefHeight="58.0" prefWidth="150.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children></HBox>
-                  <HBox prefHeight="39.0" prefWidth="302.0">
-                     <children>
-                        <Label fx:id="FechaDeLanzamiento" prefHeight="108.0" prefWidth="224.0" text="Fecha de lanzamiento" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="43.0" prefWidth="302.0" />
-                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="392.0" prefWidth="302.0" text="Descripción" textFill="WHITE" wrapText="true">
+                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="295.0" prefWidth="531.0" text="Descripción" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-               </children>
-               <HBox.margin>
-                  <Insets top="20.0" />
-               </HBox.margin>
-            </VBox>
+               </children></VBox>
             <VBox prefHeight="553.0" prefWidth="408.0">
                <children>
                   <VBox prefHeight="124.0" prefWidth="406.0">
@@ -171,7 +156,8 @@
                </children></VBox>
          </children>
       </HBox>
-      <HBox prefHeight="68.0" prefWidth="1332.0">
+      <HBox prefHeight="100.0" prefWidth="1557.0" />
+      <HBox prefHeight="43.0" prefWidth="1557.0">
          <children>
             <VBox prefHeight="28.0" prefWidth="531.0">
                <HBox.margin>
