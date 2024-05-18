@@ -2,6 +2,7 @@ package com.example.gamearchive;
 
 import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
 import com.example.gamearchive.model.Juego;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -75,7 +78,34 @@ public class MenuAdministradorController implements Initializable {
         });
 
         // Borrar juego
+        cargarNombresJuegos2();
+        NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarJuego2(newValue);
+        });
+        NombreJuegos.setOnMouseClicked(event -> {
+            if (!NombreJuegos.isShowing()) {
+                actualizarComboBox2();
+            }
+        });
+        NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarJuego2(newValue);
+        });
+        NombreJuegos.setOnMouseClicked(event -> {
+            if (!NombreJuegos.isShowing()) {
+                actualizarComboBox();
+            }
+        });
 
+        NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                buscarJuego2(newValue);
+            }
+        });
+        NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!NombreJuegos.isShowing()) {
+                actualizarComboBox2();
+            }
+        });
 
     }
 
@@ -450,22 +480,26 @@ Modificar juegos
     private Button borrarJuego;
 
     private void cargarNombresJuegos2() {
-        if (!NombreJuegos.getItems().isEmpty()) {
-            NombreJuegos.getItems().clear();
-        }
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT nombre FROM Juegos";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
+
+            // Crear una nueva lista para almacenar los nombres de los juegos
+            List<String> nombresJuegos = new ArrayList<>();
             while (resultSet.next()) {
                 String nombreJuego = resultSet.getString("nombre");
-                NombreJuegos.getItems().add(nombreJuego);
+                nombresJuegos.add(nombreJuego);
             }
+
+            // Actualizar la lista en el ComboBox
+            Platform.runLater(() -> {
+                NombreJuegos.getItems().setAll(nombresJuegos);
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
 
     @FXML
@@ -485,11 +519,63 @@ Modificar juegos
                             "Plataformas: " + resultSet.getString("plataformas");
                     mostrarJuego.setText(informacionJuego);
                 }
+
+                // Actualizar el texto del editor del ComboBox con el nombre del juego seleccionado
+                Platform.runLater(() -> {
+                    NombreJuegos.getEditor().setText(nombreJuegoSeleccionado);
+                });
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+    }
 
+
+    private void buscarJuego2(String texto) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT nombre FROM Juegos WHERE nombre LIKE ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + texto + "%"); // Usar "%" para buscar coincidencias parciales
+            ResultSet resultSet = statement.executeQuery();
+
+            // Crear una nueva lista para almacenar los resultados de la búsqueda
+            List<String> resultados = new ArrayList<>();
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                resultados.add(nombreJuego);
+            }
+
+            // Actualizar la lista en el ComboBox
+            Platform.runLater(() -> {
+                NombreJuegos.getItems().setAll(resultados);
+                NombreJuegos.show(); // Mostrar el desplegable con los resultados de la búsqueda
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void actualizarComboBox2() {
+        NombreJuegos.getItems().clear(); // Limpiar los elementos del ComboBox
+        String textoBusqueda = NombreJuegos.getEditor().getText();
+        if (!textoBusqueda.isEmpty()) {
+            cargarNombresJuegosFiltrados(textoBusqueda);
+        } else {
+            cargarNombresJuegos(); // Si no hay texto de búsqueda, cargar todos los juegos
+        }
+    }
+    private void cargarNombresJuegosFiltrados2(String textoBusqueda) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT nombre FROM Juegos WHERE nombre LIKE ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + textoBusqueda + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String nombreJuego = resultSet.getString("nombre");
+                NombreJuegos.getItems().add(nombreJuego);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
