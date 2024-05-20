@@ -1,0 +1,20 @@
+/* Archivo styles.css */
+
+/* Estilo para el ScrollPane */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Estilo para las barras de desplazamiento */
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #333; /* Color del botón de desplazamiento */
+    -fx-background-radius: 5; /* Redondear bordes */
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: #444; /* Color del fondo de las barras de desplazamiento */
+    -fx-background-radius: 5; /* Redondear bordes */
+}
