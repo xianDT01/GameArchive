@@ -99,7 +99,8 @@ public class ForoController {
                     // Configurar cualquier dato adicional que ForoComentariosController pueda necesitar
                     // Mostrar la escena en un nuevo Stage
                     Stage stage = new Stage();
-                    stage.setTitle("Comentarios del Foro");
+                    stage.setTitle("GameArchive");
+                    stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(new Scene(root));
                     stage.show();
                 } catch (IOException e) {

@@ -366,6 +366,12 @@ public class MenuUsuarioController implements Initializable {
             return;
         }
 
+        // Verificar si la nueva contraseña tiene al menos 8 caracteres
+        if (nuevaContraseña.length() < 8) {
+            mostrarNotificacion("Error", "La contraseña debe tener al menos 8 caracteres");
+            return;
+        }
+
         try (Connection connection = DatabaseConnection.getConnection()) {
             // Actualizar la contraseña del usuario en la base de datos
             String queryActualizar = "UPDATE Usuarios SET contraseña = ? WHERE idUsuario = ?";
@@ -380,6 +386,7 @@ public class MenuUsuarioController implements Initializable {
             // Manejar la excepción adecuadamente
         }
     }
+
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)

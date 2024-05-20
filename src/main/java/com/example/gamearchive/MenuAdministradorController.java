@@ -40,24 +40,6 @@ public class MenuAdministradorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarNombresJuegos();
         cargarNombresJuegos2();
-        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            buscarJuego(newValue); // Escuchar cambios en el texto del ComboBox
-        });
-
-        // Agregar evento para filtrar los resultados al hacer clic en el ComboBox
-        nombreJuegos.setOnMouseClicked(event -> {
-            if (!nombreJuegos.isShowing()) {
-                actualizarComboBox();
-            }
-        });
-
-        // Agregar un listener al campo de texto para actualizar el ComboBox automáticamente
-        nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!nombreJuegos.isShowing()) {
-                actualizarComboBox();
-            }
-        });
-        //Filtrar combobox de borrar juego
 
         nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             buscarJuego(newValue); // Escuchar cambios en el texto del ComboBox
@@ -129,7 +111,7 @@ public class MenuAdministradorController implements Initializable {
             try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "SELECT * FROM Juegos WHERE nombre LIKE ?";
                 PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, "%" + nombreJuego + "%"); // Usar LIKE para buscar por substring
+                statement.setString(1, "%" + nombreJuego + "%");
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     ModificarNombreJuego.setText(resultSet.getString("nombre"));
@@ -137,7 +119,7 @@ public class MenuAdministradorController implements Initializable {
                     ModificarFechaDeLanzamiento.setValue(resultSet.getDate("fechaLanzamiento").toLocalDate());
                     ModificarPlataformas.setText(resultSet.getString("plataformas"));
                 } else {
-                    // Limpiar campos si no se encuentra ningún juego
+                    // Limpiar os campos si nin encontra xogos
                     ModificarNombreJuego.clear();
                     ModificarDescripcion.clear();
                     ModificarFechaDeLanzamiento.setValue(null);
@@ -147,7 +129,7 @@ public class MenuAdministradorController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            // Limpiar campos si el texto está vacío
+            // Limpia os campos si o texto está vacio
             ModificarNombreJuego.clear();
             ModificarDescripcion.clear();
             ModificarFechaDeLanzamiento.setValue(null);
@@ -155,12 +137,12 @@ public class MenuAdministradorController implements Initializable {
         }
     }
     private void actualizarComboBox() {
-        nombreJuegos.getItems().clear(); // Limpiar los elementos del ComboBox
+        nombreJuegos.getItems().clear();
         String textoBusqueda = nombreJuegos.getEditor().getText();
         if (!textoBusqueda.isEmpty()) {
             cargarNombresJuegosFiltrados(textoBusqueda);
         } else {
-            cargarNombresJuegos(); // Si no hay texto de búsqueda, cargar todos los juegos
+            cargarNombresJuegos();
         }
     }
     @FXML

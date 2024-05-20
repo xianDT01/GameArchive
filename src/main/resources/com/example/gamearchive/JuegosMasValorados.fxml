@@ -21,40 +21,15 @@
       <HBox prefHeight="156.0" prefWidth="1262.0">
          <children>
             <VBox prefHeight="108.0" prefWidth="168.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top1.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="115.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top2.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="126.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top3.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="115.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top4.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <VBox prefHeight="108.0" prefWidth="121.0" />
                </children>
             </VBox>
             <VBox prefHeight="108.0" prefWidth="33.0" />
-            <ImageView fitHeight="108.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top5.png" />
-               </image>
-            </ImageView>
          </children>
       </HBox>
       <HBox prefHeight="184.0" prefWidth="1009.0">
@@ -62,6 +37,11 @@
             <VBox prefHeight="277.0" prefWidth="162.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top1.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top1" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop1" onMouseExited="#onMouseExitedTop1" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -72,6 +52,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top2.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top2" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop2" onMouseExited="#onMouseExitedTop2" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -82,6 +67,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top3.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top3" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop3" onMouseExited="#onMouseExitedTop3" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -92,6 +82,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top4.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top4" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop4" onMouseExited="#onMouseExitedTop4" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -102,6 +97,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top5.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top5" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop5" onMouseExited="#onMouseExitedTop5" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -116,35 +116,10 @@
       <HBox prefHeight="189.0" prefWidth="1262.0">
          <children>
             <VBox prefHeight="111.0" prefWidth="158.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top6.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="111.0" prefWidth="125.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top7.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="112.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top8.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="123.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top9.png" />
-               </image>
-            </ImageView>
             <VBox prefHeight="108.0" prefWidth="125.0" />
-            <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/top10.png" />
-               </image>
-            </ImageView>
          </children>
       </HBox>
       <HBox prefHeight="194.0" prefWidth="1009.0">
@@ -152,6 +127,11 @@
             <VBox prefHeight="277.0" prefWidth="153.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top6.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top6" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop6" onMouseExited="#onMouseExitedTop6" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -162,6 +142,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top7.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top7" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop7" onMouseExited="#onMouseExitedTop7" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -172,6 +157,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top8.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top8" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop8" onMouseExited="#onMouseExitedTop8" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -182,6 +172,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top9.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top9" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop9" onMouseExited="#onMouseExitedTop9" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />
@@ -192,6 +187,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <ImageView fitHeight="108.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/top10.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="Top10" fitHeight="277.0" fitWidth="191.0" onMouseEntered="#onMouseTop10" onMouseExited="#onMouseExitedTop10" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/img_negro.jpg" />

@@ -29,7 +29,7 @@
       </HBox>
       <HBox prefHeight="532.0" prefWidth="1557.0">
          <children>
-            <HBox prefHeight="553.0" prefWidth="90.0" />
+            <HBox prefHeight="504.0" prefWidth="165.0" />
             <VBox prefHeight="498.0" prefWidth="616.0">
                <children>
                   <VBox prefHeight="184.0" prefWidth="267.0">
@@ -75,7 +75,7 @@
                      </font>
                   </Label>
                </children></VBox>
-            <VBox prefHeight="553.0" prefWidth="408.0">
+            <VBox prefHeight="499.0" prefWidth="530.0">
                <children>
                   <VBox prefHeight="124.0" prefWidth="406.0">
                      <children>
@@ -99,21 +99,32 @@
                      </children></HBox>
                </children>
             </VBox>
-            <VBox prefHeight="612.0" prefWidth="148.0">
+            <VBox prefHeight="499.0" prefWidth="22.0">
                <children>
-                  <VBox prefHeight="341.0" prefWidth="169.0" />
+                  <VBox prefHeight="341.0" prefWidth="76.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
             <VBox prefHeight="553.0" prefWidth="351.0">
                <children>
-                  <HBox prefHeight="195.0" prefWidth="340.0" />
-                  <Label prefHeight="76.0" prefWidth="321.0" text="Nota del Juego" textFill="WHITE">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="150.0" prefWidth="336.0">
+                  <HBox prefHeight="195.0" prefWidth="340.0">
+                     <children>
+                        <Label alignment="BASELINE_LEFT" prefHeight="53.0" prefWidth="348.0" text="Nota " textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="110.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></HBox>
+                  <HBox prefHeight="150.0" prefWidth="257.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                      <children>
                         <Label fx:id="mostrarNotaJuego" alignment="CENTER" prefHeight="100.0" prefWidth="100.0" text="0" textFill="WHITE">
                            <font>
@@ -121,57 +132,75 @@
                            </font>
                         </Label>
                      </children>
+                  </HBox>
+                  <HBox prefHeight="62.0" prefWidth="325.0">
+                     <children>
+                        <TextField fx:id="NotaJuego" prefHeight="25.0" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></TextField>
+                     </children>
                      <VBox.margin>
-                        <Insets left="50.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="50.0" prefWidth="275.0">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin></HBox>
+                  <HBox prefHeight="177.0" prefWidth="249.0">
                      <children>
-                        <TextField fx:id="NotaJuego" prefHeight="30.0" prefWidth="96.0" />
-                        <Button fx:id="Votar" mnemonicParsing="false" onAction="#guardarReseña" prefHeight="28.0" prefWidth="84.0" text="Votar">
+                        <Button fx:id="Votar" mnemonicParsing="false" onAction="#guardarReseña" prefHeight="28.0" prefWidth="100.0" text="Votar">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="275.0" />
-                  <HBox prefHeight="177.0" prefWidth="249.0" />
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></HBox>
                </children></VBox>
          </children>
       </HBox>
-      <HBox prefHeight="51.0" prefWidth="1557.0">
+      <HBox prefHeight="65.0" prefWidth="1433.0">
          <children>
-            <VBox prefHeight="28.0" prefWidth="531.0">
+            <HBox prefHeight="50.0" prefWidth="1308.0">
                <HBox.margin>
-                  <Insets top="50.0" />
-               </HBox.margin>
-            </VBox>
-            <TextField fx:id="comentario" prefHeight="25.0" prefWidth="373.0">
+                  <Insets />
+               </HBox.margin></HBox>
+            <Button fx:id="BotonComentar" mnemonicParsing="false" prefHeight="32.0" prefWidth="110.0" text="Comentar">
                <HBox.margin>
-                  <Insets bottom="10.0" top="30.0" />
+                  <Insets top="20.0" />
                </HBox.margin>
-            </TextField>
+            </Button>
             <VBox prefHeight="28.0" prefWidth="85.0">
                <HBox.margin>
                   <Insets top="50.0" />
                </HBox.margin>
             </VBox>
-            <Button fx:id="BotonComentar" mnemonicParsing="false" prefHeight="35.0" prefWidth="112.0" text="Comentar">
-               <HBox.margin>
-                  <Insets bottom="10.0" top="30.0" />
-               </HBox.margin>
-            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="43.0" prefWidth="1557.0">
+         <children>
+            <HBox prefHeight="25.0" prefWidth="1575.0">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="136.0" />
+                  <TextField fx:id="comentario" prefHeight="0.0" prefWidth="1286.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children></HBox>
          </children>
       </HBox>
       <HBox prefHeight="329.0" prefWidth="1557.0">
          <children>
             <VBox prefHeight="316.0" prefWidth="140.0" />
-            <HBox prefHeight="316.0" prefWidth="1299.0">
+            <HBox prefHeight="302.0" prefWidth="1292.0">
                <children>
                   <ScrollPane fx:id="scrollPaneComentarios" prefHeight="316.0" prefWidth="1291.0">
                      <content>
-                        <VBox fx:id="contenedorComentarios" prefHeight="295.0" prefWidth="1255.0" />
+                        <VBox fx:id="contenedorComentarios" prefHeight="275.0" prefWidth="1265.0" />
                      </content>
                      <stylesheets>
                         <URL value="@../../../css/ScrollPanel%20Comentarios.css" />
@@ -183,5 +212,6 @@
             <VBox prefHeight="316.0" prefWidth="140.0" />
          </children>
       </HBox>
+      <HBox prefHeight="41.0" prefWidth="1557.0" />
    </children>
 </VBox>
