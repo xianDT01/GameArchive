@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuJuegoController implements Initializable {
@@ -83,6 +84,7 @@ public class MenuJuegoController implements Initializable {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, ControllerId.getIdJuego());
             ResultSet resultSet = statement.executeQuery();
+
 
             if (resultSet.next()) {
                 promedio = resultSet.getDouble("promedio");
@@ -223,9 +225,8 @@ public class MenuJuegoController implements Initializable {
     private void cargarComentarios() {
         contenedorComentarios.getChildren().clear();
         int idJuego = IdJuego;
-
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String query = "SELECT r.calificacion, u.nombre, c.comentario " +
+            String query = "SELECT c.idComentario, r.calificacion, u.nombre, c.comentario, c.idUsuario " +
                     "FROM Comentarios c " +
                     "JOIN Usuarios u ON c.idUsuario = u.idUsuario " +
                     "JOIN Reseñas r ON r.idUsuario = u.idUsuario AND r.idJuego = c.idJuego " +
@@ -235,9 +236,11 @@ public class MenuJuegoController implements Initializable {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                int idComentario = resultSet.getInt("idComentario");
                 int calificacion = resultSet.getInt("calificacion");
                 String nombreUsuario = resultSet.getString("nombre");
                 String comentarioTexto = resultSet.getString("comentario");
+                int idUsuarioComentario = resultSet.getInt("idUsuario");
 
                 // Contenedor principal para cada comentario
                 VBox comentarioBox = new VBox();
@@ -275,8 +278,80 @@ public class MenuJuegoController implements Initializable {
                 headerBox.getChildren().addAll(calificacionLabel, usuarioLabel);
 
                 comentarioBox.getChildren().addAll(headerBox, comentarioText);
+
+                // Añadir botón de edición si el comentario pertenece al usuario actual
+                if (idUsuarioComentario == SesionUsuario.getUsuario()) {
+                    Button editarButton = new Button("Editar");
+                    editarButton.setOnAction(event -> editarComentario(idComentario, comentarioTexto));
+                    editarButton.setStyle(
+                            "-fx-background-color: #4CAF50; " +
+                                    "-fx-text-fill: white; " +
+                                    "-fx-font-size: 14px; " +
+                                    "-fx-padding: 8px 15px; " +
+                                    "-fx-border-radius: 5px; " +
+                                    "-fx-cursor: hand; " +
+                                    "-fx-background-radius: 5px;" +
+                                    "-fx-border-color: transparent; " +
+                                    "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);");
+
+                    editarButton.setOnMousePressed(e -> editarButton.setStyle(
+                            "-fx-background-color: #388e3c; " +
+                                    "-fx-border-color: #388e3c; " +
+                                    "-fx-transition: background-color 0s, border-color 0s;"));
+
+                    comentarioBox.getChildren().add(editarButton);
+                }
+
                 contenedorComentarios.getChildren().add(comentarioBox);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void editarComentario(int idComentario, String comentarioActual) {
+        TextInputDialog dialog = new TextInputDialog(comentarioActual);
+        dialog.setTitle("Editar Comentario");
+        dialog.setHeaderText("Editar tu comentario");
+        dialog.setContentText("Comentario:");
+
+        dialog.getDialogPane().getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+        dialog.getDialogPane().getStyleClass().add("myDialog");
+
+        ButtonType aceptarButtonType = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelarButtonType = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().setAll(aceptarButtonType, cancelarButtonType);
+
+        Button aceptarButton = (Button) dialog.getDialogPane().lookupButton(aceptarButtonType);
+        Button cancelarButton = (Button) dialog.getDialogPane().lookupButton(cancelarButtonType);
+
+        // Añadir clases de estilo a los botones
+        aceptarButton.getStyleClass().add("button-aceptar");
+        cancelarButton.getStyleClass().add("button-cancelar");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(nuevoComentario -> {
+            if (!nuevoComentario.trim().isEmpty()) {
+                actualizarComentarioEnBD(idComentario, nuevoComentario);
+                cargarComentarios(); // Recargar los comentarios para mostrar los cambios
+            } else {
+                mostrarNotificacion("Error", "El comentario no puede estar vacío.");
+            }
+        });
+    }
+
+
+
+
+
+
+    private void actualizarComentarioEnBD(int idComentario, String nuevoComentario) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "UPDATE Comentarios SET comentario = ? WHERE idComentario = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nuevoComentario);
+            statement.setInt(2, idComentario);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

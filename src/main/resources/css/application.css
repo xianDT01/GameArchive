@@ -1,0 +1,55 @@
+/* Estilos para el botón "Aceptar" */
+.button-aceptar {
+    -fx-background-color: #4CAF50; 
+    -fx-text-fill: white; 
+    -fx-font-size: 14px; 
+    -fx-padding: 8px 15px; 
+    -fx-border-radius: 5px; 
+    -fx-cursor: hand; 
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
+}
+
+.button-aceptar:hover {
+    -fx-background-color: #45a049; 
+    -fx-border-color: #45a049; 
+    -fx-transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.button-aceptar:pressed {
+    -fx-background-color: #388e3c; 
+    -fx-border-color: #388e3c; 
+    -fx-transition: background-color 0s, border-color 0s; 
+}
+
+/* Estilos para el botón "Cancelar" */
+.button-cancelar {
+    -fx-background-color: #f44336; 
+    -fx-text-fill: white; 
+    -fx-font-size: 14px; 
+    -fx-padding: 8px 15px; 
+    -fx-border-radius: 5px; 
+    -fx-cursor: hand; 
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
+}
+
+.button-cancelar:hover {
+    -fx-background-color: #e53935; 
+    -fx-border-color: #e53935; 
+    -fx-transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.button-cancelar:pressed {
+    -fx-background-color: #d32f2f; 
+    -fx-border-color: #d32f2f; 
+    -fx-transition: background-color 0s, border-color 0s; 
+}
+
+/* Estilos para el diálogo */
+.myDialog {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: white;
+}
