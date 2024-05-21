@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="883.0" prefWidth="1314.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/ForoEstilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ForoComentariosController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="951.0" prefWidth="1534.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/ForoEstilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ForoComentariosController">
    <children>
       <HBox prefHeight="57.0" prefWidth="1314.0">
          <children>
@@ -21,9 +21,9 @@
       </HBox>
       <HBox prefHeight="43.0" prefWidth="948.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="TOP" prefHeight="53.0" prefWidth="848.0" text="Foro" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="TOP" prefHeight="93.0" prefWidth="950.0" text="Foro" textFill="WHITE">
                <font>
-                  <Font size="36.0" />
+                  <Font size="64.0" />
                </font>
                <HBox.margin>
                   <Insets left="250.0" />
@@ -31,32 +31,41 @@
             </Label>
          </children>
       </HBox>
+      <HBox prefHeight="76.0" prefWidth="1495.0" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="595.0" />
+            <HBox prefHeight="97.0" prefWidth="652.0" />
             <Label text="Título" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
             <HBox prefHeight="100.0" prefWidth="73.0" />
-            <Label fx:id="tituloLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="75.0" prefWidth="337.0" text="Título" textFill="WHITE" wrapText="true">
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="tituloLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="82.0" prefWidth="1492.0" text="Título" textFill="WHITE" wrapText="true">
                <font>
-                  <Font size="18.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>
       </HBox>
       <HBox prefHeight="77.0" prefWidth="1314.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="595.0" />
+            <HBox prefHeight="59.0" prefWidth="655.0" />
             <Label text="Descripción" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <HBox prefHeight="100.0" prefWidth="28.0" />
-            <Label fx:id="descripcionLabel" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="137.0" prefWidth="453.0" text="Descripción" textFill="WHITE" wrapText="true">
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="descripcionLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="82.0" prefWidth="1504.0" text="Descripción" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -68,20 +77,20 @@
             <HBox prefHeight="83.0" prefWidth="569.0" />
             <TextField fx:id="comentarioTextField" prefHeight="28.0" prefWidth="292.0">
                <HBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </HBox.margin>
             </TextField>
             <HBox prefHeight="52.0" prefWidth="33.0" />
             <Button mnemonicParsing="false" onAction="#agregarComentario" text="Comentar">
                <HBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
       <HBox prefHeight="491.0" prefWidth="1314.0">
          <children>
-            <VBox fx:id="comentariosVBox" prefHeight="382.0" prefWidth="1312.0" stylesheets="@../../../css/ForoEstilos.css" />
+            <VBox fx:id="comentariosVBox" prefHeight="469.0" prefWidth="1533.0" stylesheets="@../../../css/ForoEstilos.css" />
          </children></HBox>
    </children>
 </VBox>

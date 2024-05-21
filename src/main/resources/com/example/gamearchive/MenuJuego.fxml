@@ -16,8 +16,9 @@
    <children>
       <HBox prefHeight="72.0" prefWidth="1276.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
-            <HBox prefHeight="137.0" prefWidth="110.0">
+            <HBox prefHeight="68.0" prefWidth="1613.0">
                <children>
+                  <VBox prefHeight="68.0" prefWidth="119.0" />
                   <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="38.0" prefWidth="84.0" stylesheets="@../../../css/Button.css" text="Volver">
                      <HBox.margin>
                         <Insets bottom="10.0" left="20.0" top="20.0" />
@@ -30,16 +31,16 @@
       <HBox prefHeight="532.0" prefWidth="1557.0">
          <children>
             <HBox prefHeight="504.0" prefWidth="165.0" />
-            <VBox prefHeight="498.0" prefWidth="616.0">
+            <VBox prefHeight="494.0" prefWidth="625.0">
                <children>
                   <VBox prefHeight="184.0" prefWidth="267.0">
                      <children>
-                        <Label prefHeight="79.0" prefWidth="257.0" text="Plataformas del juego:" textFill="WHITE">
+                        <Label prefHeight="60.0" prefWidth="257.0" text="Plataformas del juego" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Plataformas" prefHeight="27.0" prefWidth="541.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
+                        <Label fx:id="Plataformas" prefHeight="40.0" prefWidth="591.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -53,7 +54,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label fx:id="FechaDeLanzamiento" prefHeight="58.0" prefWidth="498.0" text="Fecha de lanzamiento" textFill="WHITE">
+                        <Label fx:id="FechaDeLanzamiento" prefHeight="47.0" prefWidth="589.0" text="Fecha de lanzamiento" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -69,7 +70,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="295.0" prefWidth="531.0" text="Descripción" textFill="WHITE" wrapText="true">
+                  <Label fx:id="Descripcion" alignment="TOP_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="255.0" prefWidth="590.0" text="Descripción" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -79,21 +80,21 @@
                <children>
                   <VBox prefHeight="124.0" prefWidth="406.0">
                      <children>
-                        <Label fx:id="NombreJuego" alignment="TOP_CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="126.0" prefWidth="406.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
+                        <Label fx:id="NombreJuego" alignment="BASELINE_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="126.0" prefWidth="406.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <HBox prefHeight="158.0" prefWidth="338.0">
+                  <HBox alignment="BASELINE_LEFT" prefHeight="158.0" prefWidth="338.0">
                      <children>
-                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/-5857140.jpg" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets />
                            </HBox.margin>
                         </ImageView>
                      </children></HBox>
@@ -109,7 +110,7 @@
                <children>
                   <HBox prefHeight="195.0" prefWidth="340.0">
                      <children>
-                        <Label alignment="BASELINE_LEFT" prefHeight="53.0" prefWidth="348.0" text="Nota " textFill="WHITE">
+                        <Label alignment="BASELINE_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="53.0" prefWidth="348.0" text=" Nota " textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -135,7 +136,7 @@
                   </HBox>
                   <HBox prefHeight="62.0" prefWidth="325.0">
                      <children>
-                        <TextField fx:id="NotaJuego" prefHeight="25.0" prefWidth="100.0">
+                        <TextField fx:id="NotaJuego" prefHeight="30.0" prefWidth="100.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></TextField>
@@ -150,7 +151,7 @@
                      </VBox.margin></HBox>
                   <HBox prefHeight="177.0" prefWidth="249.0">
                      <children>
-                        <Button fx:id="Votar" mnemonicParsing="false" onAction="#guardarReseña" prefHeight="28.0" prefWidth="100.0" text="Votar">
+                        <Button fx:id="Votar" mnemonicParsing="false" onAction="#guardarReseña" prefHeight="30.0" prefWidth="100.0" stylesheets="@../../../css/ButtonVotar.css" text="Votar">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -168,7 +169,7 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin></HBox>
-            <Button fx:id="BotonComentar" mnemonicParsing="false" prefHeight="32.0" prefWidth="110.0" text="Comentar">
+            <Button fx:id="BotonComentar" mnemonicParsing="false" prefHeight="45.0" prefWidth="114.0" stylesheets="@../../../css/ButtonVotar.css" text="Comentar">
                <HBox.margin>
                   <Insets top="20.0" />
                </HBox.margin>

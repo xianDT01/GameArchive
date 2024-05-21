@@ -60,6 +60,8 @@ public class MenuJuegoController implements Initializable {
         mostrarNotaJuego.setText(String.valueOf(notaFormateada));
         BotonComentar.setOnAction(this::agregarComentario);
         cargarComentarios(); // Llamar al método para cargar los comentarios
+        scrollPaneComentarios.setPadding(new Insets(10)); // Añadir padding al ScrollPane
+        scrollPaneComentarios.setFitToWidth(true); // Ajustar el ancho del contenido al ScrollPane
 
     }
     public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula,String plataformas) {
@@ -241,7 +243,7 @@ public class MenuJuegoController implements Initializable {
                 VBox comentarioBox = new VBox();
                 comentarioBox.setSpacing(5);
                 comentarioBox.setStyle("-fx-padding: 10; -fx-background-radius: 5; -fx-background-color: #333;");
-                comentarioBox.setMargin(comentarioBox, new Insets(0, 0, 10, 0));
+                VBox.setMargin(comentarioBox, new Insets(10)); // Añadir margen alrededor de cada comentario
 
                 // Etiqueta para la calificación
                 Label calificacionLabel = new Label(String.valueOf(calificacion));
@@ -264,7 +266,7 @@ public class MenuJuegoController implements Initializable {
 
                 // Etiqueta para el comentario
                 Text comentarioText = new Text(comentarioTexto);
-                comentarioText.setStyle("-fx-font-size: 14; -fx-fill: white;");
+                comentarioText.setStyle("-fx-font-size: 16; -fx-fill: white;");
                 comentarioText.setWrappingWidth(1200); // Ajusta el ancho máximo del texto
 
                 // Añadir etiquetas al contenedor del comentario
@@ -279,11 +281,6 @@ public class MenuJuegoController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
-
-
-
 
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()

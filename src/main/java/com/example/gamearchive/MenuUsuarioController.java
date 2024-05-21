@@ -39,6 +39,8 @@ public class MenuUsuarioController implements Initializable {
     @FXML
     private ImageView ImagenDePerfil;
     @FXML
+    private ImageView ImagenDePerfil2;
+    @FXML
     private Button Volver;
     @FXML
     private Label nombre;
