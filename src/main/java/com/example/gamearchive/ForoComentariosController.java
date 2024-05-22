@@ -114,7 +114,7 @@ public class ForoComentariosController implements Initializable {
 
                 // Usar un Text para mostrar el comentario, permitiendo saltos de línea
                 Text comentarioText = new Text(textoComentario);
-                comentarioText.setWrappingWidth(1150); // Ancho máximo para ajustarse al contenedor
+                comentarioText.setWrappingWidth(1175); // Ancho máximo para ajustarse al contenedor
                 comentarioText.setStyle("-fx-font-size: 16px;"); // Ajusta el tamaño de la fuente del comentario
                 comentarioText.setFill(Color.WHITE); // Establece el color del texto a blanco
 

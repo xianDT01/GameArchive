@@ -10,18 +10,19 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="951.0" prefWidth="1534.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/ForoEstilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ForoComentariosController">
    <children>
-      <HBox prefHeight="57.0" prefWidth="1314.0">
+      <HBox id="..\..\..\css\sytes.css" prefHeight="106.0" prefWidth="1534.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
+            <HBox prefHeight="316.0" prefWidth="136.0" />
             <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverForo" prefHeight="38.0" prefWidth="79.0" stylesheets="@../../../css/Button.css" text="Volver">
                <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
       <HBox prefHeight="43.0" prefWidth="948.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="TOP" prefHeight="93.0" prefWidth="950.0" text="Foro" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="TOP" prefHeight="93.0" prefWidth="986.0" text="Foro" textFill="WHITE">
                <font>
                   <Font size="64.0" />
                </font>
@@ -34,8 +35,8 @@
       <HBox prefHeight="76.0" prefWidth="1495.0" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <HBox prefHeight="97.0" prefWidth="652.0" />
-            <Label text="Título" textFill="WHITE">
+            <HBox prefHeight="59.0" prefWidth="702.0" />
+            <Label prefHeight="53.0" prefWidth="102.0" text="Título" textFill="WHITE">
                <font>
                   <Font size="36.0" />
                </font>
@@ -54,7 +55,7 @@
       </HBox>
       <HBox prefHeight="77.0" prefWidth="1314.0">
          <children>
-            <HBox prefHeight="59.0" prefWidth="655.0" />
+            <HBox prefHeight="37.0" prefWidth="704.0" />
             <Label text="Descripción" textFill="WHITE">
                <font>
                   <Font size="24.0" />
@@ -72,25 +73,33 @@
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="61.0" prefWidth="1314.0">
+      <HBox prefHeight="100.0" prefWidth="1534.0">
          <children>
-            <HBox prefHeight="83.0" prefWidth="569.0" />
+            <HBox prefHeight="35.0" prefWidth="618.0" />
             <TextField fx:id="comentarioTextField" prefHeight="28.0" prefWidth="292.0">
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="15.0" />
                </HBox.margin>
             </TextField>
             <HBox prefHeight="52.0" prefWidth="33.0" />
-            <Button mnemonicParsing="false" onAction="#agregarComentario" text="Comentar">
+            <Button mnemonicParsing="false" onAction="#agregarComentario" stylesheets="@../../../css/Button.css" text="Comentar">
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets bottom="10.0" top="5.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <HBox prefHeight="491.0" prefWidth="1314.0">
+      <HBox prefHeight="488.0" prefWidth="1534.0">
          <children>
-            <VBox fx:id="comentariosVBox" prefHeight="469.0" prefWidth="1533.0" stylesheets="@../../../css/ForoEstilos.css" />
-         </children></HBox>
+            <HBox prefHeight="316.0" prefWidth="140.0" />
+            <HBox prefHeight="100.0" prefWidth="1357.0">
+               <children>
+                  <VBox fx:id="comentariosVBox" prefHeight="450.0" prefWidth="1325.0" stylesheets="@../../../css/ForoEstilos.css" />
+               </children>
+            </HBox>
+            <HBox prefHeight="316.0" prefWidth="140.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="1534.0" />
    </children>
 </VBox>
