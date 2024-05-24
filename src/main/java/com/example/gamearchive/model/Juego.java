@@ -19,6 +19,9 @@ public class Juego {
         this.plataformas= plataformas;
     }
 
+    public Juego(String nombreJuego, String rutaCaratula) {
+    }
+
     public int getIdjuego() {
         return idjuego;
     }

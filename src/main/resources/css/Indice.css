@@ -1,0 +1,20 @@
+/* styles.css */
+.list-view {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:filled {
+    -fx-font-size: 18px; /* Tamaño de letra para los juegos */
+}
+
+.list-view .list-cell:empty {
+    -fx-font-size: 36px; /* Tamaño de letra mucho mayor para las letras del abecedario */
+    -fx-font-weight: bold;
+    -fx-alignment: center; /* Alinear el texto en el centro */
+}

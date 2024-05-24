@@ -96,10 +96,10 @@ public class MenuUsuarioController implements Initializable {
         String rutaImagenPerfil = getRutaImagenPerfilFromDB();
         if (rutaImagenPerfil != null && !rutaImagenPerfil.isEmpty()) {
             try {
-                // Cargar la imagen desde la ruta obtenida y mostrarla en el ImageView
+                // Cargar la imagen desde la ruta obtenida y mostrarla en ambos ImageViews
                 Image image = new Image(new FileInputStream(rutaImagenPerfil));
                 ImagenDePerfil.setImage(image);
-
+                ImagenDePerfil2.setImage(image);
             } catch (IOException e) {
                 e.printStackTrace();
             }

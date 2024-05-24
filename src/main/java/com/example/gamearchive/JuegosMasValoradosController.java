@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,6 +56,8 @@ public class JuegosMasValoradosController implements Initializable {
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
 
+            int rank = 1; // Iniciamos el contador de ranking
+
             while (resultSet.next()) {
                 int idJuego = resultSet.getInt("idJuego");
                 String nombre = resultSet.getString("nombre");
@@ -68,6 +71,11 @@ public class JuegosMasValoradosController implements Initializable {
                 imageView.setFitHeight(150);
                 imageView.setFitWidth(100);
                 asignarEventoClic(imageView, idJuego);
+
+                // Crear el círculo con el puesto del juego
+                Label rankLabel = new Label(String.valueOf(rank));
+                rankLabel.setStyle("-fx-font-size: 24px; -fx-background-color: #00ADEF; -fx-text-fill: white; -fx-background-radius: 50%; -fx-alignment: center; -fx-min-width: 50px; -fx-min-height: 50px; -fx-max-width: 50px; -fx-max-height: 50px;");
+                rankLabel.setAlignment(Pos.CENTER);
 
                 Label labelNombre = new Label(nombre);
                 labelNombre.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
@@ -88,25 +96,23 @@ public class JuegosMasValoradosController implements Initializable {
 
                 Label labelPlataformas = new Label("Plataformas: " + plataformas);
                 labelPlataformas.setStyle("-fx-font-size: 16px; -fx-text-fill: white;");
-                Label labelDescripcion = new Label(descripcion);
-                labelDescripcion.setWrapText(true);
-                labelDescripcion.setMaxWidth(Double.MAX_VALUE); // Permite que la descripción ocupe todo el ancho disponible
-                labelDescripcion.setStyle("-fx-font-size: 16px; -fx-text-fill: white;");
 
-                VBox.setVgrow(labelDescripcion, Priority.ALWAYS); // Permite que la descripción crezca en el VBox si es necesario
-
-                VBox detallesBox = new VBox(10, nombreNotaBox, labelPlataformas, labelDescripcion);
+                VBox detallesBox = new VBox(10, nombreNotaBox, labelPlataformas);
                 HBox.setHgrow(detallesBox, Priority.ALWAYS); // Permite que el VBox crezca en el HBox si es necesario
 
-                HBox juegoBox = new HBox(10, imageView, detallesBox);
+                // Crear contenedor para centrar el círculo
+                VBox rankBox = new VBox(rankLabel);
+                rankBox.setAlignment(Pos.CENTER); // Centra el círculo verticalmente
+
+                HBox juegoBox = new HBox(10, rankBox, imageView, detallesBox);
                 juegoBox.setStyle("-fx-padding: 10; -fx-background-color: #333; -fx-border-color: #555; -fx-border-width: 2px;");
                 juegoBox.setMinWidth(600); // Ajusta el ancho mínimo del contenedor según tus necesidades
                 contenedorJuegos.getChildren().add(juegoBox);
+
+                rank++; // Incrementa el contador de ranking
             }
         }
     }
-
-
 
 
     private void asignarEventoClic(ImageView imageView, int idJuego) {
@@ -129,8 +135,6 @@ public class JuegosMasValoradosController implements Initializable {
             st.play();
         });
     }
-
-
 
     private void abrirMenuJuego(int idJuego) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -159,6 +163,10 @@ public class JuegosMasValoradosController implements Initializable {
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                 stage.setScene(new Scene(root));
                 stage.show();
+
+                // Cerrar la ventana actual
+                Stage currentStage = (Stage) contenedorJuegos.getScene().getWindow();
+                currentStage.close();
             } else {
                 System.out.println("No se encontró información para el juego con ID: " + idJuego);
             }
