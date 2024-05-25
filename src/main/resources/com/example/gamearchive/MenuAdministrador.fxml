@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuAdministradorController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuAdministradorController">
    <children>
       <AnchorPane layoutX="239.0" prefHeight="430.0" prefWidth="461.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="0.0">
          <effect>
@@ -21,30 +28,43 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mostrarJuego" layoutX="23.0" layoutY="182.0" prefHeight="423.0" prefWidth="882.0" wrapText="true">
+                  <Button id="sale" fx:id="borrarJuego" layoutX="79.0" layoutY="556.0" mnemonicParsing="false" onAction="#borrarJuego" prefHeight="51.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Borrar" />
+                  <ComboBox fx:id="NombreJuegos" editable="true" layoutX="79.0" layoutY="170.0" onAction="#seleccionarJuegoNombreJuego" prefHeight="35.0" prefWidth="400.0" />
+                  <ImageView fx:id="mostrarCatula" fitHeight="325.0" fitWidth="400.0" layoutX="498.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="mostrarNombreJuego" layoutX="79.0" layoutY="217.0" prefHeight="35.0" prefWidth="400.0" text="Nombre Juego" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button id="sale" fx:id="borrarJuego" layoutX="422.0" layoutY="619.0" mnemonicParsing="false" onAction="#borrarJuego" prefHeight="51.0" prefWidth="114.0" stylesheets="@../../../css/cssButtons.css" text="Borrar" />
-                  <ComboBox fx:id="NombreJuegos" editable="true" layoutX="361.0" layoutY="119.0" onAction="#seleccionarJuegoNombreJuego" prefHeight="46.0" prefWidth="217.0" />
+                  <Label fx:id="mostrarPlataformasJuego" layoutX="79.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" text="Plataformas Juego" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mostrarDescripcionJuego" layoutX="79.0" layoutY="353.0" prefHeight="203.0" prefWidth="400.0" text="Descripción" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mostrarFechaLanzamientoJuego" layoutX="79.0" layoutY="307.0" prefHeight="35.0" prefWidth="400.0" text="Fecha Lanzamiento" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="PanelAñadirJuego" prefHeight="684.0" prefWidth="933.0">
+            <AnchorPane fx:id="PanelAñadirAdmin" layoutX="75.0" prefHeight="684.0" prefWidth="905.0">
                <children>
-                  <Button fx:id="AñadirCaratulaJuego" layoutX="128.0" layoutY="424.0" mnemonicParsing="false" onAction="#seleccionarCaratula" prefHeight="35.0" prefWidth="400.0" text="Cargar Carátula" />
-                  <TextField fx:id="Descripcion" alignment="CENTER" layoutX="128.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" promptText="Descripción" />
-                  <DatePicker fx:id="FechaDeLanzamiento" layoutX="128.0" layoutY="269.0" prefHeight="35.0" prefWidth="400.0" promptText="                                        Fecha de lanzamiento" />
-                  <TextField fx:id="Plataformas" alignment="CENTER" layoutX="128.0" layoutY="219.0" prefHeight="35.0" prefWidth="400.0" promptText="Plataformas" />
-                  <TextField fx:id="NombreJuego" alignment="CENTER" layoutX="128.0" layoutY="174.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Juego" />
-                  <Button id="sale" fx:id="AñadirJuego" layoutX="128.0" layoutY="469.0" mnemonicParsing="false" onAction="#HandleañadirJuego" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Añadir" />
-                  <Label fx:id="RutaImagen" layoutX="543.0" layoutY="469.0" prefHeight="35.0" prefWidth="400.0" />
-                  <Label alignment="CENTER" layoutX="328.0" layoutY="46.0" prefHeight="70.0" prefWidth="400.0" text="Añadir Juego" textAlignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="119.0" prefWidth="882.0" text="Añadir Administrador">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="ImagenJuego" fitHeight="285.0" fitWidth="400.0" layoutX="543.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="correoElectronico" alignment="CENTER" layoutX="253.0" layoutY="242.0" prefHeight="35.0" prefWidth="400.0" promptText="Email" />
+                  <TextField fx:id="nombreUsuario" alignment="CENTER" layoutX="253.0" layoutY="193.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Usuario" />
+                  <PasswordField fx:id="contraseña" alignment="CENTER" layoutX="253.0" layoutY="287.0" prefHeight="35.0" prefWidth="400.0" promptText="Contraseña" />
+                  <PasswordField fx:id="RepetirContraseña" alignment="CENTER" layoutX="253.0" layoutY="336.0" prefHeight="35.0" prefWidth="400.0" promptText="Repitir Contraseña" />
+                  <Button id="sale" fx:id="Registrar" layoutX="253.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleBotonRegistarUsuario" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Guardar" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelModificarJuego" prefHeight="684.0" prefWidth="963.0">
@@ -63,6 +83,24 @@
                   <Button id="sale" fx:id="guardar" layoutX="128.0" layoutY="506.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Guardar" />
                   <Label fx:id="RutaImagen2" layoutX="543.0" layoutY="510.0" prefHeight="35.0" prefWidth="400.0" />
                   <ImageView fx:id="ModificarImagenJuego" fitHeight="325.0" fitWidth="400.0" layoutX="543.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PanelAñadirJuego" prefHeight="684.0" prefWidth="933.0">
+               <children>
+                  <Button fx:id="AñadirCaratulaJuego" layoutX="128.0" layoutY="424.0" mnemonicParsing="false" onAction="#seleccionarCaratula" prefHeight="35.0" prefWidth="400.0" text="Cargar Carátula" />
+                  <TextField fx:id="Descripcion" alignment="CENTER" layoutX="128.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" promptText="Descripción" />
+                  <DatePicker fx:id="FechaDeLanzamiento" layoutX="128.0" layoutY="269.0" prefHeight="35.0" prefWidth="400.0" promptText="                                        Fecha de lanzamiento" />
+                  <TextField fx:id="Plataformas" alignment="CENTER" layoutX="128.0" layoutY="219.0" prefHeight="35.0" prefWidth="400.0" promptText="Plataformas" />
+                  <TextField fx:id="NombreJuego" alignment="CENTER" layoutX="128.0" layoutY="174.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Juego" />
+                  <Button id="sale" fx:id="AñadirJuego" layoutX="128.0" layoutY="469.0" mnemonicParsing="false" onAction="#HandleañadirJuego" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Añadir" />
+                  <Label fx:id="RutaImagen" layoutX="543.0" layoutY="469.0" prefHeight="35.0" prefWidth="400.0" />
+                  <Label alignment="CENTER" layoutX="328.0" layoutY="46.0" prefHeight="70.0" prefWidth="400.0" text="Añadir Juego" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="mostrarCaratula" fitHeight="285.0" fitWidth="400.0" layoutX="543.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="mostrarCaratula1" fitHeight="285.0" fitWidth="400.0" layoutX="553.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelBienvenida" layoutX="32.0" prefHeight="684.0" prefWidth="941.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">
@@ -129,18 +167,28 @@
                         <Image url="@../../../img/DeleteGameIcon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="16.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../img/exitIcon.png" />
-                     </image>
-                  </ImageView>
                   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/bienvenida.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="19.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/adminIcon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="9.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/exitIcon.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="Volver1" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="65.0" layoutY="368.0" onAction="#handleVolverPantallaInicial" prefHeight="65.0" prefWidth="217.0" text="SALIR">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow />
@@ -166,7 +214,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="Volver" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="72.0" layoutY="307.0" onAction="#handleVolverPantallaInicial" prefHeight="65.0" prefWidth="217.0" text="SALIR">
+      <JFXButton fx:id="AñadirAdmin" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="60.0" layoutY="307.0" onAction="#ControllerPanel" prefHeight="65.0" prefWidth="229.0" text="AÑADIR ADMIN">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>

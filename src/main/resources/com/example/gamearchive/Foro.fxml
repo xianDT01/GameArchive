@@ -11,12 +11,14 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="1124.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.ForoController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox id="..\..\..\css\sytes.css" prefHeight="60.0" prefWidth="1124.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
-            <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="38.0" prefWidth="77.0" stylesheets="@../../../css/Button.css" text="Volver">
+            <HBox prefHeight="58.0" prefWidth="110.0" />
+            <Button fx:id="Volver" mnemonicParsing="false" onAction="#handleVolverPantallaPrincipal" prefHeight="38.0" prefWidth="79.0" stylesheets="@../../../css/Button.css" text="Volver">
                <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </HBox.margin></Button>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

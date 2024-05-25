@@ -12,11 +12,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -34,7 +37,7 @@ public class JuegosMasValoradosController implements Initializable {
     private Button Volver;
 
     @FXML
-    private VBox contenedorJuegos; // Contenedor para agregar los elementos de los juegos
+    private VBox contenedorJuegos;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +53,7 @@ public class JuegosMasValoradosController implements Initializable {
                 "(SELECT AVG(R.calificacion) FROM Reseñas R WHERE R.idJuego = J.idJuego) AS notaMedia " +
                 "FROM Juegos J " +
                 "ORDER BY notaMedia DESC " +
-                "LIMIT 10";
+                "LIMIT 50";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
@@ -81,7 +84,7 @@ public class JuegosMasValoradosController implements Initializable {
                 labelNombre.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
 
                 Label labelNotaMedia = new Label(String.format("%.2f", notaMedia));
-                labelNotaMedia.setStyle("-fx-font-size: 18px; -fx-background-radius: 5; -fx-padding: 5;");
+                labelNotaMedia.setStyle("-fx-font-size: 32px; -fx-background-radius: 5; -fx-padding: 8;");
                 if (notaMedia >= 0 && notaMedia < 5) {
                     labelNotaMedia.setStyle(labelNotaMedia.getStyle() + "-fx-background-color: #FF6874; -fx-text-fill: black;");
                 } else if (notaMedia >= 5 && notaMedia < 8) {
@@ -92,19 +95,28 @@ public class JuegosMasValoradosController implements Initializable {
                     labelNotaMedia.setStyle(labelNotaMedia.getStyle() + "-fx-background-color: #00CE7A; -fx-text-fill: gold;");
                 }
 
-                HBox nombreNotaBox = new HBox(10, labelNombre, labelNotaMedia);
+                HBox nombreNotaBox = new HBox(10, labelNombre);
+                HBox notaBox = new HBox(labelNotaMedia);
+                notaBox.setAlignment(Pos.TOP_RIGHT);
+                HBox.setHgrow(notaBox, Priority.ALWAYS); // Asegura que la nota se alinee a la derecha
 
-                Label labelPlataformas = new Label("Plataformas: " + plataformas);
+                // Dividir plataformas en líneas más cortas y asegurar que no se trunquen
+                String plataformasFormatted = plataformas.replaceAll(" / ", "\n");
+                Label labelPlataformas = new Label("Plataformas: " + plataformasFormatted);
                 labelPlataformas.setStyle("-fx-font-size: 16px; -fx-text-fill: white;");
+                labelPlataformas.setWrapText(true); // Permitir el ajuste de línea
+                labelPlataformas.setMaxWidth(Double.MAX_VALUE); // Ajustar el ancho máximo
+                labelPlataformas.setTextOverrun(OverrunStyle.CLIP); // Evitar truncar el texto
 
                 VBox detallesBox = new VBox(10, nombreNotaBox, labelPlataformas);
-                HBox.setHgrow(detallesBox, Priority.ALWAYS); // Permite que el VBox crezca en el HBox si es necesario
+                detallesBox.setMaxWidth(Double.MAX_VALUE); // Permitir que el VBox crezca en el HBox si es necesario
+                HBox.setHgrow(detallesBox, Priority.ALWAYS); // Permitir que el VBox crezca en el HBox si es necesario
 
                 // Crear contenedor para centrar el círculo
                 VBox rankBox = new VBox(rankLabel);
                 rankBox.setAlignment(Pos.CENTER); // Centra el círculo verticalmente
 
-                HBox juegoBox = new HBox(10, rankBox, imageView, detallesBox);
+                HBox juegoBox = new HBox(20, rankBox, imageView, detallesBox, notaBox); // Aumentar el espacio entre elementos
                 juegoBox.setStyle("-fx-padding: 10; -fx-background-color: #333; -fx-border-color: #555; -fx-border-width: 2px;");
                 juegoBox.setMinWidth(600); // Ajusta el ancho mínimo del contenedor según tus necesidades
                 contenedorJuegos.getChildren().add(juegoBox);
@@ -113,6 +125,14 @@ public class JuegosMasValoradosController implements Initializable {
             }
         }
     }
+
+
+
+
+
+
+
+
 
 
     private void asignarEventoClic(ImageView imageView, int idJuego) {

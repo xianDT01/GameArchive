@@ -18,25 +18,15 @@
          <children>
             <Pane layoutX="320.0" layoutY="74.0" prefHeight="255.0" prefWidth="661.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
                <children>
-                  <ImageView fx:id="ImagenDePerfil2" fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="381.0" layoutY="14.0" text="Nombre de Usuario" textFill="WHITE">
+                  <ImageView fx:id="ImagenDePerfil2" fitHeight="200.0" fitWidth="268.0" layoutX="36.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="328.0" layoutY="32.0" prefHeight="63.0" prefWidth="321.0" text="Nombre del usuario" textFill="WHITE">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="381.0" layoutY="61.0" prefHeight="63.0" prefWidth="227.0" text="Nombre del usuario" textFill="WHITE">
+                  <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="132.0" prefHeight="46.0" prefWidth="254.0" text="Correo del usuario" textFill="WHITE">
                      <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="TEXT_ONLY" layoutX="453.0" layoutY="142.0" prefHeight="35.0" prefWidth="84.0" text="Correo" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="373.0" layoutY="189.0" prefHeight="46.0" prefWidth="254.0" text="Correo del usuario" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
+                        <Font size="26.0" />
                      </font>
                   </Label>
                </children>
@@ -112,10 +102,7 @@
       </AnchorPane>
       <AnchorPane layoutX="-3.0" prefHeight="684.0" prefWidth="299.0" style="-fx-background-color: #55B4B0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="684.0" prefWidth="63.0" style="-fx-background-color: #fff; -fx-background-radius: 2em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <AnchorPane prefHeight="684.0" prefWidth="63.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="77.0" fitWidth="84.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>

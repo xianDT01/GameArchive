@@ -27,9 +27,9 @@
             <HBox prefHeight="316.0" prefWidth="140.0" />
             <HBox prefHeight="757.0" prefWidth="1037.0">
                <children>
-                  <ScrollPane prefHeight="815.0" prefWidth="1309.0">
+                  <ScrollPane prefHeight="815.0" prefWidth="1309.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/scrollPaneIndice.css">
                      <content>
-                        <VBox fx:id="contenedorJuegos" prefHeight="767.0" prefWidth="1016.0" />
+                        <VBox fx:id="contenedorJuegos" prefHeight="746.0" prefWidth="1019.0" style="-fx-background-color: #333333;" />
                      </content>
                   </ScrollPane>
                </children>

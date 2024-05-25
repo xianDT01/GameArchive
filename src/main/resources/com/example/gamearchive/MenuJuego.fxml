@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="970.0" prefWidth="1557.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/DesingResponsive.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuJuegoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="987.0" prefWidth="1587.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/DesingResponsive.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuJuegoController">
    <children>
       <HBox prefHeight="72.0" prefWidth="1276.0" styleClass="border-button" stylesheets="@../../../css/sytes.css">
          <children>
@@ -28,19 +28,19 @@
             </HBox>
          </children>
       </HBox>
-      <HBox prefHeight="532.0" prefWidth="1557.0">
+      <HBox prefHeight="638.0" prefWidth="1557.0">
          <children>
-            <HBox prefHeight="504.0" prefWidth="165.0" />
-            <VBox prefHeight="494.0" prefWidth="625.0">
+            <HBox prefHeight="558.0" prefWidth="140.0" />
+            <VBox prefHeight="558.0" prefWidth="591.0">
                <children>
-                  <VBox prefHeight="184.0" prefWidth="267.0">
+                  <VBox prefHeight="252.0" prefWidth="589.0">
                      <children>
                         <Label prefHeight="60.0" prefWidth="257.0" text="Plataformas del juego" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Plataformas" prefHeight="40.0" prefWidth="591.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
+                        <Label fx:id="Plataformas" prefHeight="77.0" prefWidth="574.0" text="Plataformas del juego" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -76,20 +76,20 @@
                      </font>
                   </Label>
                </children></VBox>
-            <VBox prefHeight="499.0" prefWidth="530.0">
+            <VBox prefHeight="585.0" prefWidth="455.0">
                <children>
-                  <VBox prefHeight="124.0" prefWidth="406.0">
+                  <VBox prefHeight="122.0" prefWidth="455.0">
                      <children>
-                        <Label fx:id="NombreJuego" alignment="BASELINE_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="126.0" prefWidth="406.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
+                        <Label fx:id="NombreJuego" alignment="BASELINE_LEFT" contentDisplay="CENTER" ellipsisString="" prefHeight="122.0" prefWidth="319.0" text="Nombre del juego" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
-                  <HBox alignment="BASELINE_LEFT" prefHeight="158.0" prefWidth="338.0">
+                  <HBox alignment="BASELINE_LEFT" prefHeight="386.0" prefWidth="477.0">
                      <children>
-                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenJuego" fitHeight="386.0" fitWidth="457.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../img/-5857140.jpg" />
                            </image>
@@ -99,6 +99,9 @@
                         </ImageView>
                      </children></HBox>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
             <VBox prefHeight="499.0" prefWidth="22.0">
                <children>
@@ -163,9 +166,9 @@
                </children></VBox>
          </children>
       </HBox>
-      <HBox prefHeight="65.0" prefWidth="1433.0">
+      <HBox prefHeight="0.0" prefWidth="1587.0">
          <children>
-            <HBox prefHeight="50.0" prefWidth="1308.0">
+            <HBox prefHeight="34.0" prefWidth="1315.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin></HBox>
@@ -185,8 +188,8 @@
          <children>
             <HBox prefHeight="25.0" prefWidth="1575.0">
                <children>
-                  <HBox prefHeight="65.0" prefWidth="136.0" />
-                  <TextField fx:id="comentario" prefHeight="0.0" prefWidth="1286.0">
+                  <HBox prefHeight="45.0" prefWidth="141.0" />
+                  <TextField fx:id="comentario" prefHeight="25.0" prefWidth="1295.0">
                      <HBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>

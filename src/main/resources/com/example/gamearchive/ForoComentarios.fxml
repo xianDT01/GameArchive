@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -44,13 +45,17 @@
             <HBox prefHeight="100.0" prefWidth="73.0" />
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="128.0" prefWidth="1534.0">
          <children>
-            <Label fx:id="tituloLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="82.0" prefWidth="1492.0" text="Título" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="57.0" prefWidth="1536.0" style="-fx-background-color: rgba(76, 75, 80, 0.4);">
+               <children>
+                  <Label fx:id="tituloLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="82.0" prefWidth="1492.0" text="Título" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </HBox>
       <HBox prefHeight="77.0" prefWidth="1314.0">
@@ -61,16 +66,19 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="28.0" />
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="126.0" prefWidth="1534.0">
          <children>
-            <Label fx:id="descripcionLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="82.0" prefWidth="1504.0" text="Descripción" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="75.0" prefWidth="1545.0" style="-fx-background-color: rgba(76, 75, 80, 0.4);">
+               <children>
+                  <Label fx:id="descripcionLabel" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="2.0" layoutY="5.0" prefHeight="82.0" prefWidth="1534.0" text="Descripción" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="1534.0">

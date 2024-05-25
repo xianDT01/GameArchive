@@ -33,11 +33,11 @@
       <HBox prefHeight="547.0" prefWidth="1124.0">
          <children>
             <HBox prefHeight="538.0" prefWidth="68.0" />
-            <HBox prefHeight="538.0" prefWidth="982.0">
+            <HBox prefHeight="538.0" prefWidth="982.0" style="-fx-background-color: #333333;">
                <children>
-                  <ScrollPane prefHeight="538.0" prefWidth="983.0">
+                  <ScrollPane prefHeight="538.0" prefWidth="983.0" style="-fx-background-color: #333333;" stylesheets="@../../../css/scrollPaneIndice.css">
                      <content>
-                        <VBox fx:id="listaJuegosContainer" prefHeight="542.0" prefWidth="979.0" style="-fx-background-color: #333333;" />
+                        <VBox fx:id="listaJuegosContainer" prefHeight="540.0" prefWidth="978.0" style="-fx-background-color: #333333;" />
                      </content>
                   </ScrollPane>
                </children>

@@ -1,7 +1,6 @@
 package com.example.gamearchive;
 
 import com.example.gamearchive.DatabaseConnection.DatabaseConnection;
-import com.example.gamearchive.model.Juego;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +38,6 @@ public class MenuAdministradorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarNombresJuegos();
-        cargarNombresJuegos2();
 
         nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             buscarJuego(newValue); // Escuchar cambios en el texto del ComboBox
@@ -70,22 +68,18 @@ public class MenuAdministradorController implements Initializable {
             }
         });
         NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            buscarJuego2(newValue);
+            if (!NombreJuegos.isShowing()) {
+                actualizarComboBox2();
+            }
         });
         NombreJuegos.setOnMouseClicked(event -> {
             if (!NombreJuegos.isShowing()) {
                 actualizarComboBox();
             }
         });
-
         NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.isEmpty()) {
                 buscarJuego2(newValue);
-            }
-        });
-        NombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!NombreJuegos.isShowing()) {
-                actualizarComboBox2();
             }
         });
 
@@ -157,6 +151,8 @@ public class MenuAdministradorController implements Initializable {
     private Button BorrarJuego;
     @FXML
     private Button Bienvenida;
+    @FXML
+    private Button AñadirAdmin;
 
     @FXML
     private AnchorPane PanelBienvenida;
@@ -166,6 +162,9 @@ public class MenuAdministradorController implements Initializable {
     private AnchorPane PanelModificarJuego;
     @FXML
     private AnchorPane PanelBorrarJuego;
+    @FXML
+    private AnchorPane PanelAñadirAdmin;
+
 
     @FXML
     private void ControllerPanel(ActionEvent event) {
@@ -174,21 +173,31 @@ public class MenuAdministradorController implements Initializable {
             PanelModificarJuego.setVisible(false);
             PanelBorrarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
         } else if (event.getSource() == ModificarJuego) {
             PanelModificarJuego.setVisible(true);
             PanelAñadirJuego.setVisible(false);
             PanelBorrarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
         } else if (event.getSource() == BorrarJuego) {
             PanelBorrarJuego.setVisible(true);
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
         } else if (event.getSource() == Bienvenida) {
             PanelBienvenida.setVisible(true);
             PanelBorrarJuego.setVisible(false);
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
+        }else if (event.getSource()== AñadirAdmin){
+            PanelBienvenida.setVisible(false);
+            PanelBorrarJuego.setVisible(false);
+            PanelAñadirJuego.setVisible(false);
+            PanelModificarJuego.setVisible(false);
+            PanelAñadirAdmin.setVisible(true);
         }
     }
 
@@ -457,7 +466,16 @@ Modificar juegos
     @FXML
     private ComboBox NombreJuegos;
     @FXML
-    private Label mostrarJuego;
+    private Label mostrarNombreJuego;
+    @FXML
+    private Label mostrarPlataformasJuego;
+    @FXML
+    private Label mostrarDescripcionJuego;
+    @FXML
+    private Label mostrarFechaLanzamientoJuego;
+    @FXML
+    private ImageView mostrarCatula;
+
     @FXML
     private Button borrarJuego;
 
@@ -483,7 +501,6 @@ Modificar juegos
         }
     }
 
-
     @FXML
     private void seleccionarJuegoNombreJuego() {
         String nombreJuegoSeleccionado = (String) NombreJuegos.getValue();
@@ -499,10 +516,30 @@ Modificar juegos
                             "Descripción: " + resultSet.getString("descripcion") + "\n" +
                             "Fecha de lanzamiento: " + resultSet.getDate("fechaLanzamiento") + "\n" +
                             "Plataformas: " + resultSet.getString("plataformas");
-                    mostrarJuego.setText(informacionJuego);
+
+                    String nombre = resultSet.getString("nombre");
+                    String plataformas = resultSet.getString("plataformas");
+                    String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
+                    String descripcion = resultSet.getString("descripcion");
+
+                    mostrarNombreJuego.setText(nombre);
+                    mostrarPlataformasJuego.setText(plataformas);
+                    mostrarDescripcionJuego.setText(descripcion);
+                    mostrarFechaLanzamientoJuego.setText(fechaLanzamiento);
+                }
+                String rutaCaratula = resultSet.getString("rutaCaratula");
+                if (rutaCaratula != null && !rutaCaratula.isEmpty()) {
+                    try {
+                        Image imagenCaratula = new Image("file:" + rutaCaratula);
+                        mostrarCatula.setImage(imagenCaratula);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        mostrarCatula.setImage(null);
+                    }
+                } else {
+                    mostrarCatula.setImage(null);
                 }
 
-                // Actualizar el texto del editor del ComboBox con el nombre del juego seleccionado
                 Platform.runLater(() -> {
                     NombreJuegos.getEditor().setText(nombreJuegoSeleccionado);
                 });
@@ -511,7 +548,6 @@ Modificar juegos
             }
         }
     }
-
 
     private void buscarJuego2(String texto) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -607,8 +643,6 @@ Modificar juegos
         }
     }
 
-
-
     private int obtenerIdJuego(String nombreJuego) throws SQLException {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT idJuego FROM Juegos WHERE nombre = ?";
@@ -623,7 +657,80 @@ Modificar juegos
         }
     }
 
+    @FXML
+    private TextField nombreUsuario;
+    @FXML
+    private TextField correoElectronico;
+    @FXML
+    private PasswordField contraseña;
+    @FXML
+    private PasswordField RepetirContraseña;
+    @FXML
+    private Button Registrar;
 
+    @FXML
+    public void handleBotonRegistarUsuario(ActionEvent event) {
+        String nombre = nombreUsuario.getText().trim();
+        String correo = correoElectronico.getText().trim();
+        String pass = contraseña.getText().trim();
+        String repeatPass = RepetirContraseña.getText().trim();
+
+        if (nombre.isEmpty() || correo.isEmpty() || pass.isEmpty() || repeatPass.isEmpty()) {
+            mostrarNotificacion("Error", "Todos los campos son obligatorios.");
+            return;
+        }
+
+        if (!pass.equals(repeatPass)) {
+            mostrarNotificacion("Error", "Las contraseñas no coinciden.");
+            return;
+        }
+
+        if (!correo.matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
+            mostrarNotificacion("Error", "El correo electrónico no tiene un formato válido.");
+            return;
+        }
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            // Verificar si el nombre de usuario ya está en uso
+            String queryUsuario = "SELECT COUNT(*) AS count FROM Usuarios WHERE nombre = ?";
+            PreparedStatement statementUsuario = connection.prepareStatement(queryUsuario);
+            statementUsuario.setString(1, nombre);
+            ResultSet resultSetUsuario = statementUsuario.executeQuery();
+            if (resultSetUsuario.next() && resultSetUsuario.getInt("count") > 0) {
+                mostrarNotificacion("Error", "El nombre de usuario ya está en uso. Por favor, elija otro nombre de usuario.");
+                return;
+            }
+
+            // Verificar si el correo electrónico ya está en uso
+            String queryCorreo = "SELECT COUNT(*) AS count FROM Usuarios WHERE correo = ?";
+            PreparedStatement statementCorreo = connection.prepareStatement(queryCorreo);
+            statementCorreo.setString(1, correo);
+            ResultSet resultSetCorreo = statementCorreo.executeQuery();
+            if (resultSetCorreo.next() && resultSetCorreo.getInt("count") > 0) {
+                mostrarNotificacion("Error", "El correo electrónico ya está en uso. Por favor, utilice otro correo electrónico.");
+                return;
+            }
+
+            // Insertar el nuevo usuario en la base de datos
+            String queryInsert = "INSERT INTO Usuarios (nombre, correo, contraseña, tipo_usuario) VALUES (?, ?, ?, 'administrador')";
+            PreparedStatement statementInsert = connection.prepareStatement(queryInsert);
+            statementInsert.setString(1, nombre);
+            statementInsert.setString(2, correo);
+            statementInsert.setString(3, pass);
+            int rowsInserted = statementInsert.executeUpdate();
+            if (rowsInserted > 0) {
+                mostrarNotificacionExito("Éxito", "Usuario registrado exitosamente.");
+
+                nombreUsuario.clear();
+                correoElectronico.clear();
+                contraseña.clear();
+                RepetirContraseña.clear();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            mostrarNotificacion("Error", "Error al registrar el usuario. Por favor, inténtelo de nuevo.");
+        }
+    }
 
     @FXML
     private void handleVolverPantallaInicial(ActionEvent event) throws IOException {
@@ -657,5 +764,4 @@ Modificar juegos
                 .position(Pos.BOTTOM_RIGHT)
                 .showInformation();
     }
-
 }
