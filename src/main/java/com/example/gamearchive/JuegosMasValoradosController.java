@@ -96,9 +96,6 @@ public class JuegosMasValoradosController implements Initializable {
                 }
 
                 HBox nombreNotaBox = new HBox(10, labelNombre);
-                HBox notaBox = new HBox(labelNotaMedia);
-                notaBox.setAlignment(Pos.TOP_RIGHT);
-                HBox.setHgrow(notaBox, Priority.ALWAYS); // Asegura que la nota se alinee a la derecha
 
                 // Dividir plataformas en líneas más cortas y asegurar que no se trunquen
                 String plataformasFormatted = plataformas.replaceAll(" / ", "\n");
@@ -108,7 +105,7 @@ public class JuegosMasValoradosController implements Initializable {
                 labelPlataformas.setMaxWidth(Double.MAX_VALUE); // Ajustar el ancho máximo
                 labelPlataformas.setTextOverrun(OverrunStyle.CLIP); // Evitar truncar el texto
 
-                VBox detallesBox = new VBox(10, nombreNotaBox, labelPlataformas);
+                VBox detallesBox = new VBox(10, labelNombre, labelPlataformas);
                 detallesBox.setMaxWidth(Double.MAX_VALUE); // Permitir que el VBox crezca en el HBox si es necesario
                 HBox.setHgrow(detallesBox, Priority.ALWAYS); // Permitir que el VBox crezca en el HBox si es necesario
 
@@ -116,22 +113,21 @@ public class JuegosMasValoradosController implements Initializable {
                 VBox rankBox = new VBox(rankLabel);
                 rankBox.setAlignment(Pos.CENTER); // Centra el círculo verticalmente
 
+                // Crear contenedor para centrar la calificación
+                VBox notaBox = new VBox(labelNotaMedia);
+                notaBox.setAlignment(Pos.CENTER); // Centra la calificación verticalmente
+                notaBox.setMinWidth(100); // Ajustar el ancho mínimo para la calificación
+                notaBox.setMaxWidth(100); // Ajustar el ancho máximo para la calificación
+
                 HBox juegoBox = new HBox(20, rankBox, imageView, detallesBox, notaBox); // Aumentar el espacio entre elementos
                 juegoBox.setStyle("-fx-padding: 10; -fx-background-color: #333; -fx-border-color: #555; -fx-border-width: 2px;");
-                juegoBox.setMinWidth(600); // Ajusta el ancho mínimo del contenedor según tus necesidades
+                juegoBox.setMinWidth(800); // Ajusta el ancho mínimo del contenedor según tus necesidades
                 contenedorJuegos.getChildren().add(juegoBox);
 
                 rank++; // Incrementa el contador de ranking
             }
         }
     }
-
-
-
-
-
-
-
 
 
 
