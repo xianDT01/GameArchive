@@ -1,0 +1,40 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track, 
+.scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb, 
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-insets: 2;
+    -fx-background-radius: 20;
+}
+
+.scroll-bar:vertical .thumb:hover, 
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Ocultar las barras de desplazamiento */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+/* Mostrar las barras de desplazamiento al pasar el mouse */
+.scroll-pane:hover .scroll-bar:vertical, 
+.scroll-pane:hover .scroll-bar:horizontal {
+    -fx-opacity: 1;
+}
+
+/* Estilo para la esquina del ScrollPane */
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
