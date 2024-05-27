@@ -113,6 +113,7 @@ public class MenuJuegoController implements Initializable {
         int idUsuario = SesionUsuario.getUsuario();
         int idJuego = IdJuego;
 
+
         // Verificar si el usuario ya ha votado
         if (!usuarioHaVotado(idUsuario, idJuego)) {
             // Verificar si la calificación está dentro del rango válido
@@ -171,6 +172,15 @@ public class MenuJuegoController implements Initializable {
     // Método que se llama cuando se presiona el botón de comentar
     private void agregarComentario(ActionEvent event) {
         String textoComentario = comentario.getText();
+
+        int idUsuario = SesionUsuario.getUsuario();
+        int idJuego = IdJuego;
+
+        // Verificar si el usuario ya votó antes de permitir comentar
+        if (!usuarioHaVotado(idUsuario, idJuego)) {
+            mostrarNotificacion("Error", "Debes votar antes de poder comentar");
+            return;
+        }
 
         if (textoComentario.trim().isEmpty()) {
             mostrarNotificacion("Error", "Tienes que escribir algo antes de comentar");

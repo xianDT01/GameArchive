@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
@@ -21,6 +22,20 @@
             <Blend />
          </effect>
          <children>
+            <AnchorPane fx:id="PanelAñadirAdmin" layoutX="75.0" prefHeight="684.0" prefWidth="905.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="119.0" prefWidth="882.0" text="Añadir Administrador">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="correoElectronico" alignment="CENTER" layoutX="253.0" layoutY="242.0" prefHeight="35.0" prefWidth="400.0" promptText="Email" />
+                  <TextField fx:id="nombreUsuario" alignment="CENTER" layoutX="253.0" layoutY="193.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Usuario" />
+                  <PasswordField fx:id="contraseña" alignment="CENTER" layoutX="253.0" layoutY="287.0" prefHeight="35.0" prefWidth="400.0" promptText="Contraseña" />
+                  <PasswordField fx:id="RepetirContraseña" alignment="CENTER" layoutX="253.0" layoutY="336.0" prefHeight="35.0" prefWidth="400.0" promptText="Repitir Contraseña" />
+                  <Button id="sale" fx:id="Registrar" layoutX="253.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleBotonRegistarUsuario" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Guardar" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="PanelBorrarJuego" prefHeight="684.0" prefWidth="926.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="349.0" layoutY="20.0" prefHeight="84.0" prefWidth="319.0" text="Borrar Juego">
@@ -53,20 +68,6 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="PanelAñadirAdmin" layoutX="75.0" prefHeight="684.0" prefWidth="905.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="119.0" prefWidth="882.0" text="Añadir Administrador">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="correoElectronico" alignment="CENTER" layoutX="253.0" layoutY="242.0" prefHeight="35.0" prefWidth="400.0" promptText="Email" />
-                  <TextField fx:id="nombreUsuario" alignment="CENTER" layoutX="253.0" layoutY="193.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Usuario" />
-                  <PasswordField fx:id="contraseña" alignment="CENTER" layoutX="253.0" layoutY="287.0" prefHeight="35.0" prefWidth="400.0" promptText="Contraseña" />
-                  <PasswordField fx:id="RepetirContraseña" alignment="CENTER" layoutX="253.0" layoutY="336.0" prefHeight="35.0" prefWidth="400.0" promptText="Repitir Contraseña" />
-                  <Button id="sale" fx:id="Registrar" layoutX="253.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleBotonRegistarUsuario" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Guardar" />
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="PanelModificarJuego" prefHeight="684.0" prefWidth="963.0">
                <children>
                   <Label alignment="CENTER" layoutX="81.0" layoutY="14.0" prefHeight="119.0" prefWidth="882.0" text="Modificar Juego">
@@ -76,19 +77,18 @@
                   </Label>
                   <ComboBox fx:id="nombreJuegos" editable="true" layoutX="128.0" layoutY="171.0" onAction="#seleccionarJuego" prefHeight="35.0" prefWidth="400.0" />
                   <Button fx:id="ModificarcaratulaJuego" layoutX="128.0" layoutY="461.0" mnemonicParsing="false" onAction="#ModificarCaratula" prefHeight="35.0" prefWidth="400.0" text="Cargar carátula" />
-                  <TextField fx:id="ModificarNombreJuego" layoutX="128.0" layoutY="216.0" prefHeight="35.0" prefWidth="400.0" />
-                  <TextField fx:id="ModificarPlataformas" layoutX="128.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" />
-                  <TextField fx:id="ModificarDescripcion" layoutX="128.0" layoutY="351.0" prefHeight="100.0" prefWidth="400.0" />
-                  <DatePicker fx:id="ModificarFechaDeLanzamiento" layoutX="128.0" layoutY="306.0" prefHeight="35.0" prefWidth="400.0" />
+                  <TextField fx:id="ModificarNombreJuego" alignment="CENTER" layoutX="128.0" layoutY="216.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre" />
+                  <TextField fx:id="ModificarPlataformas" alignment="CENTER" layoutX="128.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" promptText="Plataformas" />
+                  <DatePicker fx:id="ModificarFechaDeLanzamiento" layoutX="128.0" layoutY="306.0" prefHeight="35.0" prefWidth="400.0" promptText="                                        Fecha de lanzamiento" />
                   <Button id="sale" fx:id="guardar" layoutX="128.0" layoutY="506.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="35.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Guardar" />
                   <Label fx:id="RutaImagen2" layoutX="543.0" layoutY="510.0" prefHeight="35.0" prefWidth="400.0" />
                   <ImageView fx:id="ModificarImagenJuego" fitHeight="325.0" fitWidth="400.0" layoutX="543.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextArea fx:id="ModificarDescripcion" layoutX="128.0" layoutY="351.0" prefHeight="100.0" prefWidth="400.0" promptText="                                               Descripción" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelAñadirJuego" prefHeight="684.0" prefWidth="933.0">
                <children>
                   <Button fx:id="AñadirCaratulaJuego" layoutX="128.0" layoutY="424.0" mnemonicParsing="false" onAction="#seleccionarCaratula" prefHeight="35.0" prefWidth="400.0" text="Cargar Carátula" />
-                  <TextField fx:id="Descripcion" alignment="CENTER" layoutX="128.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" promptText="Descripción" />
                   <DatePicker fx:id="FechaDeLanzamiento" layoutX="128.0" layoutY="269.0" prefHeight="35.0" prefWidth="400.0" promptText="                                        Fecha de lanzamiento" />
                   <TextField fx:id="Plataformas" alignment="CENTER" layoutX="128.0" layoutY="219.0" prefHeight="35.0" prefWidth="400.0" promptText="Plataformas" />
                   <TextField fx:id="NombreJuego" alignment="CENTER" layoutX="128.0" layoutY="174.0" prefHeight="35.0" prefWidth="400.0" promptText="Nombre Juego" />
@@ -100,6 +100,7 @@
                      </font>
                   </Label>
                   <ImageView fx:id="ImagenJuego" fitHeight="285.0" fitWidth="400.0" layoutX="543.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextArea fx:id="Descripcion" layoutX="128.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" promptText="                                               Descripción" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PanelBienvenida" layoutX="32.0" prefHeight="684.0" prefWidth="941.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">

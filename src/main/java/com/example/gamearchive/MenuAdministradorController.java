@@ -219,7 +219,7 @@ public class MenuAdministradorController implements Initializable {
     private DatePicker FechaDeLanzamiento;
 
     @FXML
-    private TextField Descripcion;
+    private TextArea Descripcion;
 
     @FXML
     private Button BotonAñadirJuego;
@@ -321,7 +321,7 @@ Modificar juegos
     private DatePicker ModificarFechaDeLanzamiento;
 
     @FXML
-    private TextField ModificarDescripcion;
+    private TextArea ModificarDescripcion;
     @FXML
     private Button guardar;
 
