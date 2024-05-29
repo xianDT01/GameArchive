@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -64,8 +65,8 @@ public class ResultadosBusquedaController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
             Parent root = loader.load();
             MenuJuegoController controller = loader.getController();
-            controller.initData(juego.getIdjuego(),juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula(),juego.getPlataformas());
-            int idjuego =juego.getIdjuego();
+            controller.initData(juego.getIdjuego(), juego.getNombre(), juego.getDescripcion(), juego.getFechaLanzamiento(), juego.getRutaCaratula(), juego.getPlataformas());
+            int idjuego = juego.getIdjuego();
             ControllerId.setIdJuego(juego.getIdjuego());
             Stage stage = new Stage();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
@@ -80,17 +81,18 @@ public class ResultadosBusquedaController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private boolean abrirMenuJuego() {
         int index = resultadosListView.getSelectionModel().getSelectedIndex();
         if (index >= 0 && index < resultados.size()) {
             Juego juegoSeleccionado = resultados.get(index);
             try {
-                int idjuego =juegoSeleccionado.getIdjuego();
+                int idjuego = juegoSeleccionado.getIdjuego();
                 ControllerId.setIdJuego(juegoSeleccionado.getIdjuego());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(juegoSeleccionado.getIdjuego(),juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula(),juegoSeleccionado.getPlataformas());
+                controller.initData(juegoSeleccionado.getIdjuego(), juegoSeleccionado.getNombre(), juegoSeleccionado.getDescripcion(), juegoSeleccionado.getFechaLanzamiento(), juegoSeleccionado.getRutaCaratula(), juegoSeleccionado.getPlataformas());
                 Stage stage = new Stage();
                 stage.setTitle("GameArchive");
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
@@ -107,6 +109,7 @@ public class ResultadosBusquedaController implements Initializable {
         }
         return false;
     }
+
     @FXML
     private void handleVolverMenuInicial(ActionEvent event) throws IOException {
         Stage ventana = (Stage) VolverMenuInicial.getScene().getWindow();

@@ -14,7 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,6 +40,8 @@ import java.util.ResourceBundle;
 public class MenuAdministradorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        handleViewComentarios();
+        handleViewForos();
         cargarNombresJuegos();
 
         nombreJuegos.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
@@ -100,6 +105,7 @@ public class MenuAdministradorController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void buscarJuego(String nombreJuego) {
         if (nombreJuego != null && !nombreJuego.isEmpty()) {
             try (Connection connection = DatabaseConnection.getConnection()) {
@@ -130,6 +136,7 @@ public class MenuAdministradorController implements Initializable {
             ModificarPlataformas.clear();
         }
     }
+
     private void actualizarComboBox() {
         nombreJuegos.getItems().clear();
         String textoBusqueda = nombreJuegos.getEditor().getText();
@@ -139,6 +146,7 @@ public class MenuAdministradorController implements Initializable {
             cargarNombresJuegos();
         }
     }
+
     @FXML
     private Button Volver;
     @FXML
@@ -153,6 +161,10 @@ public class MenuAdministradorController implements Initializable {
     private Button Bienvenida;
     @FXML
     private Button AñadirAdmin;
+    @FXML
+    private Button AdministraUsuarios;
+    @FXML
+    private Button ModerarForo;
 
     @FXML
     private AnchorPane PanelBienvenida;
@@ -164,6 +176,10 @@ public class MenuAdministradorController implements Initializable {
     private AnchorPane PanelBorrarJuego;
     @FXML
     private AnchorPane PanelAñadirAdmin;
+    @FXML
+    private AnchorPane PanelAdministrarUsuarios;
+    @FXML
+    private AnchorPane PanelModerarForo;
 
 
     @FXML
@@ -174,30 +190,56 @@ public class MenuAdministradorController implements Initializable {
             PanelBorrarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
             PanelAñadirAdmin.setVisible(false);
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(false);
         } else if (event.getSource() == ModificarJuego) {
             PanelModificarJuego.setVisible(true);
             PanelAñadirJuego.setVisible(false);
             PanelBorrarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
             PanelAñadirAdmin.setVisible(false);
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(false);
         } else if (event.getSource() == BorrarJuego) {
             PanelBorrarJuego.setVisible(true);
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelBienvenida.setVisible(false);
             PanelAñadirAdmin.setVisible(false);
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(false);
         } else if (event.getSource() == Bienvenida) {
             PanelBienvenida.setVisible(true);
             PanelBorrarJuego.setVisible(false);
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelAñadirAdmin.setVisible(false);
-        }else if (event.getSource()== AñadirAdmin){
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(false);
+        } else if (event.getSource() == AñadirAdmin) {
             PanelBienvenida.setVisible(false);
             PanelBorrarJuego.setVisible(false);
             PanelAñadirJuego.setVisible(false);
             PanelModificarJuego.setVisible(false);
             PanelAñadirAdmin.setVisible(true);
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(false);
+        } else if (event.getSource() == AdministraUsuarios) {
+            PanelBienvenida.setVisible(false);
+            PanelBorrarJuego.setVisible(false);
+            PanelAñadirJuego.setVisible(false);
+            PanelModificarJuego.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
+            PanelAdministrarUsuarios.setVisible(true);
+            PanelModerarForo.setVisible(false);
+        } else if (event.getSource() == ModerarForo) {
+            PanelBienvenida.setVisible(false);
+            PanelBorrarJuego.setVisible(false);
+            PanelAñadirJuego.setVisible(false);
+            PanelModificarJuego.setVisible(false);
+            PanelAñadirAdmin.setVisible(false);
+            PanelAdministrarUsuarios.setVisible(false);
+            PanelModerarForo.setVisible(true);
         }
     }
 
@@ -572,6 +614,7 @@ Modificar juegos
             e.printStackTrace();
         }
     }
+
     private void actualizarComboBox2() {
         NombreJuegos.getItems().clear(); // Limpiar los elementos del ComboBox
         String textoBusqueda = NombreJuegos.getEditor().getText();
@@ -581,6 +624,7 @@ Modificar juegos
             cargarNombresJuegos(); // Si no hay texto de búsqueda, cargar todos los juegos
         }
     }
+
     private void cargarNombresJuegosFiltrados2(String textoBusqueda) {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT nombre FROM Juegos WHERE nombre LIKE ?";
@@ -732,6 +776,281 @@ Modificar juegos
         }
     }
 
+    // Banear usuarios
+
+    @FXML
+    private TextField searchField;
+    @FXML
+    private VBox resultBox;
+
+    @FXML
+    public void handleSearch() {
+        String searchTerm = searchField.getText();
+        resultBox.getChildren().clear();
+
+        String query = "SELECT idUsuario, nombre, correo, estaBaneado, tipo_usuario FROM Usuarios WHERE nombre LIKE ? OR correo LIKE ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, "%" + searchTerm + "%");
+            statement.setString(2, "%" + searchTerm + "%");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int userId = resultSet.getInt("idUsuario");
+                String nombre = resultSet.getString("nombre");
+                String correo = resultSet.getString("correo");
+                boolean estaBaneado = resultSet.getBoolean("estaBaneado");
+                String tipoUsuario = resultSet.getString("tipo_usuario");
+
+                HBox userBox = new HBox(10);
+                userBox.getStyleClass().add("hbox");
+
+                Label userInfo = new Label("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: " + (estaBaneado ? "Sí" : "No") + " | Tipo: " + tipoUsuario);
+                userInfo.getStyleClass().add("label");
+
+                Button banButton = new Button(estaBaneado ? "Desbanear" : "Banear");
+                banButton.getStyleClass().add("button");
+
+                // Disable ban button for administrators
+                if ("administrador".equals(tipoUsuario)) {
+                    banButton.setDisable(true);
+                }
+
+                banButton.setOnAction(event -> {
+                    if (estaBaneado) {
+                        desbanearUsuario(userId);
+                        banButton.setText("Banear");
+                        userInfo.setText("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: No" + " | Tipo: " + tipoUsuario);
+                    } else {
+                        String motivo = solicitarMotivo();
+                        if (motivo != null) {
+                            banearUsuario(userId, motivo);
+                            banButton.setText("Desbanear");
+                            userInfo.setText("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: Sí" + " | Tipo: " + tipoUsuario);
+                        }
+                    }
+                });
+
+                userBox.getChildren().addAll(userInfo, banButton);
+                resultBox.getChildren().add(userBox);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void banearUsuario(int userId, String motivo) {
+        String updateQuery = "UPDATE Usuarios SET estaBaneado = TRUE WHERE idUsuario = ?";
+        String insertQuery = "INSERT INTO Baneos (idUsuario, motivo) VALUES (?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+             PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
+
+            connection.setAutoCommit(false);  // Start transaction
+
+            // Update user status to banned
+            updateStatement.setInt(1, userId);
+            updateStatement.executeUpdate();
+
+            // Insert ban reason
+            insertStatement.setInt(1, userId);
+            insertStatement.setString(2, motivo);
+            insertStatement.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void desbanearUsuario(int userId) {
+        String query = "UPDATE Usuarios SET estaBaneado = FALSE WHERE idUsuario = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String solicitarMotivo() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Motivo del baneo");
+        dialog.setHeaderText("Ingrese el motivo del baneo");
+        dialog.setContentText("Motivo:");
+        Optional<String> result = dialog.showAndWait();
+        return result.orElse(null);
+    }
+
+    // Administrar Foro
+
+
+    @FXML
+    private TextField buscarCampo;
+    @FXML
+    private VBox cajaResultados;
+
+    @FXML
+    public void handleSearchForoMessages() {
+        String searchTerm = buscarCampo.getText();
+        cajaResultados.getChildren().clear();
+
+        String query = "SELECT fc.idComentario, fc.comentario, f.titulo " +
+                "FROM ForoComentarios fc " +
+                "JOIN Usuarios u ON fc.idUsuario = u.idUsuario " +
+                "JOIN Foro f ON fc.idForo = f.idForo " +
+                "WHERE u.nombre LIKE ? OR u.correo LIKE ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, "%" + searchTerm + "%");
+            statement.setString(2, "%" + searchTerm + "%");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int comentarioId = resultSet.getInt("idComentario");
+                String comentario = resultSet.getString("comentario");
+                String tituloForo = resultSet.getString("titulo");
+
+                HBox commentBox = new HBox(10);
+                Label commentInfo = new Label("Foro: " + tituloForo + " | Comentario: " + comentario);
+                Button deleteButton = new Button("Eliminar");
+
+                deleteButton.setOnAction(event -> {
+                    eliminarComentarioForo(comentarioId);
+                    cajaResultados.getChildren().remove(commentBox);
+                });
+
+                commentBox.getChildren().addAll(commentInfo, deleteButton);
+                cajaResultados.getChildren().add(commentBox);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void eliminarComentarioForo(int comentarioId) {
+        String query = "DELETE FROM ForoComentarios WHERE idComentario = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, comentarioId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Administrar foro
+    @FXML
+    private VBox foroListBox;
+
+
+    @FXML
+    private void handleViewForos() {
+        // Limpia la interfaz
+        cajaResultados.getChildren().clear();
+
+        String query = "SELECT idForo, titulo, descripcion FROM Foro";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int foroId = resultSet.getInt("idForo");
+                String titulo = resultSet.getString("titulo");
+                String descripcion = resultSet.getString("descripcion");
+
+                HBox foroItem = new HBox(10); // Añadir espacio entre elementos
+                Text foroText = new Text("Foro: " + titulo + " - " + descripcion);
+                Button deleteButton = new Button("Eliminar");
+                deleteButton.setOnAction(event -> eliminarForo(foroId));
+
+                foroItem.getChildren().addAll(foroText, deleteButton);
+                foroItem.setStyle("-fx-padding: 10; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 5;");
+                cajaResultados.getChildren().add(foroItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleViewComentarios() {
+        // Limpia la interfaz
+        cajaResultados.getChildren().clear();
+
+        String query = "SELECT c.idComentario, c.comentario, c.idForo, u.nombre, u.correo " +
+                "FROM forocomentarios c " +
+                "JOIN usuarios u ON c.idUsuario = u.idUsuario";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int comentarioId = resultSet.getInt("idComentario");
+                String comentario = resultSet.getString("comentario");
+                int foroId = resultSet.getInt("idForo");
+                String nombre = resultSet.getString("nombre");
+                String correo = resultSet.getString("correo");
+
+                HBox comentarioItem = new HBox(10); // Añadir espacio entre elementos
+                Text comentarioText = new Text("Comentario: " + comentario + " (Foro ID: " + foroId + ")");
+                Text usuarioText = new Text("Usuario: " + nombre + " - " + correo);
+                Button deleteButton = new Button("Eliminar");
+                deleteButton.setOnAction(event -> eliminarComentario(comentarioId));
+
+                VBox comentarioBox = new VBox(5); // Caja vertical para agrupar comentarios y detalles de usuario
+                comentarioBox.getChildren().addAll(comentarioText, usuarioText);
+
+                comentarioItem.getChildren().addAll(comentarioBox, deleteButton);
+                comentarioItem.setStyle("-fx-padding: 10; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 5;");
+                cajaResultados.getChildren().add(comentarioItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void eliminarForo(int idForo) {
+        String deleteCommentsQuery = "DELETE FROM forocomentarios WHERE idForo = ?";
+        String deleteForoQuery = "DELETE FROM foro WHERE idForo = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement deleteCommentsStmt = connection.prepareStatement(deleteCommentsQuery);
+             PreparedStatement deleteForoStmt = connection.prepareStatement(deleteForoQuery)) {
+
+            // Eliminar comentarios asociados al foro
+            deleteCommentsStmt.setInt(1, idForo);
+            deleteCommentsStmt.executeUpdate();
+
+            // Eliminar el foro
+            deleteForoStmt.setInt(1, idForo);
+            deleteForoStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void eliminarComentario(int idComentario) {
+        String deleteComentarioQuery = "DELETE FROM forocomentarios WHERE idComentario = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement deleteComentarioStmt = connection.prepareStatement(deleteComentarioQuery)) {
+
+            // Eliminar el comentario
+            deleteComentarioStmt.setInt(1, idComentario);
+            deleteComentarioStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleVolverPantallaInicial(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
@@ -748,6 +1067,7 @@ Modificar juegos
         Stage ventanaActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
         ventanaActual.close();
     }
+
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -756,6 +1076,7 @@ Modificar juegos
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
     }
+
     private void mostrarNotificacionExito(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)

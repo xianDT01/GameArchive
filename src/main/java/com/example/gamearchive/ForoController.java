@@ -32,6 +32,7 @@ public class ForoController {
     private TextField nuevaDescripcionField;
     @FXML
     private Button Volver;
+
     @FXML
     private void initialize() {
         cargarTemas();
@@ -132,7 +133,7 @@ public class ForoController {
         return -1;
     }
 
-// Cargamos todos los temas del foro en el ListView
+    // Cargamos todos los temas del foro en el ListView
     private void cargarTemas() {
         ObservableList<String> temas = FXCollections.observableArrayList();
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -148,6 +149,7 @@ public class ForoController {
             mostrarMensajeError("Error al cargar los temas desde la base de datos.");
         }
     }
+
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();
@@ -168,6 +170,7 @@ public class ForoController {
                 .darkStyle()
                 .showInformation();
     }
+
     private void mostrarMensajeError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

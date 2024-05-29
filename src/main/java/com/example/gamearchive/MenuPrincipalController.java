@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -32,50 +33,54 @@ public class MenuPrincipalController implements Initializable {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 20);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
+            } catch (IOException ex) {
 
             }
         });
     }
+
     @FXML
-    private void open_signin(ActionEvent event){
+    private void open_signin(ActionEvent event) {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 20);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
+            } catch (IOException ex) {
 
             }
         });
     }
+
     @FXML
-    private void open_signup(ActionEvent event){
+    private void open_signup(ActionEvent event) {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(0);
         t.play();
-        t.setOnFinished((e) ->{
-            try{
+        t.setOnFinished((e) -> {
+            try {
                 fxml = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-            }catch(IOException ex){
+            } catch (IOException ex) {
 
             }
         });
     }
+
     @FXML
     private void SalirApp(ActionEvent event) {
         Platform.exit();
     }
+
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)

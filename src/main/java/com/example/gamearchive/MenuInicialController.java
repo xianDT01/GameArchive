@@ -123,7 +123,6 @@ public class MenuInicialController implements Initializable {
     }
 
 
-
     private List<Integer> cargarJuegosAgregadosRecientemente() {
         List<Integer> idsJuegos = new ArrayList<>();
         try {
@@ -189,7 +188,6 @@ public class MenuInicialController implements Initializable {
     }
 
 
-
     @FXML
     private void abrirMenuJuego(int idJuego) {
         try {
@@ -197,7 +195,7 @@ public class MenuInicialController implements Initializable {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idJuego);
             ResultSet resultSet = statement.executeQuery();
-            int idxogo= 0;
+            int idxogo = 0;
             String nombreJuego = null;
             String fechaLanzamiento = null;
             String rutaCaratula = null;
@@ -218,7 +216,7 @@ public class MenuInicialController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuJuego.fxml"));
                 Parent root = loader.load();
                 MenuJuegoController controller = loader.getController();
-                controller.initData(idJuego,nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas);
+                controller.initData(idJuego, nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas);
                 Stage stage = new Stage();
                 stage.setTitle("GameArchive");
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
@@ -316,7 +314,7 @@ public class MenuInicialController implements Initializable {
     private void handleBuscar(ActionEvent event) {
         String busqueda = TextFieldBuscar.getText();
         if (!busqueda.isEmpty()) {
-            try (Connection connection =DatabaseConnection.getConnection()) {
+            try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "SELECT idJuego,nombre, descripcion, fechaLanzamiento, rutaCaratula, plataformas FROM Juegos WHERE nombre LIKE ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, "%" + busqueda + "%");
@@ -330,7 +328,7 @@ public class MenuInicialController implements Initializable {
                     String fechaLanzamiento = resultSet.getString("fechaLanzamiento");
                     String rutaCaratula = resultSet.getString("rutaCaratula");
                     String plataformas = resultSet.getString("plataformas");
-                    juegosEncontrados.add(new Juego(idJuego,nombreJuego, descripcion, fechaLanzamiento,rutaCaratula,plataformas));
+                    juegosEncontrados.add(new Juego(idJuego, nombreJuego, descripcion, fechaLanzamiento, rutaCaratula, plataformas));
                 }
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultadosBusqueda.fxml"));
@@ -369,6 +367,7 @@ public class MenuInicialController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void abrirForo(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Foro.getScene().getWindow();
@@ -381,6 +380,7 @@ public class MenuInicialController implements Initializable {
         ventana.setScene(scene);
         ventana.show();
     }
+
     @FXML
     void handleMenuUsuario(ActionEvent event) {
         try {
@@ -396,6 +396,7 @@ public class MenuInicialController implements Initializable {
             e.printStackTrace();
         }
     }
+
     // Método para cargar la imagen de perfil desde la base de datos y mostrarla en el ImageView
     private void cargarImagenDesdeBD() {
         // Obtener la ruta de la imagen de perfil desde la base de datos
@@ -411,6 +412,7 @@ public class MenuInicialController implements Initializable {
             }
         }
     }
+
     private String getRutaImagenPerfilFromDB() {
         String rutaImagenPerfil = null;
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -427,6 +429,7 @@ public class MenuInicialController implements Initializable {
         }
         return rutaImagenPerfil;
     }
+
     @FXML
     private void onMouseEnteredAgregadosrecientemente1() {
         aplicarAnimacion(Agregadosrecientemente1);
@@ -500,6 +503,7 @@ public class MenuInicialController implements Initializable {
         scaleTransition.setToY(1.0);
         scaleTransition.play();
     }
+
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
@@ -556,5 +560,5 @@ public class MenuInicialController implements Initializable {
             }).start();
         });
     }
-    }
+}
 

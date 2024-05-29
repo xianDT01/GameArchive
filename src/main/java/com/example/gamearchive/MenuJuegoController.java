@@ -65,7 +65,8 @@ public class MenuJuegoController implements Initializable {
         scrollPaneComentarios.setFitToWidth(true); // Ajustar el ancho del contenido al ScrollPane
 
     }
-    public void initData(int idJuego,String nombreJuego,String descriptcion, String fechaLanzamiento, String rutaCaratula,String plataformas) {
+
+    public void initData(int idJuego, String nombreJuego, String descriptcion, String fechaLanzamiento, String rutaCaratula, String plataformas) {
         idJuego = idJuego;
         NombreJuego.setText(nombreJuego);
         FechaDeLanzamiento.setText(fechaLanzamiento);
@@ -76,6 +77,7 @@ public class MenuJuegoController implements Initializable {
         IdJuego = idJuego;
 
     }
+
     private double obtenerNotaPromedio() {
         double promedio = 0.0;
 
@@ -105,6 +107,7 @@ public class MenuJuegoController implements Initializable {
 
         return promedio;
     }
+
     @FXML
     private void guardarReseña(ActionEvent event) {
         String nota = NotaJuego.getText();
@@ -126,7 +129,7 @@ public class MenuJuegoController implements Initializable {
                     statement.setInt(2, idUsuario);
                     statement.setInt(3, calificacion);
                     statement.executeUpdate();
-                    mostrarNotificacionExito("Éxito","Tu voto se guardo correctamente");
+                    mostrarNotificacionExito("Éxito", "Tu voto se guardo correctamente");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -145,6 +148,7 @@ public class MenuJuegoController implements Initializable {
 
         obtenerNotaPromedio();
     }
+
     private boolean usuarioHaVotado(int idUsuario, int idJuego) {
         String query = "SELECT COUNT(*) FROM reseñas WHERE idUsuario = ? AND idJuego = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -162,6 +166,7 @@ public class MenuJuegoController implements Initializable {
         }
         return false;
     }
+
     @FXML
     private TextField comentario;
 
@@ -205,7 +210,6 @@ public class MenuJuegoController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
 
     private boolean usuarioYaComento() {
@@ -351,10 +355,6 @@ public class MenuJuegoController implements Initializable {
     }
 
 
-
-
-
-
     private void actualizarComentarioEnBD(int idComentario, String nuevoComentario) {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "UPDATE Comentarios SET comentario = ? WHERE idComentario = ?";
@@ -375,6 +375,7 @@ public class MenuJuegoController implements Initializable {
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
     }
+
     private void mostrarNotificacionExito(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -383,6 +384,7 @@ public class MenuJuegoController implements Initializable {
                 .position(Pos.BOTTOM_RIGHT)
                 .showInformation();
     }
+
     private void mostrarAlerta(String titulo, String encabezado, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
@@ -390,6 +392,7 @@ public class MenuJuegoController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();

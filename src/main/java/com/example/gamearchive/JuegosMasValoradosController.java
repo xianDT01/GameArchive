@@ -130,7 +130,6 @@ public class JuegosMasValoradosController implements Initializable {
     }
 
 
-
     private void asignarEventoClic(ImageView imageView, int idJuego) {
         imageView.setOnMouseClicked(event -> {
             abrirMenuJuego(idJuego);

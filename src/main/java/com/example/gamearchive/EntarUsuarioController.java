@@ -28,7 +28,6 @@ public class EntarUsuarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         contraseña.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 try {
@@ -62,25 +61,29 @@ public class EntarUsuarioController implements Initializable {
         }
         Connection connection = null;
         try {
-
             connection = DatabaseConnection.getConnection();
 
-
-            String query = "SELECT idUsuario,nombre,tipo_usuario FROM Usuarios WHERE correo = ? AND contraseña = ?";
+            String query = "SELECT idUsuario, nombre, tipo_usuario, estaBaneado FROM Usuarios WHERE correo = ? AND contraseña = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, correo);
             statement.setString(2, pass);
 
-
             ResultSet resultSet = statement.executeQuery();
 
-
             if (resultSet.next()) {
+                boolean estaBaneado = resultSet.getBoolean("estaBaneado");
+                if (estaBaneado) {
+                    int idUsuario = resultSet.getInt("idUsuario");
+                    String motivoBaneo = obtenerMotivoBaneo(idUsuario);
+                    mostrarNotificacion("Acceso denegado", "Su cuenta está baneada. Motivo: " + motivoBaneo);
+                    return;
+                }
+
                 String tipoUsuario = resultSet.getString("tipo_usuario");
                 int idUsuario = resultSet.getInt("idUsuario");
                 String nombreUsuario = resultSet.getString("nombre");
-                if ("usuario".equals(tipoUsuario)) {
 
+                if ("usuario".equals(tipoUsuario)) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInicial.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -88,7 +91,7 @@ public class EntarUsuarioController implements Initializable {
                     stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo-GameArchive.png")));
                     stage.setScene(scene);
                     stage.show();
-                    // Guardamos el id de el usuario que inició sesion para saber que usuario está usando la aplicación
+                    // Guardamos el id de el usuario que inició sesión para saber que usuario está usando la aplicación
                     SesionUsuario.setUsuario(idUsuario);
                     SesionUsuario.setNombreUsuario(nombreUsuario);
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
@@ -104,15 +107,12 @@ public class EntarUsuarioController implements Initializable {
                     // Cerrar la ventana actual
                     Stage ventanaActual = (Stage) Entrar.getScene().getWindow();
                     ventanaActual.close();
-
                 }
-
             } else {
                 mostrarNotificacion("Error", "Credenciales incorrectas. Por favor, inténtelo de nuevo.");
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
-
             mostrarNotificacion("Error", "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
         } finally {
             // Cerrar la conexión
@@ -125,6 +125,23 @@ public class EntarUsuarioController implements Initializable {
             }
         }
     }
+
+    private String obtenerMotivoBaneo(int idUsuario) {
+        String motivo = "No especificado";
+        String query = "SELECT motivo FROM Baneos WHERE idUsuario = ? ORDER BY fechaBaneo DESC LIMIT 1";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idUsuario);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                motivo = resultSet.getString("motivo");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return motivo;
+    }
+
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -144,6 +161,4 @@ public class EntarUsuarioController implements Initializable {
                 .darkStyle()
                 .showInformation();
     }
-
-
 }

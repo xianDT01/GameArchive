@@ -49,7 +49,7 @@ public class MenuUsuarioController implements Initializable {
     @FXML
     private Label TotalComentarios;
     @FXML
-    private  Label TotalNotas;
+    private Label TotalNotas;
     @FXML
     private Button Atecptar;
     @FXML
@@ -73,16 +73,17 @@ public class MenuUsuarioController implements Initializable {
             PanelPerfilUsuario.setVisible(true);
             PanelModificarUsuario.setVisible(false);
             PanelBienvenida.setVisible(false);
-        } else if (event.getSource() ==Bienbenida) {
+        } else if (event.getSource() == Bienbenida) {
             PanelBienvenida.setVisible(true);
             PanelPerfilUsuario.setVisible(false);
             PanelModificarUsuario.setVisible(false);
-        } else if ( event.getSource() == ModificarUsuaruio) {
+        } else if (event.getSource() == ModificarUsuaruio) {
             PanelModificarUsuario.setVisible(true);
             PanelBienvenida.setVisible(false);
             PanelPerfilUsuario.setVisible(false);
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarImagenDesdeBD();
@@ -90,6 +91,7 @@ public class MenuUsuarioController implements Initializable {
         mostrarInformacionUsuario(idUsuario);
         //
     }
+
     // Método para cargar la imagen de perfil desde la base de datos y mostrarla en el ImageView
     private void cargarImagenDesdeBD() {
         // Obtener la ruta de la imagen de perfil desde la base de datos
@@ -105,6 +107,7 @@ public class MenuUsuarioController implements Initializable {
             }
         }
     }
+
     private String getRutaImagenPerfilFromDB() {
         String rutaImagenPerfil = null;
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -129,7 +132,7 @@ public class MenuUsuarioController implements Initializable {
         if (rutaDeLaImagen != null && !rutaDeLaImagen.isEmpty()) {
             guardarRutaImagenPerfilEnBD(rutaDeLaImagen);
             System.out.println("Guardada imagen de perfil");
-            mostrarNotificacionExito("Éxito","La imagen de perfil se guardo correctamente");
+            mostrarNotificacionExito("Éxito", "La imagen de perfil se guardo correctamente");
         } else {
             System.out.println("Error al guardar imagen");
             mostrarNotificacion("Error", "Error al guardar la imagen");
@@ -201,12 +204,13 @@ public class MenuUsuarioController implements Initializable {
                 mostrarNotificacionExito("Éxito", "Se guardo la imagen correctamente");
             } else {
                 System.out.println("No se pudo actualizar la ruta de imagen de perfil en la base de datos.");
-                mostrarNotificacion("Erorr","No se pudo guardar la imagen");
+                mostrarNotificacion("Erorr", "No se pudo guardar la imagen");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     // Metodo para mostrar la información al usuario y ponerla en le label, se muestra el nombre de usuario, correo, total de notas cualificadas y el total de comentarios
     private void mostrarInformacionUsuario(int idUsuario) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -397,6 +401,7 @@ public class MenuUsuarioController implements Initializable {
                 .position(Pos.BOTTOM_RIGHT)
                 .showError();
     }
+
     private void mostrarNotificacionExito(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -405,6 +410,7 @@ public class MenuUsuarioController implements Initializable {
                 .position(Pos.BOTTOM_RIGHT)
                 .showInformation();
     }
+
     @FXML
     private void handleVolverPantallaPrincipal(ActionEvent event) throws IOException {
         Stage ventana = (Stage) Volver.getScene().getWindow();

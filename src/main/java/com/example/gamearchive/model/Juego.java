@@ -2,21 +2,21 @@ package com.example.gamearchive.model;
 
 public class Juego {
 
-        private  int idjuego;
-        private String nombre;
-        private String descripcion;
-        private String fechaLanzamiento;
-        private String rutaCaratula;
-        private  String plataformas;
+    private int idjuego;
+    private String nombre;
+    private String descripcion;
+    private String fechaLanzamiento;
+    private String rutaCaratula;
+    private String plataformas;
 
 
     public Juego(int idjuego, String nombre, String descripcion, String fechaLanzamiento, String rutaCaratula, String plataformas) {
-        this.idjuego=idjuego;
+        this.idjuego = idjuego;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaLanzamiento = fechaLanzamiento;
         this.rutaCaratula = rutaCaratula;
-        this.plataformas= plataformas;
+        this.plataformas = plataformas;
     }
 
     public Juego(String nombreJuego, String rutaCaratula) {

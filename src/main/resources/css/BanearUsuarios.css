@@ -1,0 +1,30 @@
+.root {
+    -fx-font-family: 'Arial';
+}
+
+.hbox {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.vbox {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}

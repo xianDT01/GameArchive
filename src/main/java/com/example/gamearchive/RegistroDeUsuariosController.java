@@ -109,8 +109,6 @@ public class RegistroDeUsuariosController {
     }
 
 
-
-
     private void mostrarNotificacion(String titulo, String mensaje) {
         Notifications.create()
                 .title(titulo)
@@ -130,7 +128,6 @@ public class RegistroDeUsuariosController {
                 .darkStyle()
                 .showInformation();
     }
-
 
 
 }

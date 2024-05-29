@@ -9,7 +9,7 @@ public class SesionUsuario {
     }
 
     public static void setNombreUsuario(String nombreUsuario) {
-       SesionUsuario.NombreUsuario= nombreUsuario;
+        SesionUsuario.NombreUsuario = nombreUsuario;
     }
 
     public static int getUsuario() {
@@ -19,7 +19,6 @@ public class SesionUsuario {
     public static void setUsuario(int usuario) {
         SesionUsuario.usuario = usuario;
     }
-
 
 
 }

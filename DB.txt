@@ -25,8 +25,10 @@ CREATE TABLE Usuarios (
     correo VARCHAR(100) NOT NULL,
     tipo_usuario ENUM('usuario', 'administrador') NOT NULL DEFAULT 'usuario',
     imagen_de_perfil VARCHAR(255),
+    estaBaneado BOOLEAN DEFAULT FALSE,
     INDEX idx_nombre (nombre)
 );
+
 CREATE TABLE Comentarios (
     idComentario INT AUTO_INCREMENT PRIMARY KEY,
     idUsuario INT,
@@ -58,7 +60,6 @@ ALTER TABLE Foro
 ADD CONSTRAINT fk_autor
 FOREIGN KEY (autor) REFERENCES Usuarios(nombre);
 
-
 CREATE TABLE ForoComentarios (
     idComentario INT AUTO_INCREMENT PRIMARY KEY,
     idForo INT,
@@ -66,6 +67,14 @@ CREATE TABLE ForoComentarios (
     comentario TEXT,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idForo) REFERENCES Foro(idForo),
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
+);
+
+CREATE TABLE Baneos (
+    idBaneo INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT,
+    motivo TEXT,
+    fechaBaneo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
 );
 
