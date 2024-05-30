@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -89,13 +90,14 @@ public class ForoComentariosController implements Initializable {
                 // Crear nodos para mostrar el comentario
                 ImageView perfilImageView = new ImageView();
                 if (imagenPerfil != null && !imagenPerfil.isEmpty()) {
-                    try {
-                        // Quitar "src/main/resources" de la ruta de la imagen
-                        String rutaRelativaImagen = imagenPerfil.replace("src/main/resources/", "");
-                        // Cargar la imagen desde los recursos
-                        perfilImageView.setImage(new Image(getClass().getResourceAsStream("/" + rutaRelativaImagen)));
-                    } catch (IllegalArgumentException e) {
-                        // Si la URL de la imagen es inválida, usar una imagen de perfil predeterminada
+                    // Quitar "src/main/resources" de la ruta de la imagen
+                    String rutaRelativaImagen = imagenPerfil.replace("src/main/resources/", "");
+                    // Intentar cargar la imagen desde los recursos
+                    InputStream imagenStream = getClass().getResourceAsStream("/" + rutaRelativaImagen);
+                    if (imagenStream != null) {
+                        perfilImageView.setImage(new Image(imagenStream));
+                    } else {
+                        // Si no se encuentra la imagen, usar una imagen de perfil predeterminada
                         perfilImageView.setImage(new Image(getClass().getResourceAsStream("/profiles_images/user.png")));
                     }
                 } else {
