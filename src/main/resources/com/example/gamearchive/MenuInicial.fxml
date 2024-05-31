@@ -105,7 +105,7 @@
                         <Insets />
                      </opaqueInsets>
                   </TextField>
-                  <Button fx:id="ButtonBuscar" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="98.0" prefWidth="93.0">
+                  <Button fx:id="ButtonBuscar" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="98.0" prefWidth="93.0" styleClass="d" stylesheets="@../../../css/hover.css">
                      <graphic>
                         <ImageView fitHeight="67.0" fitWidth="66.0">
                            <image>
@@ -124,10 +124,9 @@
             </HBox>
             <HBox prefHeight="150.0" prefWidth="124.0">
                <children>
-                  <MenuButton mnemonicParsing="false" prefHeight="117.0" prefWidth="166.0" style="-fx-background-color: transparent;">
+                  <MenuButton mnemonicParsing="false" prefHeight="117.0" prefWidth="166.0" style="-fx-background-color: transparent;" stylesheets="@../../../css/MenuButton.css">
                      <items>
                         <MenuItem fx:id="MenuUsuario" mnemonicParsing="false" onAction="#handleMenuUsuario" text="Tu perfil" />
-                        <MenuItem disable="true" mnemonicParsing="false" text="Action 2" />
                      </items>
                      <graphic>
                         <ImageView fx:id="ImagenDePerfil" fitHeight="111.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">

@@ -1,0 +1,32 @@
+/* styles.css */
+
+/* Estilo general para el MenuButton */
+.menu-button {
+    -fx-background-color: #607D8B; /* Fondo del botón, un tono azul más claro */
+    -fx-text-fill: #FFFFFF; /* Texto blanco para buen contraste */
+    -fx-border-color: transparent; /* Bordes transparentes para eliminar el borde cuadrado */
+    -fx-border-width: 0; /* Elimina el ancho del borde */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 12px; /* Ajuste de padding para mejor apariencia */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold; /* Texto en negrita para mejor legibilidad */
+}
+
+/* Efecto hover para el MenuButton */
+.menu-button:hover {
+    -fx-background-color: #78909C; /* Cambia el fondo a un azul más oscuro al pasar el ratón */
+}
+
+/* Estilo para el menú desplegable del MenuButton */
+.menu-button .menu-item {
+    -fx-background-color: #CFD8DC; /* Fondo de los elementos del menú en un tono gris claro */
+    -fx-text-fill: #455A64; /* Texto en un tono azul oscuro para buen contraste */
+    -fx-padding: 8px 12px;
+    -fx-font-size: 13px;
+}
+
+/* Efecto hover para los elementos del menú */
+.menu-button .menu-item:hover {
+    -fx-background-color: #B0BEC5; /* Fondo gris más oscuro al pasar el ratón */
+}
