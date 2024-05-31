@@ -28,7 +28,7 @@
                <children>
                   <AnchorPane layoutX="18.0" prefHeight="691.0" prefWidth="905.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField fx:id="buscarCampo" layoutX="355.0" layoutY="136.0" promptText="Buscar usuario o correo" />
+                        <TextField fx:id="buscarCampo" layoutX="340.0" layoutY="136.0" prefHeight="25.0" prefWidth="164.0" promptText="Buscar usuario o correo" />
                         <ScrollPane layoutX="83.0" layoutY="178.0" prefHeight="468.0" prefWidth="842.0">
                            <content>
                               <VBox fx:id="cajaResultados" prefHeight="460.0" prefWidth="831.0">
@@ -38,9 +38,14 @@
                               </VBox>
                            </content>
                         </ScrollPane>
-                        <Button layoutX="516.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleSearchForoMessages" text="Buscar" />
-                        <Button layoutX="587.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleViewForos" text="Ver Foros" />
-                        <Button layoutX="673.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleViewComentarios" text="Comentarios" />
+                        <Button layoutX="514.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleSearchForoMessages" stylesheets="@../../../css/Button.css" text="Buscar" />
+                        <Button layoutX="613.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleViewForos" stylesheets="@../../../css/Button.css" text="Ver Foros" />
+                        <Button layoutX="729.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleViewComentarios" stylesheets="@../../../css/Button.css" text="Comentarios" />
+                        <Label layoutX="351.0" layoutY="58.0" prefHeight="53.0" prefWidth="400.0" text="Administrar Foro">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>
@@ -79,28 +84,28 @@
                <children>
                   <Label layoutX="349.0" layoutY="20.0" prefHeight="84.0" prefWidth="319.0" text="Borrar Juego">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Button id="sale" fx:id="borrarJuego" layoutX="79.0" layoutY="556.0" mnemonicParsing="false" onAction="#borrarJuego" prefHeight="51.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Borrar" />
+                  <Button id="sale" fx:id="borrarJuego" layoutX="79.0" layoutY="582.0" mnemonicParsing="false" onAction="#borrarJuego" prefHeight="51.0" prefWidth="400.0" stylesheets="@../../../css/cssButtons.css" text="Borrar" />
                   <ComboBox fx:id="NombreJuegos" editable="true" layoutX="79.0" layoutY="170.0" onAction="#seleccionarJuegoNombreJuego" prefHeight="35.0" prefWidth="400.0" />
-                  <ImageView fx:id="mostrarCatula" fitHeight="325.0" fitWidth="400.0" layoutX="498.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="mostrarNombreJuego" layoutX="79.0" layoutY="217.0" prefHeight="35.0" prefWidth="400.0" text="Nombre Juego" wrapText="true">
+                  <ImageView fx:id="mostrarCatula" fitHeight="325.0" fitWidth="400.0" layoutX="498.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="mostrarNombreJuego" layoutX="79.0" layoutY="217.0" prefHeight="35.0" prefWidth="400.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mostrarPlataformasJuego" layoutX="79.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" text="Plataformas Juego" wrapText="true">
+                  <Label fx:id="mostrarPlataformasJuego" layoutX="79.0" layoutY="261.0" prefHeight="35.0" prefWidth="400.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mostrarDescripcionJuego" layoutX="79.0" layoutY="353.0" prefHeight="203.0" prefWidth="400.0" text="Descripción" wrapText="true">
+                  <Label fx:id="mostrarDescripcionJuego" layoutX="79.0" layoutY="353.0" prefHeight="224.0" prefWidth="400.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mostrarFechaLanzamientoJuego" layoutX="79.0" layoutY="307.0" prefHeight="35.0" prefWidth="400.0" text="Fecha Lanzamiento" wrapText="true">
+                  <Label fx:id="mostrarFechaLanzamientoJuego" layoutX="79.0" layoutY="307.0" prefHeight="35.0" prefWidth="400.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>

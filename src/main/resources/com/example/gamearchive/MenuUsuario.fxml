@@ -97,21 +97,53 @@
       </AnchorPane>
       <AnchorPane fx:id="PanelBienvenida" prefHeight="684.0" prefWidth="871.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">
          <children>
-            <AnchorPane layoutX="18.0" layoutY="-2.0" prefHeight="693.0" prefWidth="1062.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="-2.0" />
+            <AnchorPane layoutX="18.0" layoutY="-2.0" prefHeight="693.0" prefWidth="1062.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="-2.0">
+               <children>
+                  <Label layoutX="584.0" layoutY="110.0" text="Tu Perfil" textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="446.0" layoutY="194.0" prefHeight="35.0" prefWidth="407.0" text="¡Bienvenido a tu perfil! Aquí puedes:" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="261.0" layoutY="255.0" prefHeight="46.0" prefWidth="313.0" text="Ver y actualizar tu imagen de perfil." textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="261.0" layoutY="301.0" prefHeight="46.0" prefWidth="437.0" text="Consultar tu nombre de usuario y correo electrónico." textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="261.0" layoutY="347.0" prefHeight="46.0" prefWidth="437.0" text="Ver tus juegos valorados y comentados." textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="261.0" layoutY="393.0" prefHeight="46.0" prefWidth="472.0" text="Cambiar tu correo electrónico asociado y tu contraseña." textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-3.0" prefHeight="684.0" prefWidth="299.0" style="-fx-background-color: #55B4B0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="-3.0" prefHeight="684.0" prefWidth="299.0" style="-fx-background-color: #B0BEC5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="684.0" prefWidth="63.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="77.0" fitWidth="84.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="77.0" fitWidth="84.0" layoutX="7.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/gui_user_plus_icon_158351.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <JFXButton fx:id="PerfilUsuaruio" layoutX="64.0" layoutY="84.0" onAction="#ControllerPanel" prefHeight="84.0" prefWidth="262.0" text="Perfil De Usuario">
+            <JFXButton fx:id="PerfilUsuaruio" layoutX="-3.0" layoutY="84.0" onAction="#ControllerPanel" prefHeight="84.0" prefWidth="335.0" text="     Perfil De Usuario       ">
                <font>
                   <Font size="24.0" />
                </font></JFXButton>
@@ -119,7 +151,7 @@
                <font>
                   <Font size="24.0" />
                </font></JFXButton>
-            <JFXButton fx:id="Bienbenida" layoutX="-4.0" layoutY="36.0" onAction="#ControllerPanel" prefHeight="59.0" prefWidth="335.0" text="Bienvenido">
+            <JFXButton fx:id="Bienbenida" layoutX="-4.0" layoutY="36.0" onAction="#ControllerPanel" prefHeight="59.0" prefWidth="335.0" text="Bienvenido           ">
                <font>
                   <Font size="24.0" />
                </font>
@@ -129,7 +161,7 @@
                   <Image url="@../../../img/gui_user_edit_icon_158355.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="Volver" layoutX="7.0" layoutY="231.0" onAction="#handleVolverPantallaPrincipal" prefHeight="84.0" prefWidth="321.0" text="Volver">
+            <JFXButton fx:id="Volver" layoutY="231.0" onAction="#handleVolverPantallaPrincipal" prefHeight="84.0" prefWidth="335.0" text="Volver                 ">
                <font>
                   <Font size="24.0" />
                </font>
@@ -137,6 +169,11 @@
             <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="-2.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/exitIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="77.0" fitWidth="63.0" layoutX="-2.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/bienvenida.png" />
                </image>
             </ImageView>
          </children>
