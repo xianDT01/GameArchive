@@ -265,8 +265,7 @@ public class MenuAdministradorController implements Initializable {
 
     @FXML
     private Button BotonAñadirJuego;
-    @FXML
-    private Label RutaImagen;
+
     @FXML
     private ImageView ImagenJuego;
 
@@ -282,7 +281,6 @@ public class MenuAdministradorController implements Initializable {
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
 
         if (caratulaJuegoFile != null) {
-            RutaImagen.setText(caratulaJuegoFile.getAbsolutePath());
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
 
             // Cargar la imagen en el ImageView
@@ -326,7 +324,13 @@ public class MenuAdministradorController implements Initializable {
                 Descripcion.clear();
                 FechaDeLanzamiento.setValue(null);
                 Plataformas.clear();
-                AñadirCaratulaJuego = null;
+
+
+                // Cargar la imagen por defecto en el ImageView
+                Image defaultImage = new Image("file:src/main/resources/caratulas/default.png");
+                ImagenJuego.setImage(defaultImage);
+
+                caratulaJuegoFile = null; // Reiniciar el archivo de caratula
             }
             cargarNombresJuegos2();
             cargarNombresJuegos();
@@ -337,7 +341,6 @@ public class MenuAdministradorController implements Initializable {
             System.err.println("Error al copiar la imagen de la carátula: " + e.getMessage());
             mostrarNotificacion("Error", "Error al copiar la imagen de la carátula: " + e.getMessage());
         }
-
     }
 
 
@@ -368,8 +371,6 @@ Modificar juegos
     private Button guardar;
 
     @FXML
-    private Label RutaImagen2;
-    @FXML
     private ImageView ModificarImagenJuego;
     public static final String RUTA_POR_DEFECTO = "src\\main\\resources\\caratulas\\caratula.jpg";
 
@@ -385,7 +386,6 @@ Modificar juegos
         caratulaJuegoFile = fileChooser.showOpenDialog(new Stage());
 
         if (caratulaJuegoFile != null) {
-            RutaImagen2.setText(caratulaJuegoFile.getAbsolutePath());
             ModificarcaratulaJuegoFile = caratulaJuegoFile; // Asignar el archivo seleccionado
             mostrarNotificacionExito("Éxito", "La imagen se cargó correctamente.");
         }
@@ -675,13 +675,23 @@ Modificar juegos
                     int rowsDeleted = eliminarJuegoStatement.executeUpdate();
                     if (rowsDeleted > 0) {
                         mostrarNotificacionExito("Éxito", "Juego eliminado correctamente");
-                        // Limpiar los campos o actualizar la lista de juegos en el ComboBox si es necesario
+
+                        // Limpiar los campos y la imagen
+                        mostrarNombreJuego.setText("");
+                        mostrarPlataformasJuego.setText("");
+                        mostrarDescripcionJuego.setText("");
+                        mostrarFechaLanzamientoJuego.setText("");
+
+                        // Cargar la imagen por defecto en el ImageView
+                        Image defaultImage = new Image("file:src/main/resources/caratulas/default.png");
+                        mostrarCatula.setImage(defaultImage);
+
+                        cargarNombresJuegos();
+                        cargarNombresJuegos2();
                     }
-                    cargarNombresJuegos();
-                    cargarNombresJuegos2();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    // Manejo de errores
+                    mostrarNotificacion("Error", "Error al eliminar el juego: " + e.getMessage());
                 }
             }
         }
