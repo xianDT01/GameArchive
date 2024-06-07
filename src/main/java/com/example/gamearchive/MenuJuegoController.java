@@ -111,36 +111,41 @@ public class MenuJuegoController implements Initializable {
     @FXML
     private void guardarReseña(ActionEvent event) {
         String nota = NotaJuego.getText();
-        int calificacion = Integer.parseInt(nota);
+
+        // Validar que la entrada sea un número entero entre 1 y 10
+        int calificacion;
+        try {
+            calificacion = Integer.parseInt(nota);
+            if (calificacion < 1 || calificacion > 10) {
+                mostrarAlerta("Error", "Calificación inválida", "La calificación debe estar entre 1 y 10.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Error", "Entrada inválida", "Por favor, introduce un número entero entre 1 y 10.");
+            return;
+        }
 
         int idUsuario = SesionUsuario.getUsuario();
         int idJuego = IdJuego;
 
-
         // Verificar si el usuario ya ha votado
         if (!usuarioHaVotado(idUsuario, idJuego)) {
-            // Verificar si la calificación está dentro del rango válido
-            if (calificacion >= 1 && calificacion <= 10) {
-                String query = "INSERT INTO reseñas (idJuego, idUsuario, calificacion) VALUES (?, ?, ?)";
+            String query = "INSERT INTO reseñas (idJuego, idUsuario, calificacion) VALUES (?, ?, ?)";
 
-                try (Connection connection = DatabaseConnection.getConnection();
-                     PreparedStatement statement = connection.prepareStatement(query)) {
-                    statement.setInt(1, idJuego);
-                    statement.setInt(2, idUsuario);
-                    statement.setInt(3, calificacion);
-                    statement.executeUpdate();
-                    mostrarNotificacionExito("Éxito", "Tu voto se guardo correctamente");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            } else {
-
-                mostrarAlerta("Error", "Calificación inválida", "La calificación debe estar entre 1 y 10.");
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, idJuego);
+                statement.setInt(2, idUsuario);
+                statement.setInt(3, calificacion);
+                statement.executeUpdate();
+                mostrarNotificacionExito("Éxito", "Tu voto se guardó correctamente");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
-
             mostrarAlerta("Error", "Usuario ya ha votado", "El usuario ya ha votado para este juego.");
         }
+
         double notaPromedioAntes = obtenerNotaPromedio();
         double notaPromedioDespues = obtenerNotaPromedio();
         String notaFormateada = String.format("%.1f", notaPromedioDespues);
@@ -148,6 +153,7 @@ public class MenuJuegoController implements Initializable {
 
         obtenerNotaPromedio();
     }
+
 
     private boolean usuarioHaVotado(int idUsuario, int idJuego) {
         String query = "SELECT COUNT(*) FROM reseñas WHERE idUsuario = ? AND idJuego = ?";

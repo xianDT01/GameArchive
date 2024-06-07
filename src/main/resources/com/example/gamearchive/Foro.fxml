@@ -49,7 +49,7 @@
                   <TextArea fx:id="nuevaDescripcionField" prefHeight="100.0" prefWidth="253.0" />
                </children></HBox>
             <HBox prefHeight="100.0" prefWidth="66.0" />
-            <Button mnemonicParsing="false" onAction="#crearNuevoTema" text="Crear Tema" />
+            <Button mnemonicParsing="false" onAction="#crearNuevoTema" stylesheets="@../../../css/Button.css" text="Crear Tema" />
          </children>
       </HBox>
       <HBox prefHeight="508.0" prefWidth="1124.0">
