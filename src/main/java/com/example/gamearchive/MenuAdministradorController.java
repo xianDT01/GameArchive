@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MenuAdministradorController implements Initializable {
     @Override
@@ -810,16 +811,16 @@ Modificar juegos
                 int userId = resultSet.getInt("idUsuario");
                 String nombre = resultSet.getString("nombre");
                 String correo = resultSet.getString("correo");
-                boolean estaBaneado = resultSet.getBoolean("estaBaneado");
+                AtomicBoolean estaBaneado = new AtomicBoolean(resultSet.getBoolean("estaBaneado"));
                 String tipoUsuario = resultSet.getString("tipo_usuario");
 
                 HBox userBox = new HBox(10);
                 userBox.getStyleClass().add("hbox");
 
-                Label userInfo = new Label("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: " + (estaBaneado ? "Sí" : "No") + " | Tipo: " + tipoUsuario);
+                Label userInfo = new Label("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: " + (estaBaneado.get() ? "Sí" : "No") + " | Tipo: " + tipoUsuario);
                 userInfo.getStyleClass().add("label");
 
-                Button banButton = new Button(estaBaneado ? "Desbanear" : "Banear");
+                Button banButton = new Button(estaBaneado.get() ? "Desbanear" : "Banear");
                 banButton.getStyleClass().add("button");
 
                 // Disable ban button for administrators
@@ -828,14 +829,18 @@ Modificar juegos
                 }
 
                 banButton.setOnAction(event -> {
-                    if (estaBaneado) {
+                    if (estaBaneado.get()) {
                         desbanearUsuario(userId);
+                        // Update the local estaBaneado flag and UI components
+                        estaBaneado.set(false);
                         banButton.setText("Banear");
                         userInfo.setText("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: No" + " | Tipo: " + tipoUsuario);
                     } else {
                         String motivo = solicitarMotivo();
                         if (motivo != null) {
                             banearUsuario(userId, motivo);
+                            // Update the local estaBaneado flag and UI components
+                            estaBaneado.set(true);
                             banButton.setText("Desbanear");
                             userInfo.setText("Nombre: " + nombre + " | Correo: " + correo + " | Baneado: Sí" + " | Tipo: " + tipoUsuario);
                         }
@@ -940,7 +945,7 @@ Modificar juegos
             e.printStackTrace();
         }
     }
-
+    // Administrar foro
     private void eliminarComentarioForo(int comentarioId) {
         String query = "DELETE FROM ForoComentarios WHERE idComentario = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -952,7 +957,7 @@ Modificar juegos
         }
     }
 
-    // Administrar foro
+
     @FXML
     private VBox foroListBox;
 
