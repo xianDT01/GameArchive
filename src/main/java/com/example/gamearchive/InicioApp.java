@@ -28,5 +28,8 @@ public class InicioApp extends Application {
         stage.centerOnScreen();
         stage.show();
     }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 }

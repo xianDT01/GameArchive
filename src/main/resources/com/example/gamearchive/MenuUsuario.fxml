@@ -14,49 +14,6 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamearchive.MenuUsuarioController">
    <children>
-      <AnchorPane fx:id="PanelPerfilUsuario" prefHeight="684.0" prefWidth="871.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Pane layoutX="320.0" layoutY="74.0" prefHeight="255.0" prefWidth="661.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
-               <children>
-                  <ImageView fx:id="ImagenDePerfil2" fitHeight="200.0" fitWidth="268.0" layoutX="36.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="328.0" layoutY="32.0" prefHeight="63.0" prefWidth="321.0" text="Nombre del usuario" textFill="WHITE">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="132.0" prefHeight="46.0" prefWidth="254.0" text="Correo del usuario" textFill="WHITE">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="320.0" layoutY="356.0" prefHeight="255.0" prefWidth="661.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
-               <children>
-                  <Label layoutX="481.0" layoutY="72.0" text="Comentarios" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="TotalComentarios" alignment="CENTER" contentDisplay="CENTER" layoutX="481.0" layoutY="127.0" prefHeight="35.0" prefWidth="135.0" text="comentarios" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="TotalNotas" alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="128.0" prefHeight="35.0" prefWidth="99.0" text="Total juegos cualificados" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="51.0" layoutY="72.0" text="Juegos cualificados" textFill="#f8f8f8">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="PanelModificarUsuario" prefHeight="684.0" prefWidth="963.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane layoutX="393.0" layoutY="44.0" prefHeight="285.0" prefWidth="729.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
@@ -95,6 +52,49 @@
             </Pane>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="PanelPerfilUsuario" prefHeight="684.0" prefWidth="871.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane layoutX="320.0" layoutY="74.0" prefHeight="255.0" prefWidth="686.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
+               <children>
+                  <ImageView fx:id="ImagenDePerfil2" fitHeight="200.0" fitWidth="268.0" layoutX="36.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="nombre" alignment="CENTER" contentDisplay="CENTER" layoutX="328.0" layoutY="19.0" prefHeight="90.0" prefWidth="321.0" text="Nombre del usuario" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="correo" alignment="CENTER" contentDisplay="CENTER" layoutX="335.0" layoutY="132.0" prefHeight="84.0" prefWidth="321.0" text="Correo del usuario" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="320.0" layoutY="356.0" prefHeight="255.0" prefWidth="686.0" style="-fx-background-color: rgba(76, 75, 80, 0.4); -fx-background-radius: 15;">
+               <children>
+                  <Label layoutX="481.0" layoutY="72.0" text="Comentarios" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TotalComentarios" alignment="CENTER" contentDisplay="CENTER" layoutX="481.0" layoutY="127.0" prefHeight="35.0" prefWidth="135.0" text="comentarios" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TotalNotas" alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="128.0" prefHeight="35.0" prefWidth="99.0" text="Total juegos cualificados" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="51.0" layoutY="72.0" text="Juegos cualificados" textFill="#f8f8f8">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="PanelBienvenida" prefHeight="684.0" prefWidth="871.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-1.0">
          <children>
             <AnchorPane layoutX="18.0" layoutY="-2.0" prefHeight="693.0" prefWidth="1062.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="-2.0">
@@ -129,7 +129,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-               </children></AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-3.0" prefHeight="684.0" prefWidth="299.0" style="-fx-background-color: #B0BEC5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
